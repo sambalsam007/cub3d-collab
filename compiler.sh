@@ -1,8 +1,5 @@
 #!/bin/bash
 flags="$1"
-# flags
-# m	hide makefile output
-# o	open *.c src files
 program="./cub3d"
 args="maps/fun_1.cub"
 files_to_track=(srcs/*.c srcs/*/*.c *.sh)
@@ -13,12 +10,9 @@ update() {
 	clear
 	div
 	date
-	if [[ $flags == *"m"* ]]; then
-		make >/tmp/cub3d || make re >/tmp/cub3d
-	else
-		div
-		make || make re 
-	fi
+	[[ $flags == *"m"* ]] \
+		&& { make >/tmp/cub3d || make re >/tmp/cub3d; } \
+		|| { div; make || make re; }
 	div
 	[[ $? != 0 ]] && { echo 'error compiling'; return 1; }
 	"$program" $args

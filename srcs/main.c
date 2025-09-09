@@ -16,7 +16,6 @@ static int	valid_filename(char *filename)
 {
 	int	len;
 
-	printf("asdf\n");
 	len = ft_strlen(filename);
 	if (len < 5)
 		return (0);
