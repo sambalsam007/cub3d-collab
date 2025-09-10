@@ -57,13 +57,19 @@ typedef struct s_mlx
 	void	*image;
 }	t_mlx;
 
+// (?) 
+// the map, i guess in here we read the map from the input. (the array)
+// cords_p[2] coordinates
+// compas ? to say where our player is 
 typedef struct s_data
 {
-    char    	**map;
+    char    	**map; // the map.... how do we get stuff here...
     int     	cords_p[2];
     t_compas	compas;
 }	t_data;
 
+// (?) 
+// used for accessing all the data we use
 typedef struct s_cubed
 {
 	t_data	data;

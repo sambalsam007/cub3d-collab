@@ -23,8 +23,14 @@ static int	valid_filename(char *filename)
 	return (ft_strncmp(filename, ".cub", 4) == 0);
 }
 
+// input: path to a map
 int	main(int ac, char **av)
 {
+	// (?) 
+	// struct cubed, 
+	// this contains 2 structs
+	// 1. the data we need for everything
+	// 2 the data we need for all the mlx stuff
 	t_cubed	cubed;
 	
 	if (ac != 2 || !valid_filename(av[1]))
@@ -36,5 +42,6 @@ int	main(int ac, char **av)
 		// if (process(&cubed))
 		// 	return (ERROR);
 	}
+	// printf("map: %s\n", cubed.data.map[3]);
 	return (SUCCESS);
 }
