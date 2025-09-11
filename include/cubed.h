@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 16:45:40 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:45:05 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,8 @@ char	*read_file(const char *path);
 
 // Cleaning and Errors
 void	err_msg(char *error);
-void	free_cubed(t_cubed *cubed);
+void	free_mlx(t_cubed *cubed);
+void	free_all(t_cubed *cubed);
 
 /* Program */
 // Main program

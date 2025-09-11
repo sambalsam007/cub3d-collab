@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:30:51 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 15:41:29 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:03:07 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	init_cubed(t_cubed *cubed, char *file)
 	if (!temp)
 		return (ERROR);
 	if (parse_map(cubed, temp))
-		return (ERROR);
+		return (free_all(cubed), ERROR);
 	free(temp);
 	init_player(cubed);
 	if (init_mlx_struct(cubed))
-		return (ERROR);
+		return (free_all(cubed),  ERROR);
 	// to be removed ones done
 	printf("(%d,%d)\n", cubed->data.cords_p[1], cubed->data.cords_p[0]);
 	for (int i = 0; cubed->data.map[i]; i++)

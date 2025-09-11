@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 15:43:30 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 15:45:39 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:28:34 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int	close_window(void *param)
 	t_cubed	*cubed;
 
 	cubed = (t_cubed *)param;
-	free_cubed(cubed);
-	return (0);
+	free_all(cubed);
+	exit (0);
 }
 
 int	key_press(int key, t_cubed *cubed)
 {
 	if (key >= 0 && key < 300)
 		cubed->keys[key] = 1;
-	if (key == 53) // ESC
+	if (key == 53)
 		close_window(cubed);
 	return (0);
 }
