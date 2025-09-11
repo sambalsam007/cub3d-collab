@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:07:43 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 15:42:47 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:26:04 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ void	free_cubed(t_cubed *cubed)
 	if (cubed->mlx.win)
 		mlx_destroy_window(cubed->mlx.mlx, cubed->mlx.win);
 	if (cubed->mlx.mlx)
-		free(cubed->mlx.mlx);
+	{
+		#ifdef __linux__
+			mlx_destroy_display(cubed->mlx.mlx);
+			free(cubed->mlx.mlx);
+		#else
+			free(cubed->mlx.mlx);
+		#endif
+	}
 	return;
 }

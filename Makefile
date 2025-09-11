@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/01 16:36:52 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/11 15:43:10 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/09/11 16:25:33 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,20 +42,33 @@ SRCS_INIT 	= \
 		$(SRCDIR)/init/read_file.c \
 		$(SRCDIR)/init/utils.c
 
-SRCS_DRAW = \
+SRCS_PROGRAM = \
 		$(SRCDIR)/program/draw.c \
-		$(SRCDIR)/program/utils.c
+		$(SRCDIR)/program/utils.c \
+		$(SRCDIR)/program/keys.c \
+		$(SRCDIR)/program/player.c
 
 SRCS_MAIN 	= $(SRCDIR)/main.c
 
-SRC			= $(SRCS_INIT) $(SRCS_MAIN) $(SRCS_CL_ER) $(SRCS_DRAW)
+SRC			= $(SRCS_INIT) $(SRCS_MAIN) $(SRCS_CL_ER) $(SRCS_PROGRAM)
 OBJ			= $(SRC:.c=.o)
 
 LIBFTDIR	= libft
 LIBFT		= $(LIBFTDIR)/libft.a
+
+UNAME		= $(shell uname)
+
+ifeq ($(UNAME), Darwin)  # macOS
 MLXDIR		= mlxlib
-MLX			= $(MLXDIR)/libmlx.dylib
-MLXFLAGS	= -framework Cocoa -framework Metal -lz
+MLX			= $(MLXDIR)/libmlx.a
+MLXFLAGS	= -framework OpenGL -framework AppKit
+endif
+
+ifeq ($(UNAME), Linux)
+MLXDIR		= mlxlib_linux
+MLX			= $(MLXDIR)/libmlx.a
+MLXFLAGS	= -lX11 -lXext -lm
+endif
 
 # **************************************************************************** #
 #                                   RULES                                      #

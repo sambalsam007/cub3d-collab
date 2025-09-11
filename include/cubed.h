@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 15:54:04 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:26:29 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,24 @@
 # include <sys/time.h>
 # include "mlx.h"
 # include "libft.h"
+
+#ifdef __APPLE__
+// macOS keycodes
+# define KEY_ESC 53
+# define KEY_W   13
+# define KEY_A   0
+# define KEY_S   1
+# define KEY_D   2
+#endif
+
+#ifdef __linux__
+// Linux (X11) keycodes
+# define KEY_ESC 65307
+# define KEY_W   119
+# define KEY_A   97
+# define KEY_S   115
+# define KEY_D   100
+#endif
 
 # define ERROR 1
 # define SUCCESS 0
@@ -133,7 +151,5 @@ int		get_map_width(char **map);
 int		get_cell_size(t_cubed *cubed, int *w, int *h);
 long	get_time_ms(void);
 void	my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
-
-
 
 #endif
