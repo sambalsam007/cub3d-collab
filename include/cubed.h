@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 16:26:29 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:45:40 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 
 #ifdef __linux__
 // Linux (X11) keycodes
+# include <X11/X.h>
+# include <X11/Xlib.h>
+# include <X11/keysym.h>
 # define KEY_ESC 65307
 # define KEY_W   119
 # define KEY_A   97
