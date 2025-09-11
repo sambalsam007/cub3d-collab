@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/01 16:36:52 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/11 16:38:00 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/09/11 16:39:04 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ MLXFLAGS	= -framework OpenGL -framework AppKit
 endif
 
 ifeq ($(UNAME), Linux)
-MLXDIR		= mlxlib_linux
+MLXDIR		= mlxlib
 MLX			= $(MLXDIR)/libmlx.a
 MLXFLAGS	= -lX11 -lXext -lm
 endif
