@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/01 16:36:52 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/11 16:25:33 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/09/11 16:38:00 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ $(MLXDIR)/libmlx.a:
 
 $(NAME): $(OBJ) $(LIBFT) $(MLXDIR)/libmlx.a
 	@echo "$(BLUE)[CUB3D] Compiling project...$(RESET)"
-	@$(CC) $(CFLAGS) -I$(MLXDIR) $(OBJ) $(LIBFT) -L$(MLXDIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(MLXDIR) $(OBJ) $(LIBFT) -L$(MLXDIR) -lmlx $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)[CUB3D] Compiled successfully ✔$(RESET)"
 
 %.o: %.c
