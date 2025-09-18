@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:19:10 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 18:03:53 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:34:25 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	process(t_cubed *cubed)
 	mlx_hook(cubed->mlx.win, 17, 0, close_window, cubed);
 	mlx_loop_hook(cubed->mlx.mlx, render_next_frame, cubed);
 	mlx_loop(cubed->mlx.mlx);
-	return (free_all(cubed), SUCCESS);
+	return (SUCCESS);
 }
 
 static int	valid_filename(char *filename)

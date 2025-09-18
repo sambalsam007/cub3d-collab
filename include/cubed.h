@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 17:45:05 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:53:11 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_data
 {
     char    	**map;
     int     	cords_p[2];
+	/* Zet de (x,y) cordinaten hier en de x.len en y.len */
     t_compas	compas;
 }	t_data;
 

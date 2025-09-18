@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 16:17:04 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 15:47:44 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:45:52 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,9 @@ void	my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color)
 
 	dst = cubed->mlx.adr + (y * cubed->mlx.size_line + x * (cubed->mlx.bpp / 8));
 	*(unsigned int*)dst = color;
+}
+
+int draw_line(t_cubed *cubed, int len, t_compas direc)
+{
+	
 }
