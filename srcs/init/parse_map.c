@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:14:21 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/04 19:32:39 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:02:43 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,10 @@ int	parse_map(t_cubed *cubed, char *str)
 	if (!lines)
 		return (err_msg(ERR_MAL), ERROR);
 	get_map_size(lines, &h, &w);
-	if (copy_and_find(cubed, lines, h, w) == ERROR)
-		return (ERROR);
-	if (validate_map(cubed, h, w) == ERROR)
+	if (copy_and_find(cubed, lines, h, w))
+		return (ft_freearr(lines), ERROR);
+	ft_freearr(lines);
+	if (validate_map(cubed, h, w))
 		return (err_msg(ERR_INVVALID_MAP), ERROR);
 	return (SUCCESS);
 }
