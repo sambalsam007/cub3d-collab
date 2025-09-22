@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/18 15:53:11 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:31:34 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,14 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <string.h>
-# include <sys/time.h>
-# include "mlx.h"
+// # include "mlx.h"
 # include "libft.h"
-
-#ifdef __APPLE__
-// macOS keycodes
-# define KEY_ESC 53
-# define KEY_W   13
-# define KEY_A   0
-# define KEY_S   1
-# define KEY_D   2
-#endif
-
-#ifdef __linux__
-// Linux (X11) keycodes
-# include <X11/X.h>
-# include <X11/Xlib.h>
-# include <X11/keysym.h>
-# define KEY_ESC 65307
-# define KEY_W   119
-# define KEY_A   97
-# define KEY_S   115
-# define KEY_D   100
-#endif
 
 # define ERROR 1
 # define SUCCESS 0
 
-# define WIDTH 960
-# define HEIGHT 540
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define ERR_MAL "Memory allocation failed"
 # define ERR_INVVALID_MAP "The map is or wrong or incomplete"
@@ -74,48 +52,22 @@ typedef enum e_compas
 
 typedef struct s_mlx
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*adr;
-	int			endian;
-	int			bpp;
-	int			size_line;
+	void	*mlx;
+	void	*win;
+	void	*image;
 }	t_mlx;
-
-typedef struct s_player
-{
-	float	x;
-	float	y;
-	float	r;
-	int		c;
-}	t_player;
 
 typedef struct s_data
 {
     char    	**map;
     int     	cords_p[2];
-	/* Zet de (x,y) cordinaten hier en de x.len en y.len */
     t_compas	compas;
 }	t_data;
 
-typedef struct	s_rect
-{
-	char	type;
-	float	x;
-	float	y;
-	float	w;
-	float	h;
-	char	c;
-} t_rect;
-
 typedef struct s_cubed
 {
-	t_player	p;
-	t_data		data;
-	t_mlx		mlx;
-	int			keys[300];
-	long		last_time;
+	t_data	data;
+	t_mlx	mlx;
 }   t_cubed;
 
 // Initializing functions
@@ -128,33 +80,5 @@ char	*read_file(const char *path);
 
 // Cleaning and Errors
 void	err_msg(char *error);
-void	free_mlx(t_cubed *cubed);
-void	free_all(t_cubed *cubed);
-
-/* Program */
-// Main program
-int		process(t_cubed *cubed);
-
-// Draw
-void	draw_player(t_cubed *cubed, t_player p, int cell);
-void	draw_cell(t_cubed *cubed, int x, int y, int size, int color);
-int		make_minimap(t_cubed *cubed);
-int		render_next_frame(t_cubed *cubed);
-
-// Player
-int		can_move(t_cubed *cubed, float nx, float ny);
-void	update_player(t_cubed *cubed);
-int		is_in(float x, float y, t_player p);
-
-// Keys
-int		close_window(void *param);
-int		key_press(int key, t_cubed *cubed);
-int		key_release(int key, t_cubed *cubed);
-
-// Utils
-int		get_map_width(char **map);
-int		get_cell_size(t_cubed *cubed, int *w, int *h);
-long	get_time_ms(void);
-void	my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
 
 #endif

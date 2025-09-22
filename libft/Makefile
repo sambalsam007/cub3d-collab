@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 13:42:57 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/10 13:04:11 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/09/04 16:08:43 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,12 +125,48 @@ OBJS := $(SRCS:.c=.o)
 # RULES
 # ==============================================================================
 
+SPINPID := .spinner.pid
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "$(BLUE)[LIBFT] Compiling files...$(RESET)"
 	@$(AR) $(NAME) $(OBJS)
-	@echo "$(GREEN)[LIBFT] Compiled successfully ✔$(RESET)"
+	@$(MAKE)
+	@printf "\n$(GREEN)[LIBFT] Compiled successfully ✔$(RESET)\n"
+
+# $(NAME): $(OBJS)
+# 	@$(AR) $(NAME) $(OBJS)
+# 	@$(MAKE) --no-print-directory stop_spinner
+# 	@printf "\n$(GREEN)[LIBFT] Compiled successfully ✔$(RESET)\n"
+
+# Start the spinner once before any object is built
+# $(OBJS): | start_spinner
+
+# start_spinner:
+# 	@{ \
+# 	  trap "exit" INT TERM; \
+# 	  trap "kill 0" EXIT; \
+# 	  i=0; \
+# 	  while :; do \
+# 	    case $$i in \
+# 	      0) dots='.' ;; \
+# 	      1) dots='..' ;; \
+# 	      2) dots='...' ;; \
+# 	    esac; \
+# 	    printf "\r\033[K$(BLUE)[LIBFT] Compiling files%s$(RESET)" "$$dots"; \
+# 	    sleep 0.2; \
+# 	    i=$$(((i+1)%3)); \
+# 	  done \
+# 	} & echo $$! > $(SPINPID)
+
+# stop_spinner:
+# 	@{ \
+# 	  if [ -f $(SPINPID) ]; then \
+# 	    kill $$(cat $(SPINPID)) >/dev/null 2>&1 || true; \
+# 	    rm -f $(SPINPID); \
+# 	    printf "\r\033[K"; \
+# 	  fi; \
+# 	}
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

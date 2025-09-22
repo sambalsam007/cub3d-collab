@@ -6,11 +6,11 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:11:16 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/10 18:10:35 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:43:38 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_arrlen(char **arr)
+int	ft_arrlen(int **arr)
 {
 	int	i;
 

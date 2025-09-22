@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/01 16:36:52 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/11 16:39:04 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/09/04 16:25:52 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,37 +42,18 @@ SRCS_INIT 	= \
 		$(SRCDIR)/init/read_file.c \
 		$(SRCDIR)/init/utils.c
 
-SRCS_PROGRAM = \
-		$(SRCDIR)/program/draw.c \
-		$(SRCDIR)/program/utils.c \
-		$(SRCDIR)/program/keys.c \
-		$(SRCDIR)/program/player.c
-
 SRCS_MAIN 	= $(SRCDIR)/main.c
 
-SRC			= $(SRCS_INIT) $(SRCS_MAIN) $(SRCS_CL_ER) $(SRCS_PROGRAM)
+SRC			= $(SRCS_INIT) $(SRCS_MAIN) $(SRCS_CL_ER)
 OBJ			= $(SRC:.c=.o)
 
 LIBFTDIR	= libft
 LIBFT		= $(LIBFTDIR)/libft.a
 
-UNAME		= $(shell uname)
-
-ifeq ($(UNAME), Darwin)  # macOS
-MLXDIR		= mlxlib
-MLX			= $(MLXDIR)/libmlx.a
-MLXFLAGS	= -framework OpenGL -framework AppKit
-endif
-
-ifeq ($(UNAME), Linux)
-MLXDIR		= mlxlib
-MLX			= $(MLXDIR)/libmlx.a
-MLXFLAGS	= -lX11 -lXext -lm
-endif
-
 # **************************************************************************** #
 #                                   RULES                                      #
 # **************************************************************************** #
+SPINPID := .spinner.pid
 
 all: banner $(NAME)
 
@@ -89,21 +70,51 @@ banner:
 $(LIBFT):
 	@$(MAKE) -C $(LIBFTDIR)
 
-$(MLXDIR)/libmlx.a:
-	@$(MAKE) -C $(MLXDIR)
-
-$(NAME): $(OBJ) $(LIBFT) $(MLXDIR)/libmlx.a
-	@echo "$(BLUE)[CUB3D] Compiling project...$(RESET)"
-	@$(CC) $(CFLAGS) -I$(MLXDIR) $(OBJ) $(LIBFT) -L$(MLXDIR) -lmlx $(MLXFLAGS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
+	@$(MAKE)
 	@echo "$(GREEN)[CUB3D] Compiled successfully ✔$(RESET)"
 
+# $(NAME): $(OBJ) $(LIBFT)
+# 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
+# 	@$(MAKE) --no-print-directory stop_spinner
+# 	@echo "$(GREEN)[CUB3D] Compiled successfully ✔$(RESET)"
+
+# Start the spinner once before building objects
+# $(OBJ): | start_spinner
+
+# start_spinner:
+# 	@{ \
+# 	  trap "exit" INT TERM; \
+# 	  trap "kill 0" EXIT; \
+# 	  i=0; \
+# 	  while :; do \
+# 	    case $$i in \
+# 	      0) dots='.' ;; \
+# 	      1) dots='..' ;; \
+# 	      2) dots='...' ;; \
+# 	    esac; \
+# 	    printf "\r\033[K$(BLUE)[CUB3D] Compiling files%s$(RESET)" "$$dots"; \
+# 	    sleep 0.2; \
+# 	    i=$$(((i+1)%3)); \
+# 	  done \
+# 	} & echo $$! > $(SPINPID)
+
+# stop_spinner:
+# 	@{ \
+# 	  if [ -f $(SPINPID) ]; then \
+# 	    kill $$(cat $(SPINPID)) >/dev/null 2>&1 || true; \
+# 	    rm -f $(SPINPID); \
+# 	    printf "\r\033[K"; \
+# 	  fi; \
+	}
+
 %.o: %.c
-	@$(CC) $(CFLAGS) -I$(MLXDIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean: banner
 	@rm -rf $(OBJ)
 	@$(MAKE) -C $(LIBFTDIR) clean
-	@$(MAKE) -C $(MLXDIR) clean
 	@echo "$(YELLOW)[CUB3D] Objects removed ✘$(RESET)"
 
 fclean: banner
@@ -111,7 +122,6 @@ fclean: banner
 	@echo "$(YELLOW)[CUB3D] Objects removed ✘$(RESET)"
 	@rm -f $(NAME)
 	@$(MAKE) -C $(LIBFTDIR) fclean
-	@$(MAKE) -C $(MLXDIR) fclean
 	@echo "$(RED)[CUB3D] Executable removed ✘$(RESET)"
 
 re: banner fclean all
