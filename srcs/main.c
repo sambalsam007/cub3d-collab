@@ -6,12 +6,15 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:19:10 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 18:34:25 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:12:23 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
 
+//process is de hoofd functie om heel de programa te laten lopen en visualiseren
+//Dees is een grote loop die de heletijd wacht tot "ESC" of "x" word gedrukt boven links
+//het neemt mlx_hook om singiale van keybinds te ontvangen
 int	process(t_cubed *cubed)
 {
 	mlx_hook(cubed->mlx.win, 2, 1L<<0, key_press, cubed);
@@ -33,6 +36,9 @@ static int	valid_filename(char *filename)
 	return (ft_strncmp(filename, ".cub", 4) == 0);
 }
 
+//Main branches of to all main functions being
+//init_cubed dat alles parsed zoals de map muur vloer en plafond texturen en initializeerd
+//process is de hoofd functie om heel de programa te laten lopen en visualiseren
 int	main(int ac, char **av)
 {
 	t_cubed	cubed;

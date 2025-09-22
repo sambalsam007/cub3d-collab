@@ -1,3 +1,9 @@
+NO ./textures/red.xpm
+SO ./textures/red.xpm
+WE ./textures/red.xpm
+EA ./textures/red.xpm
+F 220,100,0
+C 225,30,0
 111111111               
 100000101               
 110S00101               

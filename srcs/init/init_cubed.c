@@ -6,29 +6,11 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:30:51 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 18:03:07 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:43:45 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
-
-void	init(t_cubed *cubed)
-{
-	cubed->mlx.mlx = NULL;
-	cubed->mlx.img = NULL;
-	cubed->mlx.win = NULL;
-	cubed->mlx.adr = NULL;
-	cubed->data.map = NULL;
-	cubed->last_time = get_time_ms();
-}
-
-void	init_player(t_cubed *cubed)
-{
-	cubed->p.x = cubed->data.cords_p[0] + 0.5f;
-	cubed->p.y = cubed->data.cords_p[1] + 0.5f;
-	cubed->p.r = 0.2f;
-	cubed->p.c = 0xFF0000;
-}
 
 int	init_mlx_struct(t_cubed *cubed)
 {
@@ -46,25 +28,71 @@ int	init_mlx_struct(t_cubed *cubed)
 	return (SUCCESS);
 }
 
-int	init_cubed(t_cubed *cubed, char *file)
+static int	check_header_complete(t_cubed *cubed)
+{
+	t_tex *tex;
+
+	tex = cubed->texture;
+	if (tex[NORTH].found != 1 || tex[SOUTH].found != 1 || \
+		tex[WEST].found != 1 || tex[EAST].found != 1)
+		return (err_msg(ERR_INV_FILE), ERROR);
+	if (cubed->data.color_c == -1 || cubed->data.color_f == -1)
+		return (err_msg(ERR_INV_FILE), ERROR);
+	return (SUCCESS);
+}
+
+int	parse_file(t_cubed *cubed, char **lines)
+{
+	int	i;
+
+	i = 0;
+	while (lines[i] && lines[i][0] != '1' && lines[i][0] != ' ')
+	{
+		if (parse_header_line(cubed, lines[i]))
+			return (err_msg(ERR_INV_MAP), ERROR);
+		i++;
+	}
+	if (check_header_complete(cubed))
+		return (ERROR);
+	if (!lines[i])
+		return (err_msg(ERR_INV_MAP), ERROR);
+	if (parse_map(cubed, &lines[i]))
+		return (ERROR);
+	return (SUCCESS);
+}
+
+static int	init_lines(char *file, char ***lines)
 {
 	char	*temp;
 
-	init(cubed);
 	temp = read_file(file);
 	if (!temp)
 		return (ERROR);
-	if (parse_map(cubed, temp))
-		return (free_all(cubed), ERROR);
+	*lines = ft_split(temp, '\n');
 	free(temp);
-	init_player(cubed);
+	if (!*lines)
+		return (ERROR);
+	return (SUCCESS);
+}
+
+//init_cubed dat alles parsed zoals de map muur vloer en plafond texturen en initializeerd
+//init Het begint door alles op Null te zetten
+//init_mlx_struct Initializeren van mlx
+//init_lines Leest de file en parsed het in de data struct
+//parse_file Leest eerst de header en neemt de texturen uit en parsed de map erna 
+//init_player Initializeerd de speler
+int	init_cubed(t_cubed *cubed, char *file)
+{
+	char	**lines;
+
+	init(cubed);
 	if (init_mlx_struct(cubed))
-		return (free_all(cubed),  ERROR);
-	// to be removed ones done
-	printf("(%d,%d)\n", cubed->data.cords_p[1], cubed->data.cords_p[0]);
-	for (int i = 0; cubed->data.map[i]; i++)
-	{
-		printf("%s\n", cubed->data.map[i]);
-	}
+		return (free_all(cubed), ERROR);
+	if (init_lines(file, &lines))
+		return (ERROR);
+	if (parse_file(cubed, lines))
+		return (ft_freearr(lines), ERROR);
+	ft_freearr(lines);
+	init_player(cubed);
 	return (SUCCESS);
 }

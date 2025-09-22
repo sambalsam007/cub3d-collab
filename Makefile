@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/01 16:36:52 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/11 16:39:04 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/09/19 20:10:54 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ PURPLE	= \033[1;35m
 # **************************************************************************** #
 NAME	= cub3d
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft
+CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -fsanitize=address -g 
 # MLX		= -lmlx -lXext -lX11 -lm
 
 # **************************************************************************** #
@@ -40,7 +40,8 @@ SRCS_INIT 	= \
 		$(SRCDIR)/init/parse_map.c \
 		$(SRCDIR)/init/init_cubed.c \
 		$(SRCDIR)/init/read_file.c \
-		$(SRCDIR)/init/utils.c
+		$(SRCDIR)/init/utils.c \
+		$(SRCDIR)/init/color.c
 
 SRCS_PROGRAM = \
 		$(SRCDIR)/program/draw.c \
@@ -58,7 +59,7 @@ LIBFT		= $(LIBFTDIR)/libft.a
 
 UNAME		= $(shell uname)
 
-ifeq ($(UNAME), Darwin)  # macOS
+ifeq ($(UNAME), Darwin)
 MLXDIR		= mlxlib
 MLX			= $(MLXDIR)/libmlx.a
 MLXFLAGS	= -framework OpenGL -framework AppKit

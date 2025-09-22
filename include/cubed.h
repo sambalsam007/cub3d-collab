@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/18 15:53:11 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/19 17:59:23 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@
 # define HEIGHT 540
 
 # define ERR_MAL "Memory allocation failed"
-# define ERR_INVVALID_MAP "The map is or wrong or incomplete"
+# define ERR_INV_MAP "The map is or wrong or incomplete"
 # define ERR_FILE_CUB "File must be a .cub file: filename.cub"
 # define ERR_FILE "Error accessing file"
 # define ERR_INV_LETTER "Invalid character in map"
+# define ERR_INV_FILE "Invalid data in file"
 # define ERR_MORE_PLAYERS "To many players on map"
 # define ERR_NO_PLAYER "No player was found on map"
 # define ERR_POS_PLAYER "Invalid position of player"
@@ -66,11 +67,30 @@
 
 typedef enum e_compas
 {
-	NORTH,
-	EAST,
-	SOUTH,
-	WEST
+	NORTH = 0,
+	EAST = 1,
+	SOUTH = 2,
+	WEST = 3
 }	t_compas;
+
+typedef enum e_rgb
+{
+	RED = 0,
+	GREEN = 1,
+	BLUE = 2
+}	t_rgb;
+
+typedef struct s_tex
+{
+	void	*img;
+	char	*adr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		found;
+}	t_tex;
 
 typedef struct s_mlx
 {
@@ -95,7 +115,8 @@ typedef struct s_data
 {
     char    	**map;
     int     	cords_p[2];
-	/* Zet de (x,y) cordinaten hier en de x.len en y.len */
+	int			color_c;
+	int			color_f;
     t_compas	compas;
 }	t_data;
 
@@ -114,17 +135,25 @@ typedef struct s_cubed
 	t_player	p;
 	t_data		data;
 	t_mlx		mlx;
+	t_tex		texture[4];
 	int			keys[300];
 	long		last_time;
 }   t_cubed;
 
 // Initializing functions
 int		is_player(char c);
-int		check_surround(char **map, int y, int x, int h, int w);
+int		check_surround(char **map, int y, int x, int h);
 int		validate_map(t_cubed *cubed, int h, int w);
-int		parse_map(t_cubed *cubed, char *str);
+int		parse_map(t_cubed *cubed, char **lines);
 int		init_cubed(t_cubed *cubed, char *file);
+void	init(t_cubed *cubed);
+void	init_player(t_cubed *cubed);
 char	*read_file(const char *path);
+int		parse_rgb(char *s);
+void	load_texture(t_cubed *cubed, t_compas dir, char *path);
+int		parse_header_line(t_cubed *cubed, char *line);
+
+
 
 // Cleaning and Errors
 void	err_msg(char *error);
