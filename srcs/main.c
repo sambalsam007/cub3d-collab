@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:19:10 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/22 12:12:23 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/22 13:18:31 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int	main(int ac, char **av)
 	{
 		if (init_cubed(&cubed, av[1]))
 			return (ERROR);
+		for (int i=0; cubed.data.map[i]; i++)
+		{
+			printf("%s\n", cubed.data.map[i]);
+		}
 		if (process(&cubed))
 			return (ERROR);
 	}
