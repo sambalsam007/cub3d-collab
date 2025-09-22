@@ -23,6 +23,14 @@ static int	valid_filename(char *filename)
 	return (ft_strncmp(filename, ".cub", 4) == 0);
 }
 
+
+
+int	start_mlx(t_cubed *c) {
+
+	c->mlx.mlx = mlx_init();
+	return 0;
+}
+
 int	main(int ac, char **av)
 {
 	t_cubed	cubed;
@@ -36,5 +44,7 @@ int	main(int ac, char **av)
 		// if (process(&cubed))
 		// 	return (ERROR);
 	}
+	// function to handle all the mlx stuff
+	start_mlx(&cubed);
 	return (SUCCESS);
 }
