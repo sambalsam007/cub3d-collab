@@ -66,17 +66,20 @@ void	update_player(t_cubed *cubed)
 	speed = 3.0f * dt; // 3 tiles per second
 	nx = cubed->p.x;
 	ny = cubed->p.y;
-	if (cubed->keys[13]) // W
+	if (cubed->keys[119]) // W macos 13
 		ny -= speed;
-	if (cubed->keys[1]) // S
+	if (cubed->keys[115]) // S 1
 		ny += speed;
-	if (cubed->keys[0]) // A
+	if (cubed->keys[97]) // A 0
 		nx -= speed;
-	if (cubed->keys[2]) // D
+	if (cubed->keys[100]) // D 2
 		nx += speed;
 	if (can_move(cubed, nx, ny))
 	{
 		cubed->p.x = nx;
 		cubed->p.y = ny;
 	}
+	// for rotate
+	// j 106
+	// k 107
 }

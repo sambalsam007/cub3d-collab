@@ -26,6 +26,6 @@ while true; do
 			om=$nm
 			update
 		fi
-		read -t 1 && exit
 	done
+	read -t 1 && exit
 done

@@ -25,7 +25,8 @@ PURPLE	= \033[1;35m
 # **************************************************************************** #
 NAME	= cub3d
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -fsanitize=address -g 
+# CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -fsanitize=address -g 
+CFLAGS	= -Iinclude -Ilibft -fsanitize=address -g 
 # MLX		= -lmlx -lXext -lX11 -lm
 
 # **************************************************************************** #
