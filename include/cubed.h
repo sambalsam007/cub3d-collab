@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/22 20:53:21 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:13:36 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ typedef struct s_ray
     int		hit_x;
     int		hit_y;
 	int		side;
+	double 	wall_t;
+	double 	wall_b;
+	int		wall_x;
+	int		wall_y;
 }   t_ray;
 
 typedef struct s_tex
