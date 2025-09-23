@@ -20,6 +20,7 @@ void put_pixel(t_cubed *cubed, int x, int y, int color, int map_w, int map_h)
 	*(unsigned int*)dst = color;
 }
 
+// samuel
 // new 
 // this walks pixel/pixel, small increments
 // TODO: make it DDA algo, smart steps

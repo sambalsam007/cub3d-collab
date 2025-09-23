@@ -12,6 +12,9 @@
 
 #include "cubed.h"
 
+// samuel added
+# define ROTATION_SPEED 0.005
+
 int	can_move(t_cubed *cubed, float nx, float ny)
 {
 	float	r;
@@ -66,6 +69,8 @@ void	update_player(t_cubed *cubed)
 	speed = 3.0f * dt; // 3 tiles per second
 	nx = cubed->p.x;
 	ny = cubed->p.y;
+
+
 	if (cubed->keys[119]) // W macos 13
 		ny -= speed;
 	if (cubed->keys[115]) // S 1
@@ -74,6 +79,15 @@ void	update_player(t_cubed *cubed)
 		nx -= speed;
 	if (cubed->keys[100]) // D 2
 		nx += speed;
+
+    // Rotation
+    if (cubed->keys[106]) cubed->p.angle -= ROTATION_SPEED; // rotate left
+    if (cubed->keys[107]) cubed->p.angle += ROTATION_SPEED; // rotate right
+
+    // angel fout?
+    // changed from int to double (going to fast...) but working!
+    // now it works...
+
 	if (can_move(cubed, nx, ny))
 	{
 		cubed->p.x = nx;

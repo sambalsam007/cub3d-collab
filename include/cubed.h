@@ -109,7 +109,7 @@ typedef struct s_player
 	float	y;
 	float	r;
 	int		c;
-	int	angle;
+	double	angle;
 }	t_player;
 
 typedef struct s_data
