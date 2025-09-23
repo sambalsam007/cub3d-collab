@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 15:21:06 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/19 18:08:01 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/22 20:07:01 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,63 @@ void	init_player(t_cubed *cubed)
 	cubed->p.y = cubed->data.cords_p[1] + 0.5f;
 	cubed->p.r = 0.2f;
 	cubed->p.c = 0xFF0000;
+	cubed->p.fov = M_PI / 3;
+	if (cubed->data.compas == NORTH)
+		cubed->p.angle = -M_PI / 2;
+	else if (cubed->data.compas == SOUTH)
+		cubed->p.angle = M_PI / 2;
+	else if (cubed->data.compas == EAST)
+		cubed->p.angle = 0;
+	else if (cubed->data.compas == WEST)
+		cubed->p.angle = M_PI;
 }
 
-void	init(t_cubed *cubed)
+void	init_loops(t_cubed *cubed)
 {
 	int	i;
 
-	cubed->mlx.mlx = NULL;
-	cubed->mlx.img = NULL;
-	cubed->mlx.win = NULL;
-	cubed->mlx.adr = NULL;
-	cubed->data.map = NULL;
-	cubed->data.color_c = -1;
-	cubed->data.color_c = -1;
-	cubed->last_time = get_time_ms();
 	i = 0;
 	while (i < 4)
 	{
 		cubed->texture[i].adr = NULL;
 		cubed->texture[i].found = 0;
 		cubed->texture[i].img = NULL;
+		cubed->texture[i].width = 0;
+		cubed->texture[i].height = 0;
+		cubed->texture[i].bpp = 0;
+		cubed->texture[i].size_line = 0;
+		cubed->texture[i].endian = 0;
 		i++;
 	}
+	i = 0;
+	while (i < 300)
+		cubed->keys[i++] = 0;
+}
+
+void	init(t_cubed *cubed)
+{
+	cubed->mlx.mlx = NULL;
+	cubed->mlx.img = NULL;
+	cubed->mlx.win = NULL;
+	cubed->mlx.adr = NULL;
+	cubed->data.map = NULL;
+	cubed->data.color_c = -1;
+	cubed->data.color_f = -1;
+	cubed->data.cords_p[0] = -1;
+	cubed->data.cords_p[1] = -1;
+	cubed->data.compas = NORTH;
+	cubed->last_time = get_time_ms();
+	cubed->ray.angle = 0;
+	cubed->ray.hit_x = 0;
+	cubed->ray.hit_y = 0;
+	cubed->ray.distance = 0;
+	cubed->ray.side = 0;
+	cubed->minimap.first_x = 0;
+	cubed->minimap.first_y = 0;
+	cubed->minimap.last_x = 0;
+	cubed->minimap.last_y = 0;
+	cubed->minimap.width = 0;
+	cubed->minimap.height = 0;
+	cubed->minimap.scale = TILE_SIZE / 4;
+	init_loops(cubed);
 }

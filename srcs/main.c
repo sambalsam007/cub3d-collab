@@ -6,24 +6,11 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:19:10 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/22 13:18:31 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:55:30 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
-
-//process is de hoofd functie om heel de programa te laten lopen en visualiseren
-//Dees is een grote loop die de heletijd wacht tot "ESC" of "x" word gedrukt boven links
-//het neemt mlx_hook om singiale van keybinds te ontvangen
-int	process(t_cubed *cubed)
-{
-	mlx_hook(cubed->mlx.win, 2, 1L<<0, key_press, cubed);
-	mlx_hook(cubed->mlx.win, 3, 1L<<1, key_release, cubed);
-	mlx_hook(cubed->mlx.win, 17, 0, close_window, cubed);
-	mlx_loop_hook(cubed->mlx.mlx, render_next_frame, cubed);
-	mlx_loop(cubed->mlx.mlx);
-	return (SUCCESS);
-}
 
 static int	valid_filename(char *filename)
 {

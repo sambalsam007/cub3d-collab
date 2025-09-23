@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/19 17:59:23 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/22 20:53:21 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,42 @@
 # include <limits.h>
 # include <string.h>
 # include <sys/time.h>
+# include <math.h>
 # include "mlx.h"
 # include "libft.h"
 
-#ifdef __APPLE__
+# ifdef __APPLE__
 // macOS keycodes
-# define KEY_ESC 53
-# define KEY_W   13
-# define KEY_A   0
-# define KEY_S   1
-# define KEY_D   2
-#endif
+#  define KEY_ESC 53
+#  define KEY_W   13
+#  define KEY_A   0
+#  define KEY_S   1
+#  define KEY_D   2
+# endif
 
-#ifdef __linux__
+# ifdef __linux__
 // Linux (X11) keycodes
-# include <X11/X.h>
-# include <X11/Xlib.h>
-# include <X11/keysym.h>
-# define KEY_ESC 65307
-# define KEY_W   119
-# define KEY_A   97
-# define KEY_S   115
-# define KEY_D   100
-#endif
+#  include <X11/X.h>
+#  include <X11/Xlib.h>
+#  include <X11/keysym.h>
+#  define KEY_ESC 65307
+#  define KEY_W   119
+#  define KEY_A   97
+#  define KEY_S   115
+#  define KEY_D   100
+# endif
 
 # define ERROR 1
 # define SUCCESS 0
 
 # define WIDTH 960
 # define HEIGHT 540
+# define MOVE_SPEED 3.0f
+# define ROT_SPEED 0.05f
+# define TILE_SIZE 64
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 # define ERR_MAL "Memory allocation failed"
 # define ERR_INV_MAP "The map is or wrong or incomplete"
@@ -80,6 +87,15 @@ typedef enum e_rgb
 	BLUE = 2
 }	t_rgb;
 
+typedef struct s_ray
+{
+    float	angle;
+    float	distance;
+    int		hit_x;
+    int		hit_y;
+	int		side;
+}   t_ray;
+
 typedef struct s_tex
 {
 	void	*img;
@@ -103,11 +119,24 @@ typedef struct s_mlx
 	int			size_line;
 }	t_mlx;
 
+typedef struct s_minimap
+{
+    int     width;
+    int     height;
+    int     scale;
+    int     first_x;
+    int     first_y;
+    int     last_x;
+    int     last_y;
+}   t_minimap;
+
 typedef struct s_player
 {
+	float	fov;
 	float	x;
 	float	y;
 	float	r;
+	float	angle;
 	int		c;
 }	t_player;
 
@@ -136,6 +165,8 @@ typedef struct s_cubed
 	t_data		data;
 	t_mlx		mlx;
 	t_tex		texture[4];
+	t_ray		ray;
+    t_minimap	minimap;
 	int			keys[300];
 	long		last_time;
 }   t_cubed;
@@ -153,8 +184,6 @@ int		parse_rgb(char *s);
 void	load_texture(t_cubed *cubed, t_compas dir, char *path);
 int		parse_header_line(t_cubed *cubed, char *line);
 
-
-
 // Cleaning and Errors
 void	err_msg(char *error);
 void	free_mlx(t_cubed *cubed);
@@ -163,12 +192,15 @@ void	free_all(t_cubed *cubed);
 /* Program */
 // Main program
 int		process(t_cubed *cubed);
+int		render_next_frame(t_cubed *cubed);
 
 // Draw
 void	draw_player(t_cubed *cubed, t_player p, int cell);
 void	draw_cell(t_cubed *cubed, int x, int y, int size, int color);
-int		make_minimap(t_cubed *cubed);
-int		render_next_frame(t_cubed *cubed);
+// int		make_minimap(t_cubed *cubed);
+void	draw_minimap(t_cubed *cubed);
+void	reset_background(t_cubed *cubed);
+
 
 // Player
 int		can_move(t_cubed *cubed, float nx, float ny);
