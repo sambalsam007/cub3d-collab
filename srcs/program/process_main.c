@@ -171,14 +171,18 @@ int	render_next_frame(t_cubed *cubed)
 	{
 		cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
 		cast_ray(cubed, cubed->ray.angle, TILE_SIZE); // FUNCTIE VOOR DE RAY - SAMUEL
-		draw_wall_line(cubed, i, cubed->ray, cubed->texture[cubed->ray.side]); // FUNCTIE TEKENEN 3D - PARIS
+
+		// samuel - time out.
+		// draw_wall_line(cubed, i, cubed->ray, cubed->texture[cubed->ray.side]); // FUNCTIE TEKENEN 3D - PARIS
+
 		// if (i == 0 || i == num_rays - 1) // MINIMAP
 		// 	first_last_ray(cubed, i, num_rays);// PARIS
 		//update_minimap(cubed, i, num_rays, cubed->ray); // MINIMAP - PARIS EXTRA
 	}
-	draw_minimap(cubed);
+	// draw_minimap(cubed);
 	mlx_put_image_to_window(cubed->mlx.mlx, cubed->mlx.win, \
 		cubed->mlx.img, 0, 0);
+	temp_draw_minimap(cubed);
 	return (SUCCESS);
 }
 

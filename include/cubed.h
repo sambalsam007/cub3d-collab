@@ -25,6 +25,10 @@
 # include "mlx.h"
 # include "libft.h"
 
+// TODO
+// sort this
+#define ROT_SPEED 0.05
+
 # ifdef __APPLE__
 // macOS keycodes
 #  define KEY_ESC 53
@@ -32,6 +36,8 @@
 #  define KEY_A   0
 #  define KEY_S   1
 #  define KEY_D   2
+#  define KEY_J   0 // TODO
+#  define KEY_K   0 // TODO
 # endif
 
 # ifdef __linux__
@@ -44,6 +50,8 @@
 #  define KEY_A   97
 #  define KEY_S   115
 #  define KEY_D   100
+#  define KEY_J   106
+#  define KEY_K   107
 # endif
 
 # define ERROR 1
@@ -71,6 +79,7 @@
 # define ERR_MLX "Could not start mlx"
 # define ERR_WIN "Could not create mlx window"
 # define ERR_IMG "Could not create mlx image"
+
 
 typedef enum e_compas
 {
@@ -174,6 +183,12 @@ typedef struct s_cubed
 	int			keys[300];
 	long		last_time;
 }   t_cubed;
+
+
+// TODO: check, or remove?
+// === Unsorted ===
+void	temp_draw_minimap(t_cubed *cubed);
+// ================
 
 // Initializing functions
 int		is_player(char c);

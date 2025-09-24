@@ -23,9 +23,10 @@ int	close_window(void *param)
 
 int	key_press(int key, t_cubed *cubed)
 {
+		printf("keycode; %d\n", key);
 	if (key >= 0 && key < 300)
 		cubed->keys[key] = 1;
-	if (key == 53)
+	if (key == KEY_ESC)
 		close_window(cubed);
 	return (0);
 }

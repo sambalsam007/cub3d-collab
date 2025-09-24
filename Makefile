@@ -25,7 +25,8 @@ PURPLE	= \033[1;35m
 # **************************************************************************** #
 NAME	= cub3d
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -fsanitize=address -g 
+# CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -fsanitize=address -g 
+CFLAGS	= -Iinclude -Ilibft -fsanitize=address -g 
 # MLX		= -lmlx -lXext -lX11 -lm
 
 # **************************************************************************** #
@@ -48,7 +49,8 @@ SRCS_PROGRAM = \
 		$(SRCDIR)/program/utils.c \
 		$(SRCDIR)/program/keys.c \
 		$(SRCDIR)/program/player.c \
-		$(SRCDIR)/program/process_main.c
+		$(SRCDIR)/program/process_main.c \
+		$(SRCDIR)/program/draw_minimap.c
 
 SRCS_MAIN 	= $(SRCDIR)/main.c
 
