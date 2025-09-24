@@ -89,15 +89,15 @@ typedef enum e_rgb
 
 typedef struct s_ray
 {
-    float	angle;
-    float	distance;
-    int		hit_x;
-    int		hit_y;
-	int		side;
-	double 	wall_t;
-	double 	wall_b;
-	int		wall_x;
-	int		wall_y;
+    float	angle; // absolute angle (calculated relative to players current facing angle)
+    float	distance; // distance player -> wall
+    int		hit_x; // where it hits the wall (minimap)
+    int		hit_y; // ""
+	int		side; // which sides N E S W, for choosing the right texture to render
+	double 	wall_t; // top pixel of vert. wall slice on screen (a Y coordinate)
+	double 	wall_b; // bottom pixel of vert. wall slice on screen (a Y coordinate)
+	int		wall_x; // which vertical column of the texture to render
+	int		wall_y; // says: what y-coordinate are we on? which row of the texture?
 }   t_ray;
 
 typedef struct s_tex

@@ -74,6 +74,11 @@ void	draw_minimap(t_cubed *cubed)
 	draw_player(cubed, cubed->p, cell);
 }
 
+// samuel---
+// clears screen,
+// no leftover pixels from prev. render
+// draw base colors for sky/ceiling and floor
+// ---samue
 void	reset_background(t_cubed *cubed)
 {
 	int	x;

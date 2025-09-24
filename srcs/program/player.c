@@ -12,6 +12,9 @@
 
 #include "cubed.h"
 
+// samuel ----
+// checks if there is no wall, where the player wants to move
+// --- sameul
 int	can_move(t_cubed *cubed, float nx, float ny)
 {
 	float	r;
@@ -50,6 +53,14 @@ int	is_in(float x, float y, t_player p)
 	return (0);
 }
 
+// samuel ---
+// now get time .... for calculating speed of the player
+// wasd, move position of player, 
+// depending on which key is pressed,
+// and speed.
+// check if it's not walking thru walls,
+// 	if not walking thru walls.. move player position
+// 	---samuel
 void	update_player(t_cubed *cubed)
 {
 	long	now;
@@ -74,6 +85,7 @@ void	update_player(t_cubed *cubed)
 		nx -= speed;
 	if (cubed->keys[2]) // D
 		nx += speed;
+	// todo add rotation
 	if (can_move(cubed, nx, ny))
 	{
 		cubed->p.x = nx;

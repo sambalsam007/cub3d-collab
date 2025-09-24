@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "cubed.h"
+// samuel--
+// render the 3d view
+// ---samuel
 void	draw_wall_line(t_cubed *cubed, int i, t_ray ray, t_tex tex)
 {
 	double	wall_h;
