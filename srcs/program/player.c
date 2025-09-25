@@ -74,6 +74,11 @@ void	update_player(t_cubed *cubed)
 		nx -= speed;
 	if (cubed->keys[KEY_D]) // D
 		nx += speed;
+
+    // Rotation
+    if (cubed->keys[KEY_J]) cubed->p.angle -= ROT_SPEED; // rotate left
+    if (cubed->keys[KEY_K]) cubed->p.angle += ROT_SPEED; // rotate right
+
 	if (can_move(cubed, nx, ny))
 	{
 		cubed->p.x = nx;

@@ -58,7 +58,9 @@
 # define WIDTH 960
 # define HEIGHT 540
 # define MOVE_SPEED 3.0f
-# define ROT_SPEED 0.05f
+// samuel edit 09.25
+// change rotation speed 0.05 -> 0.005
+# define ROT_SPEED 0.005f
 # define TILE_SIZE 64
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
