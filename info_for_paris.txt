@@ -1,0 +1,10 @@
+In /srcs/program/ zitten files die beginnen met "_s_" 
+Dat is om duidelijk te maken dat ik die heb toegevoegd.
+_s_minimap.c, etc
+
+De functies die ik heb geschreven of herschreven beginnen ook met "_s_" 
+_s_draw_minimap(), etc
+
+Waar ik edits heb gedaan, of dingen heb weggecommend, toon ik zo:
+// samuel edit 09.25
+// ...

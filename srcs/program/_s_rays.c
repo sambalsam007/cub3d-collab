@@ -1,7 +1,27 @@
 
 #include "cubed.h"
 
-t_compas get_compass(int side, double rayDirX, double rayDirY)
+void	_s_display_ray_struct_info(t_cubed *cubed, int i)
+{
+
+		// print variables
+		system("clear");
+		printf("Angle\t[%d] (%f)\n", i, cubed->ray.angle);
+		printf("Distn\t[%d] (%f)\n", i, cubed->ray.distance);
+		printf("hit_x\t[%d] (%d)\n", i, cubed->ray.hit_x);
+		printf("hit_y\t[%d] (%d)\n", i, cubed->ray.hit_y);
+		if (cubed->ray.side == NORTH) printf("side\t[%d] (NORTH)\n", i);
+		else if (cubed->ray.side == SOUTH) printf("side\t[%d] (SOUTH)\n", i);
+		else if (cubed->ray.side == EAST) printf("side\t[%d] (EAST)\n", i);
+		else if (cubed->ray.side == WEST) printf("side\t[%d] (WEST)\n", i);
+		printf("wall_t\t[%d] (%lf)\n", i, cubed->ray.wall_t);
+		printf("wall_b\t[%d] (%lf)\n", i, cubed->ray.wall_b);
+		printf("tex_x\t[%d] (%d)\n", i, cubed->ray.tex_x);
+		printf("tex_y\t[%d] (%d)\n", i, cubed->ray.tex_y);
+		printf("\n");
+}
+
+t_compas _s_get_compass(int side, double rayDirX, double rayDirY)
 {
     if (side == 0) // hit vertical wall
     {
@@ -102,7 +122,7 @@ double _s_cast_ray(t_cubed *cubed, double angle, int cell)
     }
 
 	// COMPASS
-	t_compas side_dir = get_compass(side, rayDirX, rayDirY);
+	t_compas side_dir = _s_get_compass(side, rayDirX, rayDirY);
 
 	// Calc Texture ====
 
