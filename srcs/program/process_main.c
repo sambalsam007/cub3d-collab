@@ -95,8 +95,6 @@ int	render_next_frame(t_cubed *cubed)
 		// calculate stuff
 		cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
 		cubed->ray.distance = _s_cast_ray(cubed, cubed->ray.angle, cell);
-		// hit
-		cubed->ray.hit_x = 1;
 		// wall
         double wall_height = (TILE_SIZE * HEIGHT) / cubed->ray.distance; // ray.distance must be fish-eye corrected
         cubed->ray.wall_t = (HEIGHT / 2) - (wall_height / 2);
@@ -125,6 +123,7 @@ int	render_next_frame(t_cubed *cubed)
 				if (i == num_rays-1)
 						printf("-------------------\n");
 		}
+
 
 
 		// samuel edit 09.25
