@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/01 16:36:52 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/23 18:39:21 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/09/25 21:07:20 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,10 +52,10 @@ SRCS_PROGRAM = \
 		$(SRCDIR)/program/utils.c \
 		$(SRCDIR)/program/keys.c \
 		$(SRCDIR)/program/player.c \
-		$(SRCDIR)/program/process_main.c \
-		$(SRCDIR)/program/_s_minimap.c \
-		$(SRCDIR)/program/_s_player.c \
-		$(SRCDIR)/program/_s_rays.c
+		$(SRCDIR)/program/process_main.c
+# 		$(SRCDIR)/program/_s_minimap.c \
+# 		$(SRCDIR)/program/_s_player.c \
+# 		$(SRCDIR)/program/_s_rays.c
 
 SRCS_MAIN 	= $(SRCDIR)/main.c
 

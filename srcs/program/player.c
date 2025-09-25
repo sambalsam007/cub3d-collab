@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 15:45:43 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/11 15:51:14 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/25 21:10:25 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,52 @@ int	is_in(float x, float y, t_player p)
 	return (0);
 }
 
-void	update_player(t_cubed *cubed)
+static float	get_delta_time(t_cubed *cubed)
 {
 	long	now;
+	float	dt;
+
+	now = get_time_ms();
+	dt = (now - cubed->last_time) / 1000.0f;
+	if (dt < 0.001f)
+		dt = 0.001f;
+	cubed->last_time = now;
+	return (dt);
+}
+
+static void	handle_movement(t_cubed *cubed, float speed, float *nx, float *ny)
+{
+	if (cubed->keys[KEY_W])
+		*ny -= speed;
+	if (cubed->keys[KEY_S])
+		*ny += speed;
+	if (cubed->keys[KEY_A])
+		*nx -= speed;
+	if (cubed->keys[KEY_D])
+		*nx += speed;
+}
+
+static void	handle_rotation(t_cubed *cubed)
+{
+	if (cubed->keys[KEY_J])
+		cubed->p.angle -= ROT_SPEED;
+	if (cubed->keys[KEY_K])
+		cubed->p.angle += ROT_SPEED;
+}
+
+void	update_player(t_cubed *cubed)
+{
 	float	dt;
 	float	speed;
 	float	nx;
 	float	ny;
 
-	now = get_time_ms();
-	dt = (now - cubed->last_time) / 1000.0f; // seconds
-	if (dt < 0.001f)
-		dt = 0.001f;
-	cubed->last_time = now;
-	speed = 3.0f * dt; // 3 tiles per second
+	dt = get_delta_time(cubed);
+	speed = MOVE_SPEED * dt;
 	nx = cubed->p.x;
 	ny = cubed->p.y;
-	if (cubed->keys[KEY_W]) // W
-		ny -= speed;
-	if (cubed->keys[KEY_S]) // S
-		ny += speed;
-	if (cubed->keys[KEY_A]) // A
-		nx -= speed;
-	if (cubed->keys[KEY_D]) // D
-		nx += speed;
-
-    // Rotation
-    if (cubed->keys[KEY_J]) cubed->p.angle -= ROT_SPEED; // rotate left
-    if (cubed->keys[KEY_K]) cubed->p.angle += ROT_SPEED; // rotate right
-
+	handle_movement(cubed, speed, &nx, &ny);
+	handle_rotation(cubed);
 	if (can_move(cubed, nx, ny))
 	{
 		cubed->p.x = nx;

@@ -221,14 +221,14 @@ void _s_draw_ray_line(t_cubed *cubed, double angle, int cell)
     {
         int x = (int)round(startX + dx * i);
         int y = (int)round(startY + dy * i);
-        _s_my_mlx_pixel_put(cubed, x, y, 0x000000);
+        my_mlx_pixel_put(cubed, x, y, 0x000000);
         // put_pixel(cubed, x, y, 0x000000, map_w_px, map_h_px);
     }
 
     // mark hit point in red (clamped)
     int endx = (int)round(startX + dx * dist_px);
     int endy = (int)round(startY + dy * dist_px);
-    _s_my_mlx_pixel_put(cubed, endx, endy, 0xFF0000);
+    my_mlx_pixel_put(cubed, endx, endy, 0xFF0000);
     // put_pixel(cubed, endx, endy, 0xFF0000, map_w_px, map_h_px);
 }
 

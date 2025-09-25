@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 17:48:32 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/22 21:02:23 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:46:27 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_cell(t_cubed *cubed, int x, int y, int size, int color)
 	}
 }
 
-void	draw_player(t_cubed *cubed, t_player p, int cell)// 2 RAYS TEKENEN MET BERSHINHAM ALGO - SAMUEL
+void	draw_player(t_cubed *cubed, t_player p, int cell)
 {
 	int		i;
 	int		j;
@@ -44,8 +44,7 @@ void	draw_player(t_cubed *cubed, t_player p, int cell)// 2 RAYS TEKENEN MET BERS
 			if (is_in(map_x, map_y, p))
 				my_mlx_pixel_put(cubed,
 					(int)(p.x * cell) + i - cell,
-					(int)(p.y * cell) + j - cell,
-					p.c);
+					(int)(p.y * cell) + j - cell, p.c);
 		}
 	}
 }

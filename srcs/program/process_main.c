@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 19:55:21 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/24 13:15:59 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/25 21:14:59 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,99 @@ void	first_last_ray(t_cubed *cubed, int i, int rays)
 	}
 }
 
+static void	init_ray_dir(t_ray *ray, double angle,
+		double *rayDirX, double *rayDirY)
+{
+	ray->angle = angle;
+	*rayDirX = cos(angle);
+	*rayDirY = sin(angle);
+}
+
+static void	init_dda(t_player *p, double rayDirX, double rayDirY,
+		int *mapX, int *mapY, int *stepX, int *stepY,
+		double *sideDistX, double *sideDistY,
+		double *deltaDistX, double *deltaDistY)
+{
+	*mapX = (int)p->x;
+	*mapY = (int)p->y;
+	*deltaDistX = (fabs(rayDirX) > 1e-9) ? fabs(1.0 / rayDirX) : 1e9;
+	*deltaDistY = (fabs(rayDirY) > 1e-9) ? fabs(1.0 / rayDirY) : 1e9;
+	if (rayDirX < 0)
+		*stepX = -1, *sideDistX = (p->x - *mapX) * *deltaDistX;
+	else
+		*stepX = 1, *sideDistX = (*mapX + 1.0 - p->x) * *deltaDistX;
+	if (rayDirY < 0)
+		*stepY = -1, *sideDistY = (p->y - *mapY) * *deltaDistY;
+	else
+		*stepY = 1, *sideDistY = (*mapY + 1.0 - p->y) * *deltaDistY;
+}
+
+static int	dda_step(t_cubed *cubed, int *mapX, int *mapY,
+		double *sideDistX, double *sideDistY,
+		double deltaDistX, double deltaDistY,
+		int stepX, int stepY, int *side)
+{
+	while (1)
+	{
+		if (*sideDistX < *sideDistY)
+			*sideDistX += deltaDistX, *mapX += stepX, *side = 0;
+		else
+			*sideDistY += deltaDistY, *mapY += stepY, *side = 1;
+		if (*mapY < 0 || *mapX < 0 || !cubed->data.map[*mapY]
+			|| cubed->data.map[*mapY][*mapX] == '\0')
+			return (0);
+		if (cubed->data.map[*mapY][*mapX] == '1')
+			return (1);
+	}
+}
+
+static t_compas	get_side(int side, double rayDirX, double rayDirY)
+{
+	if (side == 0)
+		return (rayDirX > 0 ? EAST : WEST);
+	return (rayDirY > 0 ? SOUTH : NORTH);
+}
+
+void	cast_ray(t_cubed *cubed, t_ray *ray, t_tex *tex)
+{
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		side;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpDist;
+	double	wallX;
+
+	init_ray_dir(ray, ray->angle, &rayDirX, &rayDirY);
+	init_dda(&cubed->p, rayDirX, rayDirY, &mapX, &mapY,
+		&stepX, &stepY, &sideDistX, &sideDistY, &deltaDistX, &deltaDistY);
+	if (!dda_step(cubed, &mapX, &mapY, &sideDistX, &sideDistY,
+			deltaDistX, deltaDistY, stepX, stepY, &side))
+		return ;
+	if (side == 0)
+		perpDist = (mapX - cubed->p.x + (1 - stepX) / 2.0) / rayDirX;
+	else
+		perpDist = (mapY - cubed->p.y + (1 - stepY) / 2.0) / rayDirY;
+	ray->distance = fabs(perpDist) * TILE_SIZE;
+	ray->side = get_side(side, rayDirX, rayDirY);
+	ray->hit_x = (int)((cubed->p.x + rayDirX * perpDist) * TILE_SIZE);
+	ray->hit_y = (int)((cubed->p.y + rayDirY * perpDist) * TILE_SIZE);
+	if (side == 0)
+		wallX = cubed->p.y + perpDist * rayDirY;
+	else
+		wallX = cubed->p.x + perpDist * rayDirX;
+	wallX -= floor(wallX);
+	ray->tex_x = (int)(wallX * tex->width);
+	if ((side == 0 && rayDirX > 0) || (side == 1 && rayDirY < 0))
+		ray->tex_x = tex->width - ray->tex_x - 1;
+}
+
 //Main render functie waar alles uit vertrekt
 //Een loop die alle rays doet
 // stuurt ray
@@ -65,16 +158,13 @@ int	render_next_frame(t_cubed *cubed)
 	float	angle_step;
 
 	// samuel edit 09.25
-	// reset_background(cubed);
+	reset_background(cubed);
 
 	// samuel edit 09.25
 	// maybe rewrite this...
 	int cell;
 	if (get_cell_size(cubed, &cell, &cell) == ERROR)
 		return (ERROR);
-	_s_draw_minimap(cubed);
-	_s_draw_player(cubed, cubed->p, cell);
-
 	// samuel edit 09.25
 	// this draws the direction ray
 	// not necessary...
@@ -89,24 +179,21 @@ int	render_next_frame(t_cubed *cubed)
 
 		// samuel edit 09.25 
 		// fills the ray struct
-		_s_make_ray_calculations(cubed, i, angle_step, cell);
+		// _s_make_ray_calculations(cubed, i, angle_step, cell);
 			
 		// samuel edit 09.25
 		// print a ray every 100 rays
 		// (so the program doesnt slow down)
-		if (i % 100 == 0) 
-				_s_draw_ray_line(cubed, cubed->ray.angle, cell); 
+		// if (i % 100 == 0) 
+		// 		_s_draw_ray_line(cubed, cubed->ray.angle, cell); 
 
 		// samuel edit 09.25
 		// this prints info about the middle ray / direction ray
-		if (i == (num_rays / 2))
-				_s_display_ray_struct_info(cubed, i);
-
-		// samuel edit 09.25
-		// cast_ray(cubed, cubed->ray); // FUNCTIE VOOR DE RAY - SAMUEL
+		// if (i == (num_rays / 2))
+		// 		_s_display_ray_struct_info(cubed, i);
 		
-		// samuel edit 09.25
-		// draw_wall_line(cubed, i, cubed->ray, cubed->texture[cubed->ray.side]); // FUNCTIE TEKENEN 3D - PARIS
+		cast_ray(cubed, &cubed->ray, cubed->texture); // FUNCTIE VOOR DE RAY - SAMUEL
+		draw_wall_line(cubed, i, cubed->ray, cubed->texture[cubed->ray.side]); // FUNCTIE TEKENEN 3D - PARIS
 
 
 		// if (i == 0 || i == num_rays - 1) // MINIMAP
