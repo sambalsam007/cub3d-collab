@@ -184,6 +184,8 @@ typedef struct s_cubed
 // samuel edit 09.25
 // prototypes
 int		_s_draw_minimap(t_cubed *cubed);
+void	_s_draw_player(t_cubed *cubed);
+void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
 
 // Initializing functions
 int		is_player(char c);

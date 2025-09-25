@@ -67,6 +67,7 @@ int	render_next_frame(t_cubed *cubed)
 	// reset_background(cubed);
 
 	_s_draw_minimap(cubed);
+    _s_draw_player(cubed);
 	update_player(cubed); // UPDATE DE FUNCTIE VOOR ROTATIE - SAMUEL
 	num_rays = WIDTH;
 	angle_step = cubed->p.fov / (float)num_rays;
