@@ -81,7 +81,12 @@ int	render_next_frame(t_cubed *cubed)
 	i = -1;
 	while (++i < num_rays)
 	{
-		cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
+
+		_s_cast_ray(cubed, cubed->p.angle, cell, i, angle_step);
+
+		// samuel edit 09.25
+		// move to _s_rays.c --> _s_cast_ray()
+		// cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
 
 
 		// samuel edit 09.25

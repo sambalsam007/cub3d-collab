@@ -75,9 +75,12 @@ void	update_player(t_cubed *cubed)
 	if (cubed->keys[KEY_D]) // D
 		nx += speed;
 
-    // Rotation
-    if (cubed->keys[KEY_J]) cubed->p.angle -= ROT_SPEED; // rotate left
-    if (cubed->keys[KEY_K]) cubed->p.angle += ROT_SPEED; // rotate right
+	// samuel edit 09.25
+	// rotation
+    if (cubed->keys[KEY_J]) 
+			cubed->p.angle -= ROT_SPEED; // left
+    if (cubed->keys[KEY_K]) 
+			cubed->p.angle += ROT_SPEED; // right
 
 	if (can_move(cubed, nx, ny))
 	{
