@@ -1,10 +1,18 @@
-In /srcs/program/ zitten files die beginnen met "_s_" 
-Dat is om duidelijk te maken dat ik die heb toegevoegd.
-_s_minimap.c, etc
+- de cubed->ray struct wordt volledig ingevuld
+  je kan deze gebruiken om te renderen
 
-De functies die ik heb geschreven of herschreven beginnen ook met "_s_" 
-_s_draw_minimap(), etc
+- files met _s_
+  zijn files die ik heb toegevoegd
 
-Waar ik edits heb gedaan, of dingen heb weggecommend, toon ik zo:
-// samuel edit 09.25
-// ...
+- functies met _s_
+  functies die ik heb geschreven
+
+- // samuel edit 
+  met zo'n comments duid ik mijn wijzigingen aan
+
+- de functies in de _s_ files zijn nog heel rommelig
+  ik ga die herschrijven + uitleg toevoegen
+
+TODO
+[ ] update header file for KEY_J KEY_K (keys for rotation) for macbook
+		/include/cubed.h:36

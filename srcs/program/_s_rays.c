@@ -1,11 +1,50 @@
 
 #include "cubed.h"
 
+
+// samuel edit 09.25
+// calculates tex_x tex_y
+void _s_calc_tex_x_tex_y(t_cubed *cubed, int i, t_ray *ray, t_tex tex)
+{
+    // use ray->tex_x instead of ray.tex_x
+    double perpDist = ray->distance * cos(ray->angle - cubed->p.angle);
+    if (perpDist < 1e-6)
+        perpDist = 1e-6;
+
+    int lineHeight = (int)(HEIGHT / perpDist);
+
+    double wallX;
+    if (ray->side == NORTH || ray->side == SOUTH)
+        wallX = cubed->p.x + perpDist * cos(ray->angle);
+    else
+        wallX = cubed->p.y + perpDist * sin(ray->angle);
+    wallX -= floor(wallX);
+
+    ray->tex_x = (int)(wallX * (double)tex.width);
+    if (ray->side == SOUTH || ray->side == WEST)
+        ray->tex_x = tex.width - ray->tex_x - 1;
+
+    double step = (double)tex.height / lineHeight;
+    double texPos = (-(lineHeight / 2.0) + (HEIGHT / 2.0)) * step;
+
+    int y = (HEIGHT / 2) - (lineHeight / 2);
+    if (y < 0) y = 0;
+    while (y < (HEIGHT / 2 + lineHeight / 2) && y < HEIGHT)
+    {
+        ray->tex_y = (int)texPos & (tex.height - 1);
+        texPos += step;
+        // int color = *(unsigned int *)(tex.adr + (ray->tex_y * tex.size_line + ray->tex_x * (tex.bpp / 8)));
+        // my_mlx_pixel_put(cubed, i, y, color);
+        y++;
+    }
+}
+
 void	_s_display_ray_struct_info(t_cubed *cubed, int i)
 {
 
 		// print variables
 		system("clear");
+		printf("MIDDLE RAY / DIRECTION RAY\n");
 		printf("Angle\t[%d] (%f)\n", i, cubed->ray.angle);
 		printf("Distn\t[%d] (%f)\n", i, cubed->ray.distance);
 		printf("hit_x\t[%d] (%d)\n", i, cubed->ray.hit_x);
@@ -193,3 +232,25 @@ void _s_draw_ray_line(t_cubed *cubed, double angle, int cell)
     // put_pixel(cubed, endx, endy, 0xFF0000, map_w_px, map_h_px);
 }
 
+int	_s_make_ray_calculations(t_cubed *cubed, int i, float angle_step, int cell)
+{
+		// calculate ray angle
+		cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
+
+		// calculate distance until it hits a wall
+		// The distance returned by _s_cast_ray is already perpendicular,
+		// meaning: it's already corrected for the fish-eye stuff
+		cubed->ray.distance = _s_cast_ray(cubed, cubed->ray.angle, cell);
+
+		// wall
+        double wall_height = (TILE_SIZE * HEIGHT) / cubed->ray.distance; // ray.distance must be fish-eye corrected
+        cubed->ray.wall_t = (HEIGHT / 2) - (wall_height / 2);
+        cubed->ray.wall_b = (HEIGHT / 2) + (wall_height / 2);
+
+		// updates the tex_x and tex_y
+		// need to rename it
+		_s_calc_tex_x_tex_y(cubed, i, &cubed->ray, cubed->texture[cubed->ray.side]);
+
+		// TODO decent return statement
+		return 0;
+}
