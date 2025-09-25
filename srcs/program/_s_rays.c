@@ -1,6 +1,25 @@
 
 #include "cubed.h"
 
+t_compas get_compass(int side, double rayDirX, double rayDirY)
+{
+    if (side == 0) // hit vertical wall
+    {
+        if (rayDirX > 0)
+            return EAST;
+        else
+            return WEST;
+    }
+    else // hit horizontal wall
+    {
+        if (rayDirY > 0)
+            return SOUTH;
+        else
+            return NORTH;
+    }
+}
+
+
 double _s_cast_ray(t_cubed *cubed, double angle, int cell)
 {
     // map dims (tiles)
@@ -82,6 +101,14 @@ double _s_cast_ray(t_cubed *cubed, double angle, int cell)
             hit = 1;
     }
 
+	// COMPASS
+	t_compas side_dir = get_compass(side, rayDirX, rayDirY);
+
+	// Calc Texture ====
+
+
+	// ==== Calc Texture 
+
     // compute perpendicular distance (in tiles), robust formula
     double perpDistTiles;
     if (side == 0)
@@ -89,8 +116,20 @@ double _s_cast_ray(t_cubed *cubed, double angle, int cell)
     else
         perpDistTiles = (mapY - posY + (1 - stepY) / 2.0) / ( (fabs(rayDirY) > 1e-9) ? rayDirY : 1e-9 );
 
-    // convert to absolute and to pixels
+
+
+    // hit world position in pixels
+    double hitX = (posX + rayDirX * perpDistTiles) * cell;
+    double hitY = (posY + rayDirY * perpDistTiles) * cell;
+
+    // convert to absolute distance (pixels)
     double perpDistPixels = fabs(perpDistTiles) * cell;
+
+    // store or return as needed
+    cubed->ray.hit_x = hitX;
+    cubed->ray.hit_y = hitY;
+    cubed->ray.side  = side_dir;  // optional, for shading/tex
+
     return perpDistPixels;
 }
 

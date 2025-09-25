@@ -63,25 +63,68 @@ int	render_next_frame(t_cubed *cubed)
 	int		num_rays;
 	float	angle_step;
 
-	// samuel edit 09.25
-	// reset_background(cubed);
+		// samuel edit 09.25
+		// reset_background(cubed);
 
-	// samuel edit 09.25
-	// maybe rewrite this
-	int cell;
-	if (get_cell_size(cubed, &cell, &cell) == ERROR)
+		// samuel edit 09.25
+		// maybe rewrite this
+		int cell;
+		if (get_cell_size(cubed, &cell, &cell) == ERROR)
 			return (ERROR);
-
 		_s_draw_minimap(cubed);
 		_s_draw_player(cubed, cubed->p, cell);
-		_s_draw_ray_line(cubed, cubed->p.angle, cell);
+		// _s_draw_ray_line(cubed, cubed->p.angle, cell);
+
 	update_player(cubed); // UPDATE DE FUNCTIE VOOR ROTATIE - SAMUEL
-	num_rays = WIDTH;
+
+	// samuel edit 09.25
+	// num_rays = WIDTH;
+	num_rays = 2; // temporary, for better speed
+
 	angle_step = cubed->p.fov / (float)num_rays;
 	i = -1;
 	while (++i < num_rays)
 	{
+
+
+
+
+
+		// samuel edit 09.25
+		_s_draw_ray_line(cubed, cubed->ray.angle, cell); // draw other rays
+		// calculate stuff
 		cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
+		cubed->ray.distance = _s_cast_ray(cubed, cubed->ray.angle, cell);
+		// hit
+		cubed->ray.hit_x = 1;
+		// wall
+        double wall_height = (TILE_SIZE * HEIGHT) / cubed->ray.distance; // ray.distance must be fish-eye corrected
+        cubed->ray.wall_t = (HEIGHT / 2) - (wall_height / 2);
+        cubed->ray.wall_b = (HEIGHT / 2) + (wall_height / 2);
+		// print variables
+		static int frame_count = 0;
+		frame_count++;
+		if (frame_count % 10 == 0) // print every 10 frames
+		{
+				system("clear");
+				printf("Frame %d\n", frame_count);
+				printf("Angle\t[%d] (%f)\n", i, cubed->ray.angle);
+				printf("Distn\t[%d] (%f)\n", i, cubed->ray.distance);
+				printf("hit_x\t[%d] (%d)\n", i, cubed->ray.hit_x);
+				printf("hit_y\t[%d] (%d)\n", i, cubed->ray.hit_y);
+				if (cubed->ray.side == NORTH) printf("side\t[%d] (NORTH)\n", i);
+				else if (cubed->ray.side == SOUTH) printf("side\t[%d] (SOUTH)\n", i);
+				else if (cubed->ray.side == EAST) printf("side\t[%d] (EAST)\n", i);
+				else if (cubed->ray.side == WEST) printf("side\t[%d] (WEST)\n", i);
+				printf("wall_t\t[%d] (%lf)\n", i, cubed->ray.wall_t);
+				printf("wall_b\t[%d] (%lf)\n", i, cubed->ray.wall_b);
+				printf("tex_x\t[%d] (%d)\n", i, cubed->ray.tex_x);
+				printf("tex_y\t[%d] (%d)\n", i, cubed->ray.tex_y);
+				printf("\n");
+				// for readablility
+				if (i == num_rays-1)
+						printf("-------------------\n");
+		}
 
 
 		// samuel edit 09.25
