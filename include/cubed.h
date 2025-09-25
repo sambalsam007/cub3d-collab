@@ -32,6 +32,9 @@
 #  define KEY_A   0
 #  define KEY_S   1
 #  define KEY_D   2
+// samuel edit 09.25
+#  define KEY_J   0 // TODO
+#  define KEY_K   0 // TODO
 # endif
 
 # ifdef __linux__
@@ -44,6 +47,9 @@
 #  define KEY_A   97
 #  define KEY_S   115
 #  define KEY_D   100
+// samuel edit 09.25
+#  define KEY_J   106 // TODO
+#  define KEY_K   107 // TODO
 # endif
 
 # define ERROR 1
@@ -174,6 +180,10 @@ typedef struct s_cubed
 	int			keys[300];
 	long		last_time;
 }   t_cubed;
+
+// samuel edit 09.25
+// prototypes
+int		_s_draw_minimap(t_cubed *cubed);
 
 // Initializing functions
 int		is_player(char c);

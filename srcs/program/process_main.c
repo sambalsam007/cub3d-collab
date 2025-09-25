@@ -31,7 +31,7 @@ void	draw_wall_line(t_cubed *cubed, int i, t_ray ray, t_tex tex)
 			tex_pos += step;
 			color = *(unsigned int *)(tex.adr + \
 				(ray.tex_y * tex.size_line + ray.tex_x * (tex.bpp / 8)));
-			my_mlx_pixel_put(&cubed->mlx, i, y, color);
+			my_mlx_pixel_put(cubed, i, y, color);
 		}
 	}
 }
@@ -63,7 +63,10 @@ int	render_next_frame(t_cubed *cubed)
 	int		num_rays;
 	float	angle_step;
 
-	reset_background(cubed);
+	// samuel edit 09.25
+	// reset_background(cubed);
+
+	_s_draw_minimap(cubed);
 	update_player(cubed); // UPDATE DE FUNCTIE VOOR ROTATIE - SAMUEL
 	num_rays = WIDTH;
 	angle_step = cubed->p.fov / (float)num_rays;
@@ -71,13 +74,23 @@ int	render_next_frame(t_cubed *cubed)
 	while (++i < num_rays)
 	{
 		cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
-		cast_ray(cubed, cubed->ray); // FUNCTIE VOOR DE RAY - SAMUEL
-		draw_wall_line(cubed, i, cubed->ray, cubed->texture[cubed->ray.side]); // FUNCTIE TEKENEN 3D - PARIS
+
+
+		// samuel edit 09.25
+		// cast_ray(cubed, cubed->ray); // FUNCTIE VOOR DE RAY - SAMUEL
+		
+		// samuel edit 09.25
+		// draw_wall_line(cubed, i, cubed->ray, cubed->texture[cubed->ray.side]); // FUNCTIE TEKENEN 3D - PARIS
+
+
 		// if (i == 0 || i == num_rays - 1) // MINIMAP
 		// 	first_last_ray(cubed, i, num_rays);// PARIS
 		//update_minimap(cubed, i, num_rays, cubed->ray); // MINIMAP - PARIS EXTRA
 	}
-	draw_minimap(cubed);
+
+	// samuel edit 09.25
+	// draw_minimap(cubed);
+
 	mlx_put_image_to_window(cubed->mlx.mlx, cubed->mlx.win, \
 		cubed->mlx.img, 0, 0);
 	return (SUCCESS);

@@ -40,6 +40,14 @@ int	main(int ac, char **av)
 		{
 			printf("%s\n", cubed.data.map[i]);
 		}
+
+		// TODO remove
+		// samuel edit 09.25
+		// printf("cubed data cords_p 0 (%d):\n", cubed.data.cords_p[0]);
+		// printf("cubed data cords_p 0 (%d)\n", cubed.data.cords_p[1]);
+		// printf("cubed data color c (%d)\n", cubed.data.color_c);
+		// printf("cubed data color f (%d)\n", cubed.data.color_f);
+
 		if (process(&cubed))
 			return (ERROR);
 	}

@@ -66,13 +66,13 @@ void	update_player(t_cubed *cubed)
 	speed = 3.0f * dt; // 3 tiles per second
 	nx = cubed->p.x;
 	ny = cubed->p.y;
-	if (cubed->keys[13]) // W
+	if (cubed->keys[KEY_W]) // W
 		ny -= speed;
-	if (cubed->keys[1]) // S
+	if (cubed->keys[KEY_S]) // S
 		ny += speed;
-	if (cubed->keys[0]) // A
+	if (cubed->keys[KEY_A]) // A
 		nx -= speed;
-	if (cubed->keys[2]) // D
+	if (cubed->keys[KEY_D]) // D
 		nx += speed;
 	if (can_move(cubed, nx, ny))
 	{
