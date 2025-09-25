@@ -66,8 +66,15 @@ int	render_next_frame(t_cubed *cubed)
 	// samuel edit 09.25
 	// reset_background(cubed);
 
-	_s_draw_minimap(cubed);
-    _s_draw_player(cubed);
+	// samuel edit 09.25
+	// maybe rewrite this
+	int cell;
+	if (get_cell_size(cubed, &cell, &cell) == ERROR)
+			return (ERROR);
+
+		_s_draw_minimap(cubed);
+		_s_draw_player(cubed, cubed->p, cell);
+		_s_draw_ray_line(cubed, cubed->p.angle, cell);
 	update_player(cubed); // UPDATE DE FUNCTIE VOOR ROTATIE - SAMUEL
 	num_rays = WIDTH;
 	angle_step = cubed->p.fov / (float)num_rays;

@@ -1,9 +1,16 @@
 #include "cubed.h"
 
+// write the pixel color into the image buffer (at x,y)
+// x = the x coordinate of the pixel
+// y = y coord... pixel
 void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color)
 {
 	char	*dst;
 
+	// dst = the spot in the mlx address that we are going to edit
+	// calculate:
+	// 		starting point of the address
+	// 		+ (formula to calculate place for x y coordinate)
 	dst = cubed->mlx.adr + (y * cubed->mlx.size_line + x * (cubed->mlx.bpp / 8));
 	*(unsigned int*)dst = color;
 }
