@@ -1,5 +1,6 @@
 #!/bin/bash
-all_files=(tmp-edit/*)
+all_files=($(find srcs/program -name "*.c"))
+all_files+=(include/*)
 
 divider() {
 	printf '%*s' "$(tput cols)" '' | tr ' ' '-'

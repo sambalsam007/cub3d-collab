@@ -99,8 +99,8 @@ int	render_next_frame(t_cubed *cubed)
 
 		// samuel edit 09.25
 		// this prints info about the middle ray / direction ray
-		// if (i == (num_rays / 2))
-		// 		_s_display_ray_struct_info(cubed, i);
+		if (i == (num_rays / 2))
+				_s_display_ray_struct_info(cubed, i);
 
 		// samuel edit 09.25
 		// cast_ray(cubed, cubed->ray); // FUNCTIE VOOR DE RAY - SAMUEL
@@ -146,7 +146,11 @@ int	process(t_cubed *cubed)
 	mlx_hook(cubed->mlx.win, 2, 1L<<0, key_press, cubed);
 	mlx_hook(cubed->mlx.win, 3, 1L<<1, key_release, cubed);
 	mlx_hook(cubed->mlx.win, 17, 0, close_window, cubed);
+
+	// samuel edit 09.25
 	mlx_loop_hook(cubed->mlx.mlx, render_next_frame, cubed);
+	// mlx_loop_hook(cubed->mlx.mlx, _s_render_next_frame, cubed);
+
 	mlx_loop(cubed->mlx.mlx);
 	return (SUCCESS);
 }
