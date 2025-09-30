@@ -33,8 +33,8 @@
 #  define KEY_S   1
 #  define KEY_D   2
 // samuel edit 09.25
-#  define KEY_J   0 // TODO
-#  define KEY_K   0 // TODO
+#  define KEY_J   38 // TODO
+#  define KEY_K   40 // TODO
 # endif
 
 # ifdef __linux__
@@ -60,7 +60,7 @@
 # define MOVE_SPEED 3.0f
 // samuel edit 09.25
 // change rotation speed 0.05 -> 0.005
-# define ROT_SPEED 0.005f
+# define ROT_SPEED 0.05f
 # define TILE_SIZE 64
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
