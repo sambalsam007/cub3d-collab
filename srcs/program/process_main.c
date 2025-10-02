@@ -73,7 +73,7 @@ int	render_next_frame(t_cubed *cubed)
 	if (get_cell_size(cubed, &cell, &cell) == ERROR)
 		return (ERROR);
 	_s_draw_minimap(cubed);
-	_s_draw_player(cubed, cubed->p, cell);
+	// _s_draw_player(cubed, cubed->p, cell);
 
 	// samuel edit 09.25
 	// this draws the direction ray

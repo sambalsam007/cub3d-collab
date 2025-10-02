@@ -45,38 +45,57 @@ void	_s_draw_cell(t_cubed *cubed, int x, int y, int size, int color)
 
 int	_s_draw_minimap(t_cubed *cubed)
 {
-	int	x;
-	int	y;
-	int	cell;
-	int	color;
+	int		x;
+	int		y;
+	int		cell;
+	int		color;
+	int		scale;
+	int		offset_x;
+	int		offset_y;
 
-	// gives pixel size of a tile on the minimap
+	// original cell size
 	if (get_cell_size(cubed, &cell, &cell) == ERROR)
 		return (ERROR);
-	y = 0;
 
-	// go through the map rows
+	// shrink to 30%
+	scale = (int)(cell * 0.3);
+
+	// place minimap in top-right
+	// width of minimap = num_cols * scale
+	int map_width = ft_strlen(cubed->data.map[0]) * scale;
+	int map_height = 0;
+	while (cubed->data.map[map_height])
+		map_height++;
+
+	map_height *= scale;
+
+	offset_x = WIDTH - map_width - 10; // 10px margin from right
+	offset_y = 10;                     // 10px margin from top
+
+	y = 0;
 	while (cubed->data.map[y])
 	{
 		x = 0;
-		// got through map by columns (iterate per character)
 		while (cubed->data.map[y][x])
 		{
-				// color for wall
-				// color for floor
-				// not wall / floor? => do not draw
 			if (cubed->data.map[y][x] == '1')
-				color = 0xFFFFFF;
+				color = 0xFFFFFF; // wall
 			else if (cubed->data.map[y][x] == '0')
-				color = 0x0FF000;
+				color = 0x00FF00; // floor
 			else
-				color = -1; // if it's not a wall & not floor , dont draw
-			if (color != -1) // if = wall or floor, draw it
-				_s_draw_cell(cubed, x * cell, y * cell, cell, color);
+				color = -1;
+			if (color != -1)
+				_s_draw_cell(cubed,
+					offset_x + x * scale,
+					offset_y + y * scale,
+					scale,
+					color);
 			x++;
 		}
 		y++;
 	}
+	_s_draw_player(cubed, cubed->p, scale, offset_x, offset_y);
+
 	return (SUCCESS);
 }
 

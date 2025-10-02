@@ -22,8 +22,8 @@
 # include <string.h>
 # include <sys/time.h>
 # include <math.h>
-# include "mlx.h"
-# include "libft.h"
+# include "../mlxlib/mlx.h"
+# include "../libft/libft.h"
 
 # ifdef __APPLE__
 // macOS keycodes
@@ -145,11 +145,17 @@ typedef struct s_minimap
 typedef struct s_player
 {
 	float	fov;
-	float	x;
-	float	y;
+	// samuel edit
+	// float	x;
+	// float	y;
+	double	x;
+	double	y;
 	float	r;
 	float	angle;
 	int		c;
+	// samuel edit
+	double	dirX;
+	double	dirY;
 }	t_player;
 
 typedef struct s_data
@@ -187,7 +193,9 @@ typedef struct s_cubed
 // prototypes
 void	_s_display_ray_struct_info(t_cubed *cubed, int i);
 int		_s_draw_minimap(t_cubed *cubed);
-void	_s_draw_player(t_cubed *cubed, t_player p, int cell);
+// samuel edit
+// void	_s_draw_player(t_cubed *cubed, t_player p, int cell);
+void	_s_draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y);
 void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
 void	_s_draw_ray_line(t_cubed *cubed, double angle, int cell);
 double	_s_cast_ray(t_cubed *cubed, double angle, int cell);
