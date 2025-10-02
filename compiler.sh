@@ -10,6 +10,7 @@ update() {
 	date
 	divider
 	# gcc "$script" -L../minilibx-linux -lmlx -lXext -lX11 -lm -o cub3d
+	make fclean
 	make
 	[[ $? != 0 ]] && { echo 'fail compile'; return 1; }
 	./cub3d maps/fun_1.cub
