@@ -1,19 +1,5 @@
 #include "cubed.h"
 
-/*
-void _s_draw_player(t_cubed *c) {
-
-		printf("c (%fl)\n", c->p.fov);
-		printf("c (%fl)\n", c->p.x);
-		printf("c (%fl)\n", c->p.y);
-		printf("c (%fl)\n", c->p.r);
-		printf("c (%fl)\n", c->p.angle);
-		printf("c (%d)\n", c->p.c);
-
-		exit(0);
-		return ;
-}
- */
 
 void	_s_draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y)
 {

@@ -61,7 +61,9 @@
 // samuel edit 09.25
 // change rotation speed 0.05 -> 0.005
 # define ROT_SPEED 0.05f
+// samuel edit
 # define TILE_SIZE 64
+// # define TILE_SIZE 2
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
@@ -148,7 +150,7 @@ typedef struct s_player
 	// samuel edit
 	// float	x;
 	// float	y;
-	double	x;
+	double	x; // is tile coordinates, NOT pixel coordinates
 	double	y;
 	float	r;
 	float	angle;
@@ -156,6 +158,8 @@ typedef struct s_player
 	// samuel edit
 	double	dirX;
 	double	dirY;
+	double	planeX;
+	double	planeY;
 }	t_player;
 
 typedef struct s_data

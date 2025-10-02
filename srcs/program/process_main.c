@@ -143,6 +143,14 @@ int	render_next_frame(t_cubed *cubed)
 //het neemt mlx_hook om singiale van keybinds te ontvangen
 int	process(t_cubed *cubed)
 {
+	// samuel edit
+	cubed->p.dirX = 1.0; cubed->p.dirY = 0.0;
+	// ** the direction the player is facing
+	// ** center of view
+	cubed->p.planeX = 0.0; cubed->p.planeY = 0.66;
+	// ** these coordinates are used to calculate the FOVfield ov view
+
+
 	mlx_hook(cubed->mlx.win, 2, 1L<<0, key_press, cubed);
 	mlx_hook(cubed->mlx.win, 3, 1L<<1, key_release, cubed);
 	mlx_hook(cubed->mlx.win, 17, 0, close_window, cubed);

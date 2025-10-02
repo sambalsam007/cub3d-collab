@@ -63,6 +63,7 @@ void	update_player(t_cubed *cubed)
 	if (dt < 0.001f)
 		dt = 0.001f;
 	cubed->last_time = now;
+	// samuel edit
 	speed = 3.0f * dt; // 3 tiles per second
 	nx = cubed->p.x;
 	ny = cubed->p.y;
@@ -76,14 +77,34 @@ void	update_player(t_cubed *cubed)
 		nx += speed;
 
     // Rotation
-    if (cubed->keys[KEY_J]) 
-	    cubed->p.angle -= ROT_SPEED; // rotate left
-    if (cubed->keys[KEY_K]) 
-	    cubed->p.angle += ROT_SPEED; // rotate right
+    // if (cubed->keys[KEY_J]) 
+	    // cubed->p.angle -= ROT_SPEED; // rotate left
+    // if (cubed->keys[KEY_K]) 
+	    // cubed->p.angle += ROT_SPEED; // rotate right
 
 	if (can_move(cubed, nx, ny))
 	{
 		cubed->p.x = nx;
 		cubed->p.y = ny;
 	}
+	
+    // rotate
+    if (cubed->keys[KEY_J]) { // left arrow
+        double oldDirX = cubed->p.dirX;
+        cubed->p.dirX = cubed->p.dirX * cos(-ROT_SPEED) - cubed->p.dirY * sin(-ROT_SPEED);
+        cubed->p.dirY = oldDirX * sin(-ROT_SPEED) + cubed->p.dirY * cos(-ROT_SPEED);
+        double oldPlaneX = cubed->p.planeX;
+        cubed->p.planeX = cubed->p.planeX * cos(-ROT_SPEED) - cubed->p.planeY * sin(-ROT_SPEED);
+        cubed->p.planeY = oldPlaneX * sin(-ROT_SPEED) + cubed->p.planeY * cos(-ROT_SPEED);
+	// ** negative angle = rotate left
+    }
+    if (cubed->keys[KEY_K]) { // right arrow
+        double oldDirX = cubed->p.dirX;
+        cubed->p.dirX = cubed->p.dirX * cos(ROT_SPEED) - cubed->p.dirY * sin(ROT_SPEED);
+        cubed->p.dirY = oldDirX * sin(ROT_SPEED) + cubed->p.dirY * cos(ROT_SPEED);
+        double oldPlaneX = cubed->p.planeX;
+        cubed->p.planeX = cubed->p.planeX * cos(ROT_SPEED) - cubed->p.planeY * sin(ROT_SPEED);
+        cubed->p.planeY = oldPlaneX * sin(ROT_SPEED) + cubed->p.planeY * cos(ROT_SPEED);
+	// ** positive angle = rotate right
+    }
 }
