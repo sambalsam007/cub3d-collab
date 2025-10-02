@@ -195,6 +195,8 @@ void	_s_draw_wall_line(t_cubed *cubed, int i, t_ray *ray, t_tex tex);
 int		_s_make_ray_calculations(t_cubed *cubed, int i, float angle_step, int cell);
 int	_s_render_next_frame(t_cubed *cubed); // rework function paris
 
+int	_s2_render_next_frame(t_cubed *cubed); // rework function paris
+
 
 // Initializing functions
 int		is_player(char c);

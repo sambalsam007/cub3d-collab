@@ -148,8 +148,9 @@ int	process(t_cubed *cubed)
 	mlx_hook(cubed->mlx.win, 17, 0, close_window, cubed);
 
 	// samuel edit 09.25
-	mlx_loop_hook(cubed->mlx.mlx, render_next_frame, cubed);
+	// mlx_loop_hook(cubed->mlx.mlx, render_next_frame, cubed);
 	// mlx_loop_hook(cubed->mlx.mlx, _s_render_next_frame, cubed);
+	mlx_loop_hook(cubed->mlx.mlx, _s2_render_next_frame, cubed);
 
 	mlx_loop(cubed->mlx.mlx);
 	return (SUCCESS);
