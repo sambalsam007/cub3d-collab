@@ -57,6 +57,7 @@ SRCS_PROGRAM = \
 		$(SRCDIR)/program/_s_player.c \
 		$(SRCDIR)/program/_s_render.c \
 		$(SRCDIR)/program/_s2_render.c \
+		$(SRCDIR)/program/_s2_textures.c \
 		$(SRCDIR)/program/_s_rays.c
 
 SRCS_MAIN 	= $(SRCDIR)/main.c

@@ -143,6 +143,10 @@ int	render_next_frame(t_cubed *cubed)
 //het neemt mlx_hook om singiale van keybinds te ontvangen
 int	process(t_cubed *cubed)
 {
+	// print texture data 
+	PRINT(cubed->texture[0].width, "%d");
+
+
 	// samuel edit
 	cubed->p.dirX = 1.0; cubed->p.dirY = 0.0;
 	// ** the direction the player is facing

@@ -1,7 +1,7 @@
 NO ./textures/red.xpm
-SO ./textures/red.xpm
-WE ./textures/red.xpm
-EA ./textures/red.xpm
+SO ./textures/blue.xpm
+WE ./textures/a.xpm
+EA ./textures/b.xpm
 F 0,0,139
 C 173,216,230
 111111111               

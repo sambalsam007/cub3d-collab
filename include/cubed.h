@@ -25,6 +25,12 @@
 # include "../mlxlib/mlx.h"
 # include "../libft/libft.h"
 
+// this is for testing/ debugging
+#define PRINT(var, fmt) \
+	printf("%s ("fmt")\n", #var, var)
+#define DIV \
+	printf("------------------\n");
+
 # ifdef __APPLE__
 // macOS keycodes
 #  define KEY_ESC 53
