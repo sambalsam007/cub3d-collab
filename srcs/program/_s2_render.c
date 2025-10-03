@@ -74,8 +74,9 @@ void	_s2_render_scene(t_cubed *cubed)
 		    mapY += stepY;
 		    side = 1;
 		}
-		if (mapX < 0 || mapY < 0 || mapX >= MAP_W || mapY >= MAP_H) break;
-		if (cubed->data.map[mapY][mapX] == 1) hit = 1;
+		if (mapX < 0 || mapY < 0 || mapX >= MAP_W || mapY >= MAP_H) 
+			break;
+		if (cubed->data.map[mapY][mapX] == '1') hit = 1; // must be '1', because map is stored as chars.
 	    }
 
 	    double perpWallDist;
