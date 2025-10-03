@@ -1,5 +1,8 @@
 #include "../../include/cubed.h"
-
+#define PRINT(var, fmt) \
+	printf("%s ("fmt")\n", #var, var)
+#define DIV \
+	printf("------------------\n");
 
 void	_s2_render_scene(t_cubed *cubed)
 {
@@ -7,19 +10,17 @@ void	_s2_render_scene(t_cubed *cubed)
 
 	reset_background(cubed);
 
-	int print = 1; // print calc info
-
 	// int MAP_H = sizeof(cubed->data.map) / sizeof(cubed->data.map[0]);
 	// int MAP_W = sizeof(cubed->data.map[0]) / sizeof(cubed->data.map[0][0]);
 
-	// // calc ===========
-	// for (int x = 0; x < WIDTH; ++x) {
-	//     double cameraX = 2.0 * x / (double)WIDTH - 1.0;
-	//     double rayDirX = cubed->p.dirX + cubed->p.planeX * cameraX;
-	//     double rayDirY = cubed->p.dirY + cubed->p.planeY * cameraX;
+	// calc ===========
+	for (int x = 0; x < WIDTH; ++x) {
+	    double cameraX = 2.0 * x / (double)WIDTH - 1.0;
+	    double rayDirX = cubed->p.dirX + cubed->p.planeX * cameraX;
+	    double rayDirY = cubed->p.dirY + cubed->p.planeY * cameraX;
 
-	//     int mapX = (int)cubed->p.x; // tile coordinates
-	//     int mapY = (int)cubed->p.y;
+	    int mapX = (int)cubed->p.x; // tile coordinates
+	    int mapY = (int)cubed->p.y;
 
 	//     double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1.0 / rayDirX);
 	//     double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1.0 / rayDirY);
@@ -63,8 +64,38 @@ void	_s2_render_scene(t_cubed *cubed)
 	//     int color = (side == 1) ? 0x555555 : 0xAAAAFF;
 
 	//     draw_vline(&cubed->img, x, drawStart, drawEnd, color);
-	// }	
-	// // =========== calc 
+		if (1 && (x == WIDTH/2))
+		{
+		system("clear");
+		printf("CUB3D TILE-coordinates \n");
+		DIV;
+		PRINT(cameraX, "%f");
+		PRINT(rayDirX, "%f");
+		PRINT(rayDirY, "%f");
+		// PRINT(mapX, "%d");
+		// PRINT(mapY, "%d");
+		// DIV;
+		// PRINT(sideDistX, "%f");
+		// PRINT(sideDistY, "%f");
+		// PRINT(deltaDistX, "%f");
+		// PRINT(deltaDistY, "%f");
+		// PRINT(perpWallDist, "%f");
+		// DIV;
+		// PRINT(stepX, "%d");
+		// PRINT(stepY, "%d");
+		// DIV;
+		// PRINT(lineHeight, "%d");
+		// PRINT(drawStart, "%d");
+		// PRINT(drawEnd, "%d");
+		DIV;
+		PRINT(MAP_W, "%d");
+		PRINT(MAP_H, "%d");
+		PRINT(WIDTH, "%d");
+		PRINT(HEIGHT, "%d");
+		// PRINT(color, "%d");
+		}
+	}	
+	// =========== calc 
 
 
 	// draw to window

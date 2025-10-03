@@ -55,12 +55,21 @@
 # define ERROR 1
 # define SUCCESS 0
 
-# define WIDTH 960
-# define HEIGHT 540
-# define MOVE_SPEED 3.0f
-// samuel edit 09.25
-// change rotation speed 0.05 -> 0.005
-# define ROT_SPEED 0.05f
+# define WIDTH 800
+# define HEIGHT 600
+
+// make this modular?
+# define MAP_W 10
+# define MAP_H 10
+
+// for wolf test
+#define MOVE_SPEED 0.007     // reduced because units are tiles now
+#define ROT_SPEED 0.004      // increased (no need for tiny radians anymore)
+
+// # define MOVE_SPEED 3.0f
+// // samuel edit 09.25
+// // change rotation speed 0.05 -> 0.005
+// # define ROT_SPEED 0.05f
 // samuel edit
 # define TILE_SIZE 64
 // # define TILE_SIZE 2
