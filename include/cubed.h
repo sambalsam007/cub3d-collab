@@ -59,8 +59,8 @@
 # define HEIGHT 600
 
 // make this modular?
-# define MAP_W 10
-# define MAP_H 10
+// # define MAP_W 10
+// # define MAP_H 10
 
 // for wolf test
 #define MOVE_SPEED 0.07     // reduced because units are tiles now
