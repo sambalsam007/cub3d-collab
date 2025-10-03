@@ -144,6 +144,7 @@ int	render_next_frame(t_cubed *cubed)
 int	process(t_cubed *cubed)
 {
 	// samuel edit
+	cubed->p.x = 2.5; cubed->p.y = 2.5;   // CHANGED: spawn in tile coords
 	cubed->p.dirX = 1.0; cubed->p.dirY = 0.0;
 	// ** the direction the player is facing
 	// ** center of view
