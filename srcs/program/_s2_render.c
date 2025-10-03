@@ -27,8 +27,8 @@ void	_s2_render_scene(t_cubed *cubed)
 
 	reset_background(cubed);
 
-	// int MAP_H = sizeof(cubed->data.map) / sizeof(cubed->data.map[0]);
-	// int MAP_W = sizeof(cubed->data.map[0]) / sizeof(cubed->data.map[0][0]);
+	// int cubed->data.map_h = sizeof(cubed->data.map) / sizeof(cubed->data.map[0]);
+	// int cubed->data.map_w = sizeof(cubed->data.map[0]) / sizeof(cubed->data.map[0][0]);
 
 	// calc ===========
 	for (int x = 0; x < WIDTH; ++x) {
@@ -74,7 +74,7 @@ void	_s2_render_scene(t_cubed *cubed)
 		    mapY += stepY;
 		    side = 1;
 		}
-		if (mapX < 0 || mapY < 0 || mapX >= MAP_W || mapY >= MAP_H) 
+		if (mapX < 0 || mapY < 0 || mapX >= cubed->data.map_w || mapY >= cubed->data.map_h) 
 			break;
 		if (cubed->data.map[mapY][mapX] == '1') hit = 1; // must be '1', because map is stored as chars.
 	    }
@@ -104,7 +104,7 @@ void	_s2_render_scene(t_cubed *cubed)
         // for (int y = drawEnd+1; y < HEIGHT; ++y) 
 		// _s2_put_pixel(cubed, x, y, 0x222200);
 
-		if (1 && (x == WIDTH/2))
+		if (0 && (x == WIDTH/2))
 		{
 			system("clear");
 			printf("CUB3D TILE-coordinates \n");
@@ -128,8 +128,8 @@ void	_s2_render_scene(t_cubed *cubed)
 			PRINT(drawStart, "%d");
 			PRINT(drawEnd, "%d");
 			// DIV;
-			// PRINT(MAP_W, "%d");
-			// PRINT(MAP_H, "%d");
+			// PRINT(cubed->data.map_w, "%d");
+			// PRINT(cubed->data.map_h, "%d");
 			// PRINT(WIDTH, "%d");
 			// PRINT(HEIGHT, "%d");
 			// PRINT(color, "%d");

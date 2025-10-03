@@ -174,6 +174,10 @@ typedef struct s_player
 typedef struct s_data
 {
     char    	**map;
+    // samuel edit
+    int		map_h;
+    int		map_w;
+
     int     	cords_p[2];
 	int			color_c;
 	int			color_f;

@@ -47,6 +47,24 @@ static int	get_line_width(char *line)
 	return (last + 1);
 }
 
+// store map size (in tiles) in struct
+static void	set_map_size(t_cubed *cubed, char **lines, int *h, int *w)
+{
+	int	len;
+
+	*h = 0;
+	*w = 0;
+	while (lines[*h])
+	{
+		len = get_line_width(lines[*h]);
+		if (len > *w)
+			*w = len;
+		(*h)++;
+	}
+	cubed->data.map_h = *h;
+	cubed->data.map_w = *w;
+}
+/*
 static void	get_map_size(char **lines, int *h, int *w)
 {
 	int	len;
@@ -61,6 +79,7 @@ static void	get_map_size(char **lines, int *h, int *w)
 		(*h)++;
 	}
 }
+*/
 
 static int	copy_and_find(t_cubed *cubed, char **lines, int h)
 {
@@ -96,7 +115,7 @@ int	parse_map(t_cubed *cubed, char **lines)
 	int	h;
 	int	w;
 
-	get_map_size(lines, &h, &w);
+	set_map_size(cubed, lines, &h, &w);
 	if (copy_and_find(cubed, lines, h))
 		return (ft_freearr(lines), ERROR);
 	if (validate_map(cubed, h, w))
