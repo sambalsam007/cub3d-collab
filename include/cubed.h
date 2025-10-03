@@ -63,8 +63,8 @@
 # define MAP_H 10
 
 // for wolf test
-#define MOVE_SPEED 0.007     // reduced because units are tiles now
-#define ROT_SPEED 0.004      // increased (no need for tiny radians anymore)
+#define MOVE_SPEED 0.07     // reduced because units are tiles now
+#define ROT_SPEED 0.04      // increased (no need for tiny radians anymore)
 
 // # define MOVE_SPEED 3.0f
 // // samuel edit 09.25

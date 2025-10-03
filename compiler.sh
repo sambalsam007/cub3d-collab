@@ -11,7 +11,6 @@ update() {
 	divider
 	# gcc "$script" -L../minilibx-linux -lmlx -lXext -lX11 -lm -o cub3d
 	make fclean 
-	sleep 1
 	make && clear && ./cub3d maps/wolf.cub
 	# [[ $? != 0 ]] && { echo 'fail compile'; return 1; } \
 	divider

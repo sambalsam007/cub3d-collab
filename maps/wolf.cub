@@ -2,8 +2,8 @@ NO ./textures/red.xpm
 SO ./textures/red.xpm
 WE ./textures/red.xpm
 EA ./textures/red.xpm
-F 220,100,0
-C 225,30,0
+F 0,0,139
+C 173,216,230
 1111111111
 1000000S01
 1000100001
