@@ -50,36 +50,20 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_ray_dir(cubed, &r, x);
 		set_map_xy(cubed, &r);
 		calc_delta_dist(&r);
+		calc_side_dist(cubed, &r);
 
 
-	    double sideDistX;
-	    double sideDistY;
-	    int stepX, stepY;
 
-	    if (r.rayDirX < 0) {
-		stepX = -1;
-		sideDistX = (cubed->p.x - r.mapX) * r.deltaDistX;
-	    } else {
-		stepX = 1;
-		sideDistX = (r.mapX + 1.0 - cubed->p.x) * r.deltaDistX;
-	    }
-	    if (r.rayDirY < 0) {
-		stepY = -1;
-		sideDistY = (cubed->p.y - r.mapY) * r.deltaDistY;
-	    } else {
-		stepY = 1;
-		sideDistY = (r.mapY + 1.0 - cubed->p.y) * r.deltaDistY;
-	    }
 
 	    int hit = 0, side = 0;
 	    while (!hit) {
-		if (sideDistX < sideDistY) {
-		    sideDistX += r.deltaDistX;
-		    r.mapX += stepX;
+		if (r.sideDistX < r.sideDistY) {
+		    r.sideDistX += r.deltaDistX;
+		    r.mapX += r.stepX;
 		    side = 0;
 		} else {
-		    sideDistY += r.deltaDistY;
-		    r.mapY += stepY;
+		    r.sideDistY += r.deltaDistY;
+		    r.mapY += r.stepY;
 		    side = 1;
 		}
 		if (r.mapX < 0 || r.mapY < 0 || r.mapX >= cubed->data.map_w || r.mapY >= cubed->data.map_h)
@@ -90,9 +74,9 @@ void	_s2_render_scene(t_cubed *cubed)
 
 	    double perpWallDist;
 	    if (side == 0)
-	        perpWallDist = (r.mapX - cubed->p.x + (1 - stepX) / 2.0) / (r.rayDirX == 0 ? 1e-6 : r.rayDirX);
+	        perpWallDist = (r.mapX - cubed->p.x + (1 - r.stepX) / 2.0) / (r.rayDirX == 0 ? 1e-6 : r.rayDirX);
 	    else
-	        perpWallDist = (r.mapY - cubed->p.y + (1 - stepY) / 2.0) / (r.rayDirY == 0 ? 1e-6 : r.rayDirY);
+	        perpWallDist = (r.mapY - cubed->p.y + (1 - r.stepY) / 2.0) / (r.rayDirY == 0 ? 1e-6 : r.rayDirY);
 	    if (perpWallDist < 1e-6) perpWallDist = 1e-6;
 
 	    int lineHeight = (int)(HEIGHT / perpWallDist);

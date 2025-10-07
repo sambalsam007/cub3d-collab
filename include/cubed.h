@@ -131,6 +131,10 @@ typedef struct s_ray
 	int	mapY;
 	double	deltaDistX;
 	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	int	stepX;
+	int	stepY;
 }   t_ray;
 
 typedef struct s_tex
@@ -241,6 +245,7 @@ void	calc_camera_x(t_ray *r, int current_ray_nbr);
 void	calc_ray_dir(t_cubed *c, t_ray *r, int current_ray_nbr);
 void	set_map_xy(t_cubed *c, t_ray *r);
 void	calc_delta_dist(t_ray *r);
+void	calc_side_dist(t_cubed *c, t_ray *r);
 
 
 // Initializing functions

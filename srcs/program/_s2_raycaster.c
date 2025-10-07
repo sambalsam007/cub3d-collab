@@ -21,6 +21,36 @@ void	set_map_xy(t_cubed *c, t_ray *r)
 
 void	calc_delta_dist(t_ray *r)
 {
-	r->deltaDistX = (r->rayDirX == 0) ? 1e30 : fabs(1.0 / r->rayDirX);
-	r->deltaDistY = (r->rayDirY == 0) ? 1e30 : fabs(1.0 / r->rayDirY);
+	if (r->rayDirX == 0)
+		r->deltaDistX = 1e30;
+	else
+		r->deltaDistX = fabs(1.0 / r->rayDirX);
+	if (r->rayDirY == 0)
+		r->deltaDistY = 1e30;
+	else
+		r->deltaDistY = fabs(1.0 / r->rayDirY);
+}
+
+void	calc_side_dist(t_cubed *c, t_ray *r)
+{
+	if (r->rayDirX < 0)
+	{
+		r->stepX = -1;
+		r->sideDistX = (c->p.x - r->mapX) * r->deltaDistX;
+	}
+	else
+	{
+		r->stepX = 1;
+		r->sideDistX = (r->mapX + 1.0 - c->p.x) * r->deltaDistX;
+	}
+	if (r->rayDirY < 0)
+	{
+		r->stepY = -1;
+		r->sideDistY = (c->p.y - r->mapY) * r->deltaDistY;
+	}
+	else
+	{
+		r->stepY = 1;
+		r->sideDistY = (r->mapY + 1.0 - c->p.y) * r->deltaDistY;
+	}
 }
