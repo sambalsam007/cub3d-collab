@@ -118,7 +118,7 @@ typedef struct s_ray
     float	distance;
     int		hit_x;
     int		hit_y;
-	int		side;
+	// int		side;
 	double 	wall_t;
 	double 	wall_b;
 	int		tex_x;
@@ -135,6 +135,8 @@ typedef struct s_ray
 	double	sideDistY;
 	int	stepX;
 	int	stepY;
+	int	hit;
+	int	side;
 }   t_ray;
 
 typedef struct s_tex
@@ -246,6 +248,7 @@ void	calc_ray_dir(t_cubed *c, t_ray *r, int current_ray_nbr);
 void	set_map_xy(t_cubed *c, t_ray *r);
 void	calc_delta_dist(t_ray *r);
 void	calc_side_dist(t_cubed *c, t_ray *r);
+void	check_for_hit(t_cubed *c, t_ray *r);
 
 
 // Initializing functions
