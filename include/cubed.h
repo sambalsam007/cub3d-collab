@@ -123,6 +123,10 @@ typedef struct s_ray
 	double 	wall_b;
 	int		tex_x;
 	int		tex_y;
+	// samuel edit
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
 }   t_ray;
 
 typedef struct s_tex
@@ -227,6 +231,10 @@ int		_s_make_ray_calculations(t_cubed *cubed, int i, float angle_step, int cell)
 int	_s_render_next_frame(t_cubed *cubed); // rework function paris
 
 int	_s2_render_next_frame(t_cubed *cubed); // rework function paris
+
+// raycasting prototypes
+void	calc_camera_x(t_ray *r, int current_ray_nbr);
+void	calc_ray_dir(t_cubed *c, t_ray *r, int current_ray_nbr);
 
 
 // Initializing functions

@@ -29,7 +29,8 @@ CC		= cc
 # samuel edit 09.25
 # no errors plz
 # CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -fsanitize=address -g 
-CFLAGS	= -Iinclude -Ilibft -fsanitize=address -g 
+# CFLAGS	= -Iinclude -Ilibft -fsanitize=address -g 
+CFLAGS	= -Iinclude -Ilibft -g 
 # MLX		= -lmlx -lXext -lX11 -lm
 
 # **************************************************************************** #
@@ -57,6 +58,7 @@ SRCS_PROGRAM = \
 		$(SRCDIR)/program/_s_player.c \
 		$(SRCDIR)/program/_s_render.c \
 		$(SRCDIR)/program/_s2_render.c \
+		$(SRCDIR)/program/_s2_raycaster.c \
 		$(SRCDIR)/program/_s2_textures.c \
 		$(SRCDIR)/program/_s_rays.c
 

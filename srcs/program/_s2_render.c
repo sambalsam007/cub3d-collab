@@ -1,4 +1,4 @@
-#include "../../include/cubed.h"
+#include "cubed.h"
 
 /* TODO
 void	first_last_ray(t_cubed *cubed, int i, int rays)
@@ -45,28 +45,31 @@ void	_s2_render_scene(t_cubed *cubed)
 	t_compas texNum;
 
 	for (int x = 0; x < WIDTH; ++x) {
-	    double cameraX = 2.0 * x / (double)WIDTH - 1.0;
-	    double rayDirX = cubed->p.dirX + cubed->p.planeX * cameraX;
-	    double rayDirY = cubed->p.dirY + cubed->p.planeY * cameraX;
+		t_ray r = cubed->ray;
+		calc_camera_x(&r, x);
+		calc_ray_dir(cubed, &r, x);
+
+	    // double rayDirX = cubed->p.dirX + cubed->p.planeX * r.cameraX;
+	    // double rayDirY = cubed->p.dirY + cubed->p.planeY * r.cameraX;
 
 	    int mapX = (int)cubed->p.x; // tile coordinates
 	    int mapY = (int)cubed->p.y;
 
-	    double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1.0 / rayDirX);
-	    double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1.0 / rayDirY);
+	    double deltaDistX = (r.rayDirX == 0) ? 1e30 : fabs(1.0 / r.rayDirX);
+	    double deltaDistY = (r.rayDirY == 0) ? 1e30 : fabs(1.0 / r.rayDirY);
 
 	    double sideDistX;
 	    double sideDistY;
 	    int stepX, stepY;
 
-	    if (rayDirX < 0) {
+	    if (r.rayDirX < 0) {
 		stepX = -1;
 		sideDistX = (cubed->p.x - mapX) * deltaDistX;
 	    } else {
 		stepX = 1;
 		sideDistX = (mapX + 1.0 - cubed->p.x) * deltaDistX;
 	    }
-	    if (rayDirY < 0) {
+	    if (r.rayDirY < 0) {
 		stepY = -1;
 		sideDistY = (cubed->p.y - mapY) * deltaDistY;
 	    } else {
@@ -93,9 +96,9 @@ void	_s2_render_scene(t_cubed *cubed)
 
 	    double perpWallDist;
 	    if (side == 0)
-	        perpWallDist = (mapX - cubed->p.x + (1 - stepX) / 2.0) / (rayDirX == 0 ? 1e-6 : rayDirX);
+	        perpWallDist = (mapX - cubed->p.x + (1 - stepX) / 2.0) / (r.rayDirX == 0 ? 1e-6 : r.rayDirX);
 	    else
-	        perpWallDist = (mapY - cubed->p.y + (1 - stepY) / 2.0) / (rayDirY == 0 ? 1e-6 : rayDirY);
+	        perpWallDist = (mapY - cubed->p.y + (1 - stepY) / 2.0) / (r.rayDirY == 0 ? 1e-6 : r.rayDirY);
 	    if (perpWallDist < 1e-6) perpWallDist = 1e-6;
 
 	    int lineHeight = (int)(HEIGHT / perpWallDist);
@@ -107,17 +110,17 @@ void	_s2_render_scene(t_cubed *cubed)
 	    /************** TEXTURE SELECTION & SAMPLING **************/
 	    // choose which texture to use based on side + ray direction
 	    // int texNum = 0; // 0..3 (you must define mapping in cubed.h: e.g. 0=N,1=S,2=W,3=E)
-	    if (side == 0 && rayDirX > 0) texNum = WEST;
-	    else if (side == 0 && rayDirX < 0) texNum = EAST;
-	    else if (side == 1 && rayDirY > 0) texNum = NORTH;
-	    else if (side == 1 && rayDirY < 0) texNum = SOUTH;
+	    if (side == 0 && r.rayDirX > 0) texNum = WEST;
+	    else if (side == 0 && r.rayDirX < 0) texNum = EAST;
+	    else if (side == 1 && r.rayDirY > 0) texNum = NORTH;
+	    else if (side == 1 && r.rayDirY < 0) texNum = SOUTH;
 
 	    // compute exact hit location on the wall (fractional part)
 	    double wallX;
 	    if (side == 0)
-	        wallX = cubed->p.y + perpWallDist * rayDirY;
+	        wallX = cubed->p.y + perpWallDist * r.rayDirY;
 	    else
-	        wallX = cubed->p.x + perpWallDist * rayDirX;
+	        wallX = cubed->p.x + perpWallDist * r.rayDirX;
 	    wallX -= floor(wallX);
 
 	    // x coordinate on the texture
@@ -129,8 +132,8 @@ void	_s2_render_scene(t_cubed *cubed)
 
 	    int texX = (int)(wallX * (double)texW);
 	    // fix orientation for some sides
-	    if (side == 0 && rayDirX > 0) texX = texW - texX - 1;
-	    if (side == 1 && rayDirY < 0) texX = texW - texX - 1;
+	    if (side == 0 && r.rayDirX > 0) texX = texW - texX - 1;
+	    if (side == 1 && r.rayDirY < 0) texX = texW - texX - 1;
 	    if (texX < 0) texX = 0;
 	    if (texX >= texW) texX = texW - 1;
 
