@@ -33,10 +33,10 @@ static void _s2_draw_vline(t_cubed *cubed, int x, int y0, int y1, int color)
 	    _s2_put_pixel(cubed, x, y, color);
 }
 
-# define TEX_NORTH 0
-# define TEX_SOUTH 1
-# define TEX_WEST  2
-# define TEX_EAST  3
+// # define TEX_NORTH 0
+// # define TEX_SOUTH 1
+// # define TEX_WEST  2
+// # define TEX_EAST  3
 
 // replace your existing _s2_render_scene with this version
 void	_s2_render_scene(t_cubed *cubed)
@@ -169,8 +169,9 @@ void	_s2_render_scene(t_cubed *cubed)
 
 int	_s2_render_next_frame(t_cubed *cubed)
 {
-	update_player(cubed);
 	int cell;
+
+	update_player(cubed);
 	if (get_cell_size(cubed, &cell, &cell) == ERROR)
 		return (ERROR);
 	_s2_render_scene(cubed);
