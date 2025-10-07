@@ -169,19 +169,10 @@ void	_s2_render_scene(t_cubed *cubed)
 
 int	_s2_render_next_frame(t_cubed *cubed)
 {
-
-
-	// update player
 	update_player(cubed);
 	int cell;
 	if (get_cell_size(cubed, &cell, &cell) == ERROR)
 		return (ERROR);
-
-
-
 	_s2_render_scene(cubed);
-
-
-
 	return (SUCCESS);
 }
