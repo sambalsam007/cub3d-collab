@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:21:50 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/24 12:41:13 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/25 21:48:45 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,20 @@ typedef enum e_rgb
 	BLUE = 2
 }	t_rgb;
 
+typedef struct s_dda
+{
+	int     map_x;
+	int     map_y;
+	int     step_x;
+	int     step_y;
+	double  side_dist_x;
+	double  side_dist_y;
+	double  delta_x;
+	double  delta_y;
+	int     side;
+	int     hit;
+}	t_dda;
+
 typedef struct s_ray
 {
     float	angle;
@@ -179,6 +193,7 @@ typedef struct s_cubed
 	t_tex		texture[4];
 	t_ray		ray;
     t_minimap	minimap;
+	t_dda		dda;
 	int			keys[300];
 	long		last_time;
 }   t_cubed;

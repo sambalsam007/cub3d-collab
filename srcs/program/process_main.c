@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 19:55:21 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/25 21:14:59 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/09/26 16:19:00 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,16 @@ void	draw_wall_line(t_cubed *cubed, int i, t_ray ray, t_tex tex)
 	{
 		if (y >= 0 && y < HEIGHT)
 		{
-			ray.tex_y = (int)tex_pos % tex.height;
+			ray.tex_y = (int)tex_pos;
+			if (ray.tex_y < 0)
+				ray.tex_y = 0;
+			if (ray.tex_y >= tex.height)
+				ray.tex_y = tex.height - 1;
 			tex_pos += step;
+			if (ray.tex_x < 0)
+				ray.tex_x = 0;
+			if (ray.tex_x >= tex.width)
+				ray.tex_x = tex.width - 1;
 			color = *(unsigned int *)(tex.adr + \
 				(ray.tex_y * tex.size_line + ray.tex_x * (tex.bpp / 8)));
 			my_mlx_pixel_put(cubed, i, y, color);
@@ -37,113 +45,120 @@ void	draw_wall_line(t_cubed *cubed, int i, t_ray ray, t_tex tex)
 	}
 }
 
+// void	draw_wall_line(t_cubed *cubed, int i, t_ray ray, t_tex tex)
+// {
+// 	double	step;
+// 	double	tex_pos;
+// 	int		y;
+// 	int		color;
 
-void	first_last_ray(t_cubed *cubed, int i, int rays)
+// 	ray.wall_t = (TILE_SIZE * HEIGHT) / \
+// 		(ray.distance * cos(ray.angle - cubed->p.angle));
+// 	step = (double)tex.height / ray.wall_t;
+// 	tex_pos = (-(ray.wall_t / 2) + (HEIGHT / 2)) * step;
+// 	y = (HEIGHT / 2) - (ray.wall_t / 2) - 1;
+// 	while (++y < (HEIGHT / 2) + (ray.wall_t / 2))
+// 	{
+// 		if (y >= 0 && y < HEIGHT)
+// 		{
+// 			ray.tex_y = (int)tex_pos % tex.height;
+// 			tex_pos += step;
+// 			color = *(unsigned int *)(tex.adr + \
+// 				(ray.tex_y * tex.size_line + ray.tex_x * (tex.bpp / 8)));
+// 			my_mlx_pixel_put(cubed, i, y, color);
+// 		}
+// 	}
+// }
+
+static void	init_dda(t_cubed *cubed, double dirx, double diry)
 {
-	if (i == 0)
+	cubed->dda.map_x = (int)cubed->p.x;
+	cubed->dda.map_y = (int)cubed->p.y;
+	cubed->dda.delta_x = (fabs(dirx) > 1e-9) ? fabs(1.0 / dirx) : 1e30;
+	cubed->dda.delta_y = (fabs(diry) > 1e-9) ? fabs(1.0 / diry) : 1e30;
+	if (dirx < 0)
 	{
-		cubed->minimap.first_x = cubed->ray.hit_x;
-		cubed->minimap.first_y = cubed->ray.hit_y;
+		cubed->dda.step_x = -1;
+		cubed->dda.side_dist_x = (cubed->p.x - cubed->dda.map_x) * cubed->dda.delta_x;
 	}
-	if (i == rays - 1)
-	{
-		cubed->minimap.last_x = cubed->ray.hit_x;
-		cubed->minimap.last_y = cubed->ray.hit_y;
-	}
-}
-
-static void	init_ray_dir(t_ray *ray, double angle,
-		double *rayDirX, double *rayDirY)
-{
-	ray->angle = angle;
-	*rayDirX = cos(angle);
-	*rayDirY = sin(angle);
-}
-
-static void	init_dda(t_player *p, double rayDirX, double rayDirY,
-		int *mapX, int *mapY, int *stepX, int *stepY,
-		double *sideDistX, double *sideDistY,
-		double *deltaDistX, double *deltaDistY)
-{
-	*mapX = (int)p->x;
-	*mapY = (int)p->y;
-	*deltaDistX = (fabs(rayDirX) > 1e-9) ? fabs(1.0 / rayDirX) : 1e9;
-	*deltaDistY = (fabs(rayDirY) > 1e-9) ? fabs(1.0 / rayDirY) : 1e9;
-	if (rayDirX < 0)
-		*stepX = -1, *sideDistX = (p->x - *mapX) * *deltaDistX;
 	else
-		*stepX = 1, *sideDistX = (*mapX + 1.0 - p->x) * *deltaDistX;
-	if (rayDirY < 0)
-		*stepY = -1, *sideDistY = (p->y - *mapY) * *deltaDistY;
-	else
-		*stepY = 1, *sideDistY = (*mapY + 1.0 - p->y) * *deltaDistY;
-}
-
-static int	dda_step(t_cubed *cubed, int *mapX, int *mapY,
-		double *sideDistX, double *sideDistY,
-		double deltaDistX, double deltaDistY,
-		int stepX, int stepY, int *side)
-{
-	while (1)
 	{
-		if (*sideDistX < *sideDistY)
-			*sideDistX += deltaDistX, *mapX += stepX, *side = 0;
-		else
-			*sideDistY += deltaDistY, *mapY += stepY, *side = 1;
-		if (*mapY < 0 || *mapX < 0 || !cubed->data.map[*mapY]
-			|| cubed->data.map[*mapY][*mapX] == '\0')
-			return (0);
-		if (cubed->data.map[*mapY][*mapX] == '1')
-			return (1);
+		cubed->dda.step_x = 1;
+		cubed->dda.side_dist_x = (cubed->dda.map_x + 1.0 - cubed->p.x) * cubed->dda.delta_x;
 	}
+	if (diry < 0)
+	{
+		cubed->dda.step_y = -1;
+		cubed->dda.side_dist_y = (cubed->p.y - cubed->dda.map_y) * cubed->dda.delta_y;
+	}
+	else
+	{
+		cubed->dda.step_y = 1;
+		cubed->dda.side_dist_y = (cubed->dda.map_y + 1.0 - cubed->p.y) * cubed->dda.delta_y;
+	}
+	cubed->dda.hit = 0;
 }
 
-static t_compas	get_side(int side, double rayDirX, double rayDirY)
+static void	step_dda(t_cubed *cubed)
 {
-	if (side == 0)
-		return (rayDirX > 0 ? EAST : WEST);
-	return (rayDirY > 0 ? SOUTH : NORTH);
+	if (cubed->dda.side_dist_x < cubed->dda.side_dist_y)
+	{
+		cubed->dda.side_dist_x += cubed->dda.delta_x;
+		cubed->dda.map_x += cubed->dda.step_x;
+		cubed->dda.side = 0;
+	}
+	else
+	{
+		cubed->dda.side_dist_y += cubed->dda.delta_y;
+		cubed->dda.map_y += cubed->dda.step_y;
+		cubed->dda.side = 1;
+	}
+	if (cubed->data.map[cubed->dda.map_y][cubed->dda.map_x] == '1')
+		cubed->dda.hit = 1;
+}
+
+static void	finish_dda(t_cubed *cubed, double dirx, double diry, t_ray *ray)
+{
+	double	dist;
+	double	wall_x;
+	t_tex	tex;
+
+	if (cubed->dda.side == 0)
+		dist = (cubed->dda.map_x - cubed->p.x + \
+			(1 - cubed->dda.step_x) / 2.0) / dirx;
+	else
+		dist = (cubed->dda.map_y - cubed->p.y + \
+			(1 - cubed->dda.step_y) / 2.0) / diry;
+	ray->distance = fabs(dist) * TILE_SIZE;
+	ray->side = (cubed->dda.side == 0) ? \
+		(dirx > 0 ? EAST : WEST) : (diry > 0 ? SOUTH : NORTH);
+	ray->hit_x = (int)((cubed->p.x + dirx * dist) * TILE_SIZE);
+	ray->hit_y = (int)((cubed->p.y + diry * dist) * TILE_SIZE);
+	/* texture X */
+	tex = cubed->texture[ray->side];
+	wall_x = (cubed->dda.side == 0) ? (cubed->p.y + dist * diry) \
+		: (cubed->p.x + dist * dirx);
+	wall_x -= floor(wall_x);
+	ray->tex_x = (int)(wall_x * tex.width);
+	if ((cubed->dda.side == 0 && dirx > 0) || \
+		(cubed->dda.side == 1 && diry < 0))
+		ray->tex_x = tex.width - ray->tex_x - 1;
 }
 
 void	cast_ray(t_cubed *cubed, t_ray *ray, t_tex *tex)
 {
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
-	int		side;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpDist;
-	double	wallX;
+	double	dirx;
+	double	diry;
 
-	init_ray_dir(ray, ray->angle, &rayDirX, &rayDirY);
-	init_dda(&cubed->p, rayDirX, rayDirY, &mapX, &mapY,
-		&stepX, &stepY, &sideDistX, &sideDistY, &deltaDistX, &deltaDistY);
-	if (!dda_step(cubed, &mapX, &mapY, &sideDistX, &sideDistY,
-			deltaDistX, deltaDistY, stepX, stepY, &side))
-		return ;
-	if (side == 0)
-		perpDist = (mapX - cubed->p.x + (1 - stepX) / 2.0) / rayDirX;
-	else
-		perpDist = (mapY - cubed->p.y + (1 - stepY) / 2.0) / rayDirY;
-	ray->distance = fabs(perpDist) * TILE_SIZE;
-	ray->side = get_side(side, rayDirX, rayDirY);
-	ray->hit_x = (int)((cubed->p.x + rayDirX * perpDist) * TILE_SIZE);
-	ray->hit_y = (int)((cubed->p.y + rayDirY * perpDist) * TILE_SIZE);
-	if (side == 0)
-		wallX = cubed->p.y + perpDist * rayDirY;
-	else
-		wallX = cubed->p.x + perpDist * rayDirX;
-	wallX -= floor(wallX);
-	ray->tex_x = (int)(wallX * tex->width);
-	if ((side == 0 && rayDirX > 0) || (side == 1 && rayDirY < 0))
-		ray->tex_x = tex->width - ray->tex_x - 1;
+	(void)tex;
+	dirx = cos(ray->angle);
+	diry = sin(ray->angle);
+	init_dda(cubed, dirx, diry);
+	while (!cubed->dda.hit)
+		step_dda(cubed);
+	finish_dda(cubed, dirx, diry, ray);
 }
+
 
 //Main render functie waar alles uit vertrekt
 //Een loop die alle rays doet
@@ -157,8 +172,6 @@ int	render_next_frame(t_cubed *cubed)
 	int		num_rays;
 	float	angle_step;
 
-	// samuel edit 09.25
-	reset_background(cubed);
 
 	// samuel edit 09.25
 	// maybe rewrite this...
@@ -176,6 +189,7 @@ int	render_next_frame(t_cubed *cubed)
 	i = -1;
 	while (++i < num_rays)
 	{
+		reset_background(cubed);
 
 		// samuel edit 09.25 
 		// fills the ray struct
@@ -191,7 +205,7 @@ int	render_next_frame(t_cubed *cubed)
 		// this prints info about the middle ray / direction ray
 		// if (i == (num_rays / 2))
 		// 		_s_display_ray_struct_info(cubed, i);
-		
+		cubed->ray.angle = cubed->p.angle - (cubed->p.fov / 2.0f) + (i * angle_step);
 		cast_ray(cubed, &cubed->ray, cubed->texture); // FUNCTIE VOOR DE RAY - SAMUEL
 		draw_wall_line(cubed, i, cubed->ray, cubed->texture[cubed->ray.side]); // FUNCTIE TEKENEN 3D - PARIS
 
