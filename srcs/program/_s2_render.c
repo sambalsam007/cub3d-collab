@@ -48,15 +48,9 @@ void	_s2_render_scene(t_cubed *cubed)
 		t_ray r = cubed->ray;
 		calc_camera_x(&r, x);
 		calc_ray_dir(cubed, &r, x);
+		set_map_xy(cubed, &r);
+		calc_delta_dist(&r);
 
-	    // double rayDirX = cubed->p.dirX + cubed->p.planeX * r.cameraX;
-	    // double rayDirY = cubed->p.dirY + cubed->p.planeY * r.cameraX;
-
-	    int mapX = (int)cubed->p.x; // tile coordinates
-	    int mapY = (int)cubed->p.y;
-
-	    double deltaDistX = (r.rayDirX == 0) ? 1e30 : fabs(1.0 / r.rayDirX);
-	    double deltaDistY = (r.rayDirY == 0) ? 1e30 : fabs(1.0 / r.rayDirY);
 
 	    double sideDistX;
 	    double sideDistY;
@@ -64,41 +58,41 @@ void	_s2_render_scene(t_cubed *cubed)
 
 	    if (r.rayDirX < 0) {
 		stepX = -1;
-		sideDistX = (cubed->p.x - mapX) * deltaDistX;
+		sideDistX = (cubed->p.x - r.mapX) * r.deltaDistX;
 	    } else {
 		stepX = 1;
-		sideDistX = (mapX + 1.0 - cubed->p.x) * deltaDistX;
+		sideDistX = (r.mapX + 1.0 - cubed->p.x) * r.deltaDistX;
 	    }
 	    if (r.rayDirY < 0) {
 		stepY = -1;
-		sideDistY = (cubed->p.y - mapY) * deltaDistY;
+		sideDistY = (cubed->p.y - r.mapY) * r.deltaDistY;
 	    } else {
 		stepY = 1;
-		sideDistY = (mapY + 1.0 - cubed->p.y) * deltaDistY;
+		sideDistY = (r.mapY + 1.0 - cubed->p.y) * r.deltaDistY;
 	    }
 
 	    int hit = 0, side = 0;
 	    while (!hit) {
 		if (sideDistX < sideDistY) {
-		    sideDistX += deltaDistX;
-		    mapX += stepX;
+		    sideDistX += r.deltaDistX;
+		    r.mapX += stepX;
 		    side = 0;
 		} else {
-		    sideDistY += deltaDistY;
-		    mapY += stepY;
+		    sideDistY += r.deltaDistY;
+		    r.mapY += stepY;
 		    side = 1;
 		}
-		if (mapX < 0 || mapY < 0 || mapX >= cubed->data.map_w || mapY >= cubed->data.map_h)
+		if (r.mapX < 0 || r.mapY < 0 || r.mapX >= cubed->data.map_w || r.mapY >= cubed->data.map_h)
 		    break;
 		// map stored as chars: '1' is wall
-		if (cubed->data.map[mapY][mapX] == '1') hit = 1;
+		if (cubed->data.map[r.mapY][r.mapX] == '1') hit = 1;
 	    }
 
 	    double perpWallDist;
 	    if (side == 0)
-	        perpWallDist = (mapX - cubed->p.x + (1 - stepX) / 2.0) / (r.rayDirX == 0 ? 1e-6 : r.rayDirX);
+	        perpWallDist = (r.mapX - cubed->p.x + (1 - stepX) / 2.0) / (r.rayDirX == 0 ? 1e-6 : r.rayDirX);
 	    else
-	        perpWallDist = (mapY - cubed->p.y + (1 - stepY) / 2.0) / (r.rayDirY == 0 ? 1e-6 : r.rayDirY);
+	        perpWallDist = (r.mapY - cubed->p.y + (1 - stepY) / 2.0) / (r.rayDirY == 0 ? 1e-6 : r.rayDirY);
 	    if (perpWallDist < 1e-6) perpWallDist = 1e-6;
 
 	    int lineHeight = (int)(HEIGHT / perpWallDist);
