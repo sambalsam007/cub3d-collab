@@ -34,7 +34,5 @@ while true; do
 			update
 		fi
 	done
-	read -t 1 && exit
+	read -t 1 && { make fclean; exit; }
 done
-
-

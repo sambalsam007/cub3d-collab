@@ -42,7 +42,6 @@ static void _s2_draw_vline(t_cubed *cubed, int x, int y0, int y1, int color)
 void	_s2_render_scene(t_cubed *cubed)
 {
 	reset_background(cubed);
-	t_compas texNum;
 
 	for (int x = 0; x < WIDTH; ++x)
 	{
@@ -57,16 +56,9 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_line_height(&r);
 		calc_draw_start_end(&r);
 
+		// texture stuff
+		define_texture_compass(&r);
 
-
-
-	    /************** TEXTURE SELECTION & SAMPLING **************/
-	    // choose which texture to use based on side + ray direction
-	    // int texNum = 0; // 0..3 (you must define mapping in cubed.h: e.g. 0=N,1=S,2=W,3=E)
-	    if (r.side == 0 && r.rayDirX > 0) texNum = WEST;
-	    else if (r.side == 0 && r.rayDirX < 0) texNum = EAST;
-	    else if (r.side == 1 && r.rayDirY > 0) texNum = NORTH;
-	    else if (r.side == 1 && r.rayDirY < 0) texNum = SOUTH;
 
 	    // compute exact hit location on the wall (fractional part)
 	    double wallX;
@@ -77,11 +69,11 @@ void	_s2_render_scene(t_cubed *cubed)
 	    wallX -= floor(wallX);
 
 	    // x coordinate on the texture
-	    int texW = cubed->texture[texNum].width;
-	    int texH = cubed->texture[texNum].height;
-	    int texBpp = cubed->texture[texNum].bpp;
-	    int texLine = cubed->texture[texNum].size_line;
-	    char *texAddr = cubed->texture[texNum].adr;
+	    int texW = cubed->texture[r.texNum].width;
+	    int texH = cubed->texture[r.texNum].height;
+	    int texBpp = cubed->texture[r.texNum].bpp;
+	    int texLine = cubed->texture[r.texNum].size_line;
+	    char *texAddr = cubed->texture[r.texNum].adr;
 
 	    int texX = (int)(wallX * (double)texW);
 	    // fix orientation for some sides
