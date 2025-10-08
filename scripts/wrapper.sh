@@ -16,5 +16,5 @@ open_all_files() {
 [[ $flags == *"h"* ]] && list_flags && exit
 
 while true; do
-	./compiler.sh "$flags"
+	./scripts/compiler.sh "$flags"
 done

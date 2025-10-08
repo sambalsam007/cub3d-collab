@@ -69,8 +69,8 @@
 // # define MAP_H 10
 
 // for wolf test
-#define MOVE_SPEED 0.07     // reduced because units are tiles now
-#define ROT_SPEED 0.04      // increased (no need for tiny radians anymore)
+#define MOVE_SPEED 0.05     // reduced because units are tiles now
+#define ROT_SPEED 0.03      // increased (no need for tiny radians anymore)
 
 // # define MOVE_SPEED 3.0f
 // // samuel edit 09.25
@@ -137,6 +137,7 @@ typedef struct s_ray
 	int	stepY;
 	int	hit;
 	int	side;
+	double	perpWallDist;
 }   t_ray;
 
 typedef struct s_tex
@@ -249,6 +250,7 @@ void	set_map_xy(t_cubed *c, t_ray *r);
 void	calc_delta_dist(t_ray *r);
 void	calc_side_dist(t_cubed *c, t_ray *r);
 void	check_for_hit(t_cubed *c, t_ray *r);
+void	calc_perpendicular_wall_dist(t_cubed *c, t_ray *r);
 
 
 // Initializing functions

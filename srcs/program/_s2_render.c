@@ -44,7 +44,8 @@ void	_s2_render_scene(t_cubed *cubed)
 	reset_background(cubed);
 	t_compas texNum;
 
-	for (int x = 0; x < WIDTH; ++x) {
+	for (int x = 0; x < WIDTH; ++x)
+	{
 		t_ray r = cubed->ray;
 		calc_camera_x(&r, x);
 		calc_ray_dir(cubed, &r, x);
@@ -52,19 +53,12 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_delta_dist(&r);
 		calc_side_dist(cubed, &r);
 		check_for_hit(cubed, &r);
+		calc_perpendicular_wall_dist(cubed, &r);
 
 
 
 
-
-	    double perpWallDist;
-	    if (r.side == 0)
-	        perpWallDist = (r.mapX - cubed->p.x + (1 - r.stepX) / 2.0) / (r.rayDirX == 0 ? 1e-6 : r.rayDirX);
-	    else
-	        perpWallDist = (r.mapY - cubed->p.y + (1 - r.stepY) / 2.0) / (r.rayDirY == 0 ? 1e-6 : r.rayDirY);
-	    if (perpWallDist < 1e-6) perpWallDist = 1e-6;
-
-	    int lineHeight = (int)(HEIGHT / perpWallDist);
+	    int lineHeight = (int)(HEIGHT / r.perpWallDist);
 	    int drawStart = -lineHeight / 2 + HEIGHT / 2;
 	    int drawEnd   = lineHeight / 2 + HEIGHT / 2;
 	    if (drawStart < 0) drawStart = 0;
@@ -81,9 +75,9 @@ void	_s2_render_scene(t_cubed *cubed)
 	    // compute exact hit location on the wall (fractional part)
 	    double wallX;
 	    if (r.side == 0)
-	        wallX = cubed->p.y + perpWallDist * r.rayDirY;
+	        wallX = cubed->p.y + r.perpWallDist * r.rayDirY;
 	    else
-	        wallX = cubed->p.x + perpWallDist * r.rayDirX;
+	        wallX = cubed->p.x + r.perpWallDist * r.rayDirX;
 	    wallX -= floor(wallX);
 
 	    // x coordinate on the texture

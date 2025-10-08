@@ -26,3 +26,27 @@ void	check_for_hit(t_cubed *c, t_ray *r)
 			r->hit = 1;
 	}
 }
+
+void	calc_perpendicular_wall_dist(t_cubed *c, t_ray *r)
+{
+	if (r->side == 0)
+	{
+		if (r->rayDirX == 0)
+			r->perpWallDist = (r->mapX - c->p.x + (1 - r->stepX) \
+					/ 2.0) / 1e-6;
+		else
+			r->perpWallDist = (r->mapX - c->p.x + (1 - r->stepX) \
+					/ 2.0) / r->rayDirX;
+	}
+	else
+	{
+		if (r->rayDirY == 0)
+			r->perpWallDist = (r->mapY - c->p.y + (1 - r->stepY) \
+					/ 2.0) / 1e-6;
+		else
+			r->perpWallDist = (r->mapY - c->p.y + (1 - r->stepY) \
+					/ 2.0) / r->rayDirY;
+	}
+	if (r->perpWallDist < 1e-6)
+		r->perpWallDist = 1e-6;
+}
