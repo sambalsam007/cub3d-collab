@@ -59,35 +59,29 @@ void	_s2_render_scene(t_cubed *cubed)
 		// texture stuff
 		define_texture_compass(&r);
 		calc_hit_position_on_wall(cubed, &r);
+		find_x_coord_on_texture(cubed, &r);
 
 
 
-	    // x coordinate on the texture
-	    int texW = cubed->texture[r.texNum].width;
-	    int texH = cubed->texture[r.texNum].height;
-	    int texBpp = cubed->texture[r.texNum].bpp;
-	    int texLine = cubed->texture[r.texNum].size_line;
-	    char *texAddr = cubed->texture[r.texNum].adr;
-
-	    int texX = (int)(r.wallX * (double)texW);
+	    int texX = (int)(r.wallX * (double)r.texW);
 	    // fix orientation for some sides
-	    if (r.side == 0 && r.rayDirX > 0) texX = texW - texX - 1;
-	    if (r.side == 1 && r.rayDirY < 0) texX = texW - texX - 1;
+	    if (r.side == 0 && r.rayDirX > 0) texX = r.texW - texX - 1;
+	    if (r.side == 1 && r.rayDirY < 0) texX = r.texW - texX - 1;
 	    if (texX < 0) texX = 0;
-	    if (texX >= texW) texX = texW - 1;
+	    if (texX >= r.texW) texX = r.texW - 1;
 
 	    // how much to move in the texture for each screen pixel
-	    double step = (double)texH / (double)r.lineHeight;
+	    double step = (double)r.texH / (double)r.lineHeight;
 	    // starting texture y position
 	    double texPos = (r.drawStart - HEIGHT / 2 + r.lineHeight / 2) * step;
 
 	    for (int y = r.drawStart; y <= r.drawEnd; ++y) {
 		int texY = (int)texPos;
 		if (texY < 0) texY = 0;
-		if (texY >= texH) texY = texH - 1;
+		if (texY >= r.texH) texY = r.texH - 1;
 		texPos += step;
 
-		char *tex_pixel = texAddr + texY * texLine + texX * (texBpp / 8);
+		char *tex_pixel = r.texAddr + texY * r.texLine + texX * (r.texBpp / 8);
 		int color = *(int *)tex_pixel;
 
 		// simple shading for horizontal walls

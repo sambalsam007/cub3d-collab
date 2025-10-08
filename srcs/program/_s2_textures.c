@@ -34,3 +34,13 @@ void	calc_hit_position_on_wall(t_cubed *c, t_ray *r)
 		r->wallX = c->p.x + r->perpWallDist * r->rayDirX;
 	r->wallX -= floor(r->wallX);
 }
+
+// x coordinate on the texture
+void	find_x_coord_on_texture(t_cubed *c, t_ray *r)
+{
+	r->texW = c->texture[r->texNum].width;
+	r->texH = c->texture[r->texNum].height;
+	r->texBpp = c->texture[r->texNum].bpp;
+	r->texLine = c->texture[r->texNum].size_line;
+	r->texAddr = c->texture[r->texNum].adr;
+}
