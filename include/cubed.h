@@ -138,6 +138,7 @@ typedef struct s_ray
 	int	hit;
 	int	side;
 	double	perpWallDist;
+	int	lineHeight;
 }   t_ray;
 
 typedef struct s_tex
@@ -251,6 +252,7 @@ void	calc_delta_dist(t_ray *r);
 void	calc_side_dist(t_cubed *c, t_ray *r);
 void	check_for_hit(t_cubed *c, t_ray *r);
 void	calc_perpendicular_wall_dist(t_cubed *c, t_ray *r);
+void	calc_line_height(t_ray *r);
 
 
 // Initializing functions

@@ -50,3 +50,8 @@ void	calc_perpendicular_wall_dist(t_cubed *c, t_ray *r)
 	if (r->perpWallDist < 1e-6)
 		r->perpWallDist = 1e-6;
 }
+
+void	calc_line_height(t_ray *r)
+{
+	r->lineHeight = (int)(HEIGHT / r->perpWallDist);
+}

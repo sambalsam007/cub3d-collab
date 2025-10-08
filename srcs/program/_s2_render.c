@@ -54,13 +54,12 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_side_dist(cubed, &r);
 		check_for_hit(cubed, &r);
 		calc_perpendicular_wall_dist(cubed, &r);
+		calc_line_height(&r);
 
 
 
-
-	    int lineHeight = (int)(HEIGHT / r.perpWallDist);
-	    int drawStart = -lineHeight / 2 + HEIGHT / 2;
-	    int drawEnd   = lineHeight / 2 + HEIGHT / 2;
+	    int drawStart = -r.lineHeight / 2 + HEIGHT / 2;
+	    int drawEnd   = r.lineHeight / 2 + HEIGHT / 2;
 	    if (drawStart < 0) drawStart = 0;
 	    if (drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
 
@@ -95,9 +94,9 @@ void	_s2_render_scene(t_cubed *cubed)
 	    if (texX >= texW) texX = texW - 1;
 
 	    // how much to move in the texture for each screen pixel
-	    double step = (double)texH / (double)lineHeight;
+	    double step = (double)texH / (double)r.lineHeight;
 	    // starting texture y position
-	    double texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
+	    double texPos = (drawStart - HEIGHT / 2 + r.lineHeight / 2) * step;
 
 	    for (int y = drawStart; y <= drawEnd; ++y) {
 		int texY = (int)texPos;
