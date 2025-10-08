@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   _s2_raycaster_2.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samd-hoo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/08 14:39:12 by samd-hoo          #+#    #+#             */
+/*   Updated: 2025/10/08 14:39:21 by samd-hoo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 
 // note: the map is stored as chars, so '1' is wall (not `int 1`)
@@ -54,4 +66,14 @@ void	calc_perpendicular_wall_dist(t_cubed *c, t_ray *r)
 void	calc_line_height(t_ray *r)
 {
 	r->lineHeight = (int)(HEIGHT / r->perpWallDist);
+}
+
+void	calc_draw_start_end(t_ray *r)
+{
+	r->drawStart = -r->lineHeight / 2 + HEIGHT / 2;
+	r->drawEnd = r->lineHeight / 2 + HEIGHT / 2;
+	if (r->drawStart < 0)
+		r->drawStart = 0;
+	if (r->drawEnd >= HEIGHT)
+		r->drawEnd = HEIGHT - 1;
 }

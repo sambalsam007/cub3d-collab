@@ -55,13 +55,10 @@ void	_s2_render_scene(t_cubed *cubed)
 		check_for_hit(cubed, &r);
 		calc_perpendicular_wall_dist(cubed, &r);
 		calc_line_height(&r);
+		calc_draw_start_end(&r);
 
 
 
-	    int drawStart = -r.lineHeight / 2 + HEIGHT / 2;
-	    int drawEnd   = r.lineHeight / 2 + HEIGHT / 2;
-	    if (drawStart < 0) drawStart = 0;
-	    if (drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
 
 	    /************** TEXTURE SELECTION & SAMPLING **************/
 	    // choose which texture to use based on side + ray direction
@@ -96,9 +93,9 @@ void	_s2_render_scene(t_cubed *cubed)
 	    // how much to move in the texture for each screen pixel
 	    double step = (double)texH / (double)r.lineHeight;
 	    // starting texture y position
-	    double texPos = (drawStart - HEIGHT / 2 + r.lineHeight / 2) * step;
+	    double texPos = (r.drawStart - HEIGHT / 2 + r.lineHeight / 2) * step;
 
-	    for (int y = drawStart; y <= drawEnd; ++y) {
+	    for (int y = r.drawStart; y <= r.drawEnd; ++y) {
 		int texY = (int)texPos;
 		if (texY < 0) texY = 0;
 		if (texY >= texH) texY = texH - 1;
@@ -117,7 +114,7 @@ void	_s2_render_scene(t_cubed *cubed)
 	    // If you still want a fallback flat column (not needed when textured)
 	    // int flat_color = 0x00AAFF;
 	    // if (side == 1) flat_color = (flat_color >> 1) & 0x7F7F7F;
-	    // _s2_draw_vline(cubed, x, drawStart, drawEnd, flat_color);
+	    // _s2_draw_vline(cubed, x, r.drawStart, r.drawEnd, flat_color);
 
 	} // end for x
 
