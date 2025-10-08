@@ -141,6 +141,7 @@ typedef struct s_ray
 	int	lineHeight;
 	int	drawStart;
 	int	drawEnd;
+	double	wallX;
 	t_compas	texNum;
 }   t_ray;
 
@@ -258,6 +259,7 @@ void	calc_perpendicular_wall_dist(t_cubed *c, t_ray *r);
 void	calc_line_height(t_ray *r);
 void	calc_draw_start_end(t_ray *r);
 void	define_texture_compass(t_ray *r);
+void	calc_hit_position_on_wall(t_cubed *c, t_ray *r);
 
 
 // Initializing functions

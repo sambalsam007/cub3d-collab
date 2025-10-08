@@ -58,15 +58,9 @@ void	_s2_render_scene(t_cubed *cubed)
 
 		// texture stuff
 		define_texture_compass(&r);
+		calc_hit_position_on_wall(cubed, &r);
 
 
-	    // compute exact hit location on the wall (fractional part)
-	    double wallX;
-	    if (r.side == 0)
-	        wallX = cubed->p.y + r.perpWallDist * r.rayDirY;
-	    else
-	        wallX = cubed->p.x + r.perpWallDist * r.rayDirX;
-	    wallX -= floor(wallX);
 
 	    // x coordinate on the texture
 	    int texW = cubed->texture[r.texNum].width;
@@ -75,7 +69,7 @@ void	_s2_render_scene(t_cubed *cubed)
 	    int texLine = cubed->texture[r.texNum].size_line;
 	    char *texAddr = cubed->texture[r.texNum].adr;
 
-	    int texX = (int)(wallX * (double)texW);
+	    int texX = (int)(r.wallX * (double)texW);
 	    // fix orientation for some sides
 	    if (r.side == 0 && r.rayDirX > 0) texX = texW - texX - 1;
 	    if (r.side == 1 && r.rayDirY < 0) texX = texW - texX - 1;
