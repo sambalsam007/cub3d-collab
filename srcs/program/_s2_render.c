@@ -12,25 +12,28 @@
 
 #include "cubed.h"
 
-void _s2_put_pixel(t_cubed *cubed, int x, int y, int color)
+void	_s2_put_pixel(t_cubed *c, int x, int y, int color)
 {
-    if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT) 
-	    return;
-    char *dst = cubed->mlx.adr + (y * cubed->mlx.size_line + x * (cubed->mlx.bpp / 8));
-    *(unsigned int*)dst = (unsigned int)color;
+	char	*dst;
+
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return ;
+	dst = c->mlx.adr + (y * c->mlx.size_line + x * (c->mlx.bpp / 8));
+	*(unsigned int *)dst = (unsigned int)color;
 }
 
 // note:	in the loop, starting from define_texture_compass(), it's
 // 		mostly functions relating to texture
 static void	_s2_render_scene(t_cubed *c)
 {
-	int	x;
+	int		x;
+	t_ray	r;
 
 	x = 0;
 	reset_background(c);
 	while (x < WIDTH)
 	{
-		t_ray r = c->ray;
+		r = c->ray;
 		general_calculations(c, &r, x);
 		texture_calculations(c, &r, x);
 		x++;
@@ -41,7 +44,7 @@ static void	_s2_render_scene(t_cubed *c)
 
 int	_s2_render_next_frame(t_cubed *cubed)
 {
-	int cell;
+	int	cell;
 
 	update_player(cubed);
 	if (get_cell_size(cubed, &cell, &cell) == ERROR)
