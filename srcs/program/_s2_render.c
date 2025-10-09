@@ -42,14 +42,9 @@ void	_s2_render_scene(t_cubed *cubed)
 	while (x < WIDTH)
 	{
 		t_ray r = cubed->ray;
-		calc_ray_dir(cubed, &r, x);
-		set_map_xy(cubed, &r);
-		calc_delta_dist(&r);
-		calc_side_dist(cubed, &r);
-		check_for_hit(cubed, &r);
-		calc_perpendicular_wall_dist(cubed, &r);
-		calc_line_height(&r);
-		calc_draw_start_end(&r);
+		general_calculations(cubed, &r, x);
+
+		// texture_calculations();
 		define_texture_compass(&r);
 		calc_hit_position_on_wall(cubed, &r);
 		find_x_coord_on_texture(cubed, &r);

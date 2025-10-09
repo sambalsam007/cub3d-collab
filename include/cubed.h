@@ -256,6 +256,8 @@ int	_s_render_next_frame(t_cubed *cubed); // rework function paris
 int	_s2_render_next_frame(t_cubed *cubed); // rework function paris
 
 // raycasting prototypes
+void	general_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr);
+
 void	calc_ray_dir(t_cubed *c, t_ray *r, int current_ray_nbr);
 void	set_map_xy(t_cubed *c, t_ray *r);
 void	calc_delta_dist(t_ray *r);

@@ -52,3 +52,15 @@ void	calc_side_dist(t_cubed *c, t_ray *r)
 		r->sideDistY = (r->mapY + 1.0 - c->p.y) * r->deltaDistY;
 	}
 }
+
+void	general_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr)
+{
+	calc_ray_dir(cubed, ray, current_ray_nbr);
+	set_map_xy(cubed, ray);
+	calc_delta_dist(ray);
+	calc_side_dist(cubed, ray);
+	check_for_hit(cubed, ray);
+	calc_perpendicular_wall_dist(cubed, ray);
+	calc_line_height(ray);
+	calc_draw_start_end(ray);
+}
