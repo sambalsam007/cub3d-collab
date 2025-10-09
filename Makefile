@@ -60,7 +60,8 @@ SRCS_PROGRAM = \
 		$(SRCDIR)/program/_s2_render.c \
 		$(SRCDIR)/program/_s2_raycaster_1.c \
 		$(SRCDIR)/program/_s2_raycaster_2.c \
-		$(SRCDIR)/program/_s2_textures.c \
+		$(SRCDIR)/program/_s2_textures_1.c \
+		$(SRCDIR)/program/_s2_textures_2.c \
 		$(SRCDIR)/program/_s_rays.c
 
 SRCS_MAIN 	= $(SRCDIR)/main.c
