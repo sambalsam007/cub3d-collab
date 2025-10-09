@@ -33,29 +33,21 @@ static void _s2_draw_vline(t_cubed *cubed, int x, int y0, int y1, int color)
 
 // note:	in the loop, starting from define_texture_compass(), it's
 // 		mostly functions relating to texture
-void	_s2_render_scene(t_cubed *cubed)
+static void	_s2_render_scene(t_cubed *c)
 {
 	int	x;
 
 	x = 0;
-	reset_background(cubed);
+	reset_background(c);
 	while (x < WIDTH)
 	{
-		t_ray r = cubed->ray;
-		general_calculations(cubed, &r, x);
-
-		// texture_calculations();
-		define_texture_compass(&r);
-		calc_hit_position_on_wall(cubed, &r);
-		find_x_coord_on_texture(cubed, &r);
-		calc_tex_x(&r);
-		calc_step(&r);
-		calc_tex_pos(&r);
-		draw_vertical_column(cubed, &r, x);
+		t_ray r = c->ray;
+		general_calculations(c, &r, x);
+		texture_calculations(c, &r, x);
 		x++;
 	}
-	_s_draw_minimap(cubed);
-	mlx_put_image_to_window(cubed->mlx.mlx, cubed->mlx.win, cubed->mlx.img, 0, 0);
+	_s_draw_minimap(c);
+	mlx_put_image_to_window(c->mlx.mlx, c->mlx.win, c->mlx.img, 0, 0);
 }
 
 int	_s2_render_next_frame(t_cubed *cubed)

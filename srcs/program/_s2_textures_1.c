@@ -59,8 +59,13 @@ void	calc_tex_x(t_ray *r)
 		r->texX = r->texW - 1;
 }
 
-// how much to move in the texture for each screen pixel
-void	calc_step(t_ray *r)
+void	texture_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr)
 {
-	r->step = (double)r->texH / (double)r->lineHeight;
+		define_texture_compass(ray);
+		calc_hit_position_on_wall(cubed, ray);
+		find_x_coord_on_texture(cubed, ray);
+		calc_tex_x(ray);
+		calc_step(ray);
+		calc_tex_pos(ray);
+		draw_vertical_column(cubed, ray, current_ray_nbr);
 }

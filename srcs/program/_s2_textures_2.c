@@ -12,6 +12,12 @@
 
 #include "cubed.h"
 
+// how much to move in the texture for each screen pixel
+void	calc_step(t_ray *r)
+{
+	r->step = (double)r->texH / (double)r->lineHeight;
+}
+
 // starting texture y position
 void	calc_tex_pos(t_ray *r)
 {
