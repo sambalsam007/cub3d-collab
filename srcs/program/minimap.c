@@ -45,56 +45,50 @@ void	_s_draw_cell(t_cubed *cubed, int x, int y, int size, int color)
 
 int	draw_minimap(t_cubed *cubed)
 {
-	int		x;
-	int		y;
-	int		cell;
-	int		color;
-	int		scale;
-	int		offset_x;
-	int		offset_y;
+	t_minimap m;
 
 	// original cell size
-	if (get_cell_size(cubed, &cell, &cell) == ERROR)
+	if (get_cell_size(cubed, &m.cell, &m.cell) == ERROR)
 		return (ERROR);
 
 	// shrink to 30%
-	scale = (int)(cell * 0.3);
+	m.scale = (int)(m.cell * 0.3);
 
 	// place minimap in top-right
 	// width of minimap = num_cols * scale
-	int map_width = ft_strlen(cubed->data.map[0]) * scale;
+	int map_width = ft_strlen(cubed->data.map[0]) * m.scale;
 	int map_height = 0;
 	while (cubed->data.map[map_height])
 		map_height++;
 
-	map_height *= scale;
+	map_height *= m.scale;
 
-	offset_x = WIDTH - map_width - 10; // 10px margin from right
-	offset_y = 10;                     // 10px margin from top
+	m.offset_x = WIDTH - map_width - 10; // 10px margin from right
+	m.offset_y = 10;                     // 10px margin from top
 
-	y = 0;
-	while (cubed->data.map[y])
+	m.y = 0;
+	while (cubed->data.map[m.y])
 	{
-		x = 0;
-		while (cubed->data.map[y][x])
+		m.x = 0;
+		while (cubed->data.map[m.y][m.x])
 		{
-			if (cubed->data.map[y][x] == '1')
-				color = 0xFFFFFF; // wall
-			else if (cubed->data.map[y][x] == '0')
-				color = 0x00FF00; // floor
+			if (cubed->data.map[m.y][m.x] == '1')
+				m.color = 0xFFFFFF; // wall
+			else if (cubed->data.map[m.y][m.x] == '0')
+				m.color = 0x00FF00; // floor
 			else
-				color = -1;
-			if (color != -1)
+				m.color = -1;
+			if (m.color != -1)
 				_s_draw_cell(cubed,
-					offset_x + x * scale,
-					offset_y + y * scale,
-					scale,
-					color);
-			x++;
+					m.offset_x + m.x * m.scale,
+					m.offset_y + m.y * m.scale,
+					m.scale,
+					m.color);
+			m.x++;
 		}
-		y++;
+		m.y++;
 	}
-	draw_player(cubed, cubed->p, scale, offset_x, offset_y);
+	draw_player(cubed, cubed->p, m);
 
 	return (SUCCESS);
 }

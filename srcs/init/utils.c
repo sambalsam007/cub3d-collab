@@ -130,12 +130,19 @@ void	init(t_cubed *cubed)
 	cubed->ray.hit_y = 0;
 	cubed->ray.distance = 0;
 	cubed->ray.side = 0;
-	cubed->minimap.first_x = 0;
-	cubed->minimap.first_y = 0;
-	cubed->minimap.last_x = 0;
-	cubed->minimap.last_y = 0;
-	cubed->minimap.width = 0;
-	cubed->minimap.height = 0;
-	cubed->minimap.scale = TILE_SIZE / 4;
+	// cubed->minimap.first_x = 0;
+	// cubed->minimap.first_y = 0;
+	// cubed->minimap.last_x = 0;
+	// cubed->minimap.last_y = 0;
+	// cubed->minimap.width = 0;
+	// cubed->minimap.height = 0;
+	// cubed->minimap.scale = TILE_SIZE / 4;
+	cubed->minimap.x = 0;
+	cubed->minimap.y = 0;
+	cubed->minimap.cell = 0;
+	cubed->minimap.color = 0;
+	cubed->minimap.scale = 0;
+	cubed->minimap.offset_x = 0;
+	cubed->minimap.offset_y = 0;
 	init_loops(cubed);
 }

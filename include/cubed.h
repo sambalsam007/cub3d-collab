@@ -179,13 +179,21 @@ typedef struct s_mlx
 
 typedef struct s_minimap
 {
-    int     width;
-    int     height;
-    int     scale;
-    int     first_x;
-    int     first_y;
-    int     last_x;
-    int     last_y;
+	// int		width;
+	// int		height;
+	// int		scale;
+	// int		first_x;
+	// int		first_y;
+	// int		last_x;
+	// int		last_y;
+	// samuel edit
+	int		x;
+	int		y;
+	int		cell;
+	int		color;
+	int		scale;
+	int		offset_x;
+	int		offset_y;
 }   t_minimap;
 
 typedef struct s_player
@@ -245,7 +253,7 @@ typedef struct s_cubed
 // prototypes
 int		draw_minimap(t_cubed *cubed);
 // samuel edit
-void	draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y);
+void	draw_player(t_cubed *cubed, t_player p, t_minimap m);
 void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
 
 int	render_next_frame(t_cubed *cubed); // rework function paris

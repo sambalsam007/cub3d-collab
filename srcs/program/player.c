@@ -12,32 +12,32 @@
 
 #include "cubed.h"
 
-void	draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y)
+// make player dot ~ 2x scale (so it's visible)
+void	draw_player(t_cubed *cubed, t_player p, t_minimap m)
 {
 	int		i;
 	int		j;
+	int		radius;
 	float	map_x;
 	float	map_y;
 
-	// make player dot ~ 2x scale (so it's visible)
-	int radius = scale * 2;
-
-	i = 0;
-	while (i < radius * 2)
+	radius = m.scale * 2;
+	i = -1;
+	while (++i < radius * 2)
 	{
 		map_x = (float)(i - radius) / radius + p.x;
-		j = 0;
-		while (j < radius * 2)
+		j = -1;
+		while (++j < radius * 2)
 		{
 			map_y = (float)(j - radius) / radius + p.y;
 			if (is_in(map_x, map_y, p))
 				my_mlx_pixel_put(cubed,
-					offset_x + (int)(p.x * scale) + i - radius,
-					offset_y + (int)(p.y * scale) + j - radius,
+					m.offset_x + (int)(p.x * m.scale) \
+					+ i - radius,
+					m.offset_y + (int)(p.y * m.scale) \
+					+ j - radius,
 					p.c);
-			j++;
 		}
-		i++;
 	}
 }
 
@@ -81,35 +81,46 @@ int	is_in(float x, float y, t_player p)
 
 void	player_forward_backward(t_cubed *cubed)
 {
-    double moveStep = 0.0;
-    if (cubed->keys[KEY_W]) moveStep += MOVE_SPEED;
-    if (cubed->keys[KEY_S]) moveStep -= MOVE_SPEED;
+	double	move_step;
+	double	nx;
+	double	ny;
 
-    if (moveStep != 0.0) {
-        double nx = cubed->p.x + cubed->p.dirX * moveStep;
-        double ny = cubed->p.y + cubed->p.dirY * moveStep;
-        if (can_move(cubed, nx, ny))
+	move_step = 0.0;
+	if (cubed->keys[KEY_W])
+		move_step += MOVE_SPEED;
+	if (cubed->keys[KEY_S])
+		move_step -= MOVE_SPEED;
+	if (move_step != 0.0)
 	{
-		cubed->p.x = nx;
-		cubed->p.y = ny;
-	}
-    }
-}
-
-void	player_strafe_left_right(t_cubed *cubed)
-{
-	if (cubed->keys[KEY_A]) {
-		double nx = cubed->p.x - cubed->p.planeX * (MOVE_SPEED);
-		double ny = cubed->p.y - cubed->p.planeY * (MOVE_SPEED);
+		nx = cubed->p.x + cubed->p.dirX * move_step;
+		ny = cubed->p.y + cubed->p.dirY * move_step;
 		if (can_move(cubed, nx, ny))
 		{
 			cubed->p.x = nx;
 			cubed->p.y = ny;
 		}
 	}
-	if (cubed->keys[KEY_D]) {
-		double nx = cubed->p.x + cubed->p.planeX * (MOVE_SPEED);
-		double ny = cubed->p.y + cubed->p.planeY * (MOVE_SPEED);
+}
+
+void	player_strafe_left_right(t_cubed *cubed)
+{
+	double	nx;
+	double	ny;
+
+	if (cubed->keys[KEY_A])
+	{
+		nx = cubed->p.x - cubed->p.planeX * (MOVE_SPEED);
+		ny = cubed->p.y - cubed->p.planeY * (MOVE_SPEED);
+		if (can_move(cubed, nx, ny))
+		{
+			cubed->p.x = nx;
+			cubed->p.y = ny;
+		}
+	}
+	if (cubed->keys[KEY_D])
+	{
+		nx = cubed->p.x + cubed->p.planeX * (MOVE_SPEED);
+		ny = cubed->p.y + cubed->p.planeY * (MOVE_SPEED);
 		if (can_move(cubed, nx, ny))
 		{
 			cubed->p.x = nx;
