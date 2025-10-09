@@ -45,7 +45,16 @@ void	find_x_coord_on_texture(t_cubed *c, t_ray *r)
 	r->texAddr = c->texture[r->texNum].adr;
 }
 
+// fix orientation for some sides
 void	calc_tex_x(t_ray *r)
 {
 	r->texX = (int)(r->wallX * (double)r->texW);
+	if (r->side == 0 && r->rayDirX > 0)
+		r->texX = r->texW - r->texX - 1;
+	if (r->side == 1 && r->rayDirY < 0)
+		r->texX = r->texW - r->texX - 1;
+	if (r->texX < 0)
+		r->texX = 0;
+	if (r->texX >= r->texW)
+		r->texX = r->texW - 1;
 }
