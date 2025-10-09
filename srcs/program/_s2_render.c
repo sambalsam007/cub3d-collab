@@ -35,11 +35,13 @@ static void _s2_draw_vline(t_cubed *cubed, int x, int y0, int y1, int color)
 // 		mostly functions relating to texture
 void	_s2_render_scene(t_cubed *cubed)
 {
+	int	x;
+
+	x = 0;
 	reset_background(cubed);
-	for (int x = 0; x < WIDTH; ++x)
+	while (x < WIDTH)
 	{
 		t_ray r = cubed->ray;
-		calc_camera_x(&r, x);
 		calc_ray_dir(cubed, &r, x);
 		set_map_xy(cubed, &r);
 		calc_delta_dist(&r);
@@ -55,6 +57,7 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_step(&r);
 		calc_tex_pos(&r);
 		draw_vertical_column(cubed, &r, x);
+		x++;
 	}
 	_s_draw_minimap(cubed);
 	mlx_put_image_to_window(cubed->mlx.mlx, cubed->mlx.win, cubed->mlx.img, 0, 0);

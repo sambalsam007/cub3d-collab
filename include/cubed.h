@@ -124,7 +124,6 @@ typedef struct s_ray
 	int		tex_x;
 	int		tex_y;
 	// samuel edit
-	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
 	int	mapX;
@@ -257,7 +256,6 @@ int	_s_render_next_frame(t_cubed *cubed); // rework function paris
 int	_s2_render_next_frame(t_cubed *cubed); // rework function paris
 
 // raycasting prototypes
-void	calc_camera_x(t_ray *r, int current_ray_nbr);
 void	calc_ray_dir(t_cubed *c, t_ray *r, int current_ray_nbr);
 void	set_map_xy(t_cubed *c, t_ray *r);
 void	calc_delta_dist(t_ray *r);
