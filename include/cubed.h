@@ -194,6 +194,8 @@ typedef struct s_minimap
 	int		scale;
 	int		offset_x;
 	int		offset_y;
+	int		map_width;
+	int		map_height;
 }   t_minimap;
 
 typedef struct s_player
