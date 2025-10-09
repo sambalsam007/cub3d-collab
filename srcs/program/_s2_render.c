@@ -61,25 +61,19 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_hit_position_on_wall(cubed, &r);
 		find_x_coord_on_texture(cubed, &r);
 		calc_tex_x(&r);
+		calc_step(&r);
 
 
 
-	    // fix orientation for some sides
-	    if (r.side == 0 && r.rayDirX > 0) r.texX = r.texW - r.texX - 1;
-	    if (r.side == 1 && r.rayDirY < 0) r.texX = r.texW - r.texX - 1;
-	    if (r.texX < 0) r.texX = 0;
-	    if (r.texX >= r.texW) r.texX = r.texW - 1;
 
-	    // how much to move in the texture for each screen pixel
-	    double step = (double)r.texH / (double)r.lineHeight;
 	    // starting texture y position
-	    double texPos = (r.drawStart - HEIGHT / 2 + r.lineHeight / 2) * step;
+	    double texPos = (r.drawStart - HEIGHT / 2 + r.lineHeight / 2) * r.step;
 
 	    for (int y = r.drawStart; y <= r.drawEnd; ++y) {
 		int texY = (int)texPos;
 		if (texY < 0) texY = 0;
 		if (texY >= r.texH) texY = r.texH - 1;
-		texPos += step;
+		texPos += r.step;
 
 		char *tex_pixel = r.texAddr + texY * r.texLine + r.texX * (r.texBpp / 8);
 		int color = *(int *)tex_pixel;

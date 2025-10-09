@@ -58,3 +58,9 @@ void	calc_tex_x(t_ray *r)
 	if (r->texX >= r->texW)
 		r->texX = r->texW - 1;
 }
+
+// how much to move in the texture for each screen pixel
+void	calc_step(t_ray *r)
+{
+	r->step = (double)r->texH / (double)r->lineHeight;
+}
