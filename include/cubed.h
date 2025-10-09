@@ -258,6 +258,12 @@ void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
 
 int	render_next_frame(t_cubed *cubed); // rework function paris
 
+// movement prototypes
+void	player_forward_backward(t_cubed *cubed);
+void	player_strafe_left_right(t_cubed *cubed);
+void	player_rotate_left(t_cubed *c);
+void	player_rotate_right(t_cubed *c);
+
 // raycasting prototypes
 void	general_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr);
 
