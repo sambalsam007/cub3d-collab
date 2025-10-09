@@ -20,17 +20,6 @@ void _s2_put_pixel(t_cubed *cubed, int x, int y, int color)
     *(unsigned int*)dst = (unsigned int)color;
 }
 
-// not used?
-static void _s2_draw_vline(t_cubed *cubed, int x, int y0, int y1, int color)
-{
-    if (x < 0 || x >= WIDTH) 
-	    return;
-    if (y0 < 0) y0 = 0;
-    if (y1 >= HEIGHT) y1 = HEIGHT - 1;
-    for (int y = y0; y <= y1; ++y) 
-	    _s2_put_pixel(cubed, x, y, color);
-}
-
 // note:	in the loop, starting from define_texture_compass(), it's
 // 		mostly functions relating to texture
 static void	_s2_render_scene(t_cubed *c)
