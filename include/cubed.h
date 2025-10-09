@@ -241,17 +241,12 @@ typedef struct s_cubed
 
 // samuel edit 09.25
 // prototypes
-void	_s_display_ray_struct_info(t_cubed *cubed, int i);
 int		_s_draw_minimap(t_cubed *cubed);
 // samuel edit
 // void	_s_draw_player(t_cubed *cubed, t_player p, int cell);
 void	_s_draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y);
 void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
-void	_s_draw_ray_line(t_cubed *cubed, double angle, int cell);
-double	_s_cast_ray(t_cubed *cubed, double angle, int cell);
 void	_s_draw_wall_line(t_cubed *cubed, int i, t_ray *ray, t_tex tex);
-int		_s_make_ray_calculations(t_cubed *cubed, int i, float angle_step, int cell);
-int	_s_render_next_frame(t_cubed *cubed); // rework function paris
 
 int	_s2_render_next_frame(t_cubed *cubed); // rework function paris
 
