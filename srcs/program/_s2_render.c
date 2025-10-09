@@ -60,15 +60,15 @@ void	_s2_render_scene(t_cubed *cubed)
 		define_texture_compass(&r);
 		calc_hit_position_on_wall(cubed, &r);
 		find_x_coord_on_texture(cubed, &r);
+		calc_tex_x(&r);
 
 
 
-	    int texX = (int)(r.wallX * (double)r.texW);
 	    // fix orientation for some sides
-	    if (r.side == 0 && r.rayDirX > 0) texX = r.texW - texX - 1;
-	    if (r.side == 1 && r.rayDirY < 0) texX = r.texW - texX - 1;
-	    if (texX < 0) texX = 0;
-	    if (texX >= r.texW) texX = r.texW - 1;
+	    if (r.side == 0 && r.rayDirX > 0) r.texX = r.texW - r.texX - 1;
+	    if (r.side == 1 && r.rayDirY < 0) r.texX = r.texW - r.texX - 1;
+	    if (r.texX < 0) r.texX = 0;
+	    if (r.texX >= r.texW) r.texX = r.texW - 1;
 
 	    // how much to move in the texture for each screen pixel
 	    double step = (double)r.texH / (double)r.lineHeight;
@@ -81,7 +81,7 @@ void	_s2_render_scene(t_cubed *cubed)
 		if (texY >= r.texH) texY = r.texH - 1;
 		texPos += step;
 
-		char *tex_pixel = r.texAddr + texY * r.texLine + texX * (r.texBpp / 8);
+		char *tex_pixel = r.texAddr + texY * r.texLine + r.texX * (r.texBpp / 8);
 		int color = *(int *)tex_pixel;
 
 		// simple shading for horizontal walls

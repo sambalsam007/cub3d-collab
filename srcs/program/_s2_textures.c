@@ -44,3 +44,8 @@ void	find_x_coord_on_texture(t_cubed *c, t_ray *r)
 	r->texLine = c->texture[r->texNum].size_line;
 	r->texAddr = c->texture[r->texNum].adr;
 }
+
+void	calc_tex_x(t_ray *r)
+{
+	r->texX = (int)(r->wallX * (double)r->texW);
+}
