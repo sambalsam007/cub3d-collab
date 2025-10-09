@@ -12,22 +12,6 @@
 
 #include "cubed.h"
 
-/* TODO
-void	first_last_ray(t_cubed *cubed, int i, int rays)
-{
-	if (i == 0)
-	{
-		cubed->minimap.first_x = cubed->ray.hit_x;
-		cubed->minimap.first_y = cubed->ray.hit_y;
-	}
-	if (i == rays - 1)
-	{
-		cubed->minimap.last_x = cubed->ray.hit_x;
-		cubed->minimap.last_y = cubed->ray.hit_y;
-	}
-}
-*/
-
 void _s2_put_pixel(t_cubed *cubed, int x, int y, int color)
 {
     if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT) 
