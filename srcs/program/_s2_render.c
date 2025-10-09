@@ -16,7 +16,7 @@ void	first_last_ray(t_cubed *cubed, int i, int rays)
 }
 */
 
-static void _s2_put_pixel(t_cubed *cubed, int x, int y, int color)
+void _s2_put_pixel(t_cubed *cubed, int x, int y, int color)
 {
     if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT) 
 	    return;
@@ -63,24 +63,10 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_tex_x(&r);
 		calc_step(&r);
 		calc_tex_pos(&r);
+		draw_vertical_column(cubed, &r, x);
 
 
 
-
-	    for (int y = r.drawStart; y <= r.drawEnd; ++y) {
-		int texY = (int)r.texPos;
-		if (texY < 0) texY = 0;
-		if (texY >= r.texH) texY = r.texH - 1;
-		r.texPos += r.step;
-
-		char *tex_pixel = r.texAddr + texY * r.texLine + r.texX * (r.texBpp / 8);
-		int color = *(int *)tex_pixel;
-
-		// simple shading for horizontal walls
-		// if (side == 1) color = (color >> 1) & 0x7F7F7F;
-
-		_s2_put_pixel(cubed, x, y, color);
-	    }
 	    /************** END TEXTURE **************/
 
 	    // If you still want a fallback flat column (not needed when textured)
