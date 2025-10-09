@@ -70,6 +70,8 @@
 
 // for wolf test
 #define MOVE_SPEED 0.05     // reduced because units are tiles now
+
+// rotation speed
 #define ROT_SPEED 0.03      // increased (no need for tiny radians anymore)
 
 // # define MOVE_SPEED 3.0f

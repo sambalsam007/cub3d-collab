@@ -59,10 +59,10 @@ long	get_time_ms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color)
+void	my_mlx_pixel_put(t_cubed *c, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = cubed->mlx.adr + (y * cubed->mlx.size_line + x * (cubed->mlx.bpp / 8));
-	*(unsigned int*)dst = color;
+	dst = c->mlx.adr + (y * c->mlx.size_line + x * (c->mlx.bpp / 8));
+	*(unsigned int *)dst = color;
 }

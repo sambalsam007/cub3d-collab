@@ -44,7 +44,8 @@ void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr)
 		if (tex_y >= r->tex_h)
 			tex_y = r->tex_h - 1;
 		r->tex_pos += r->step;
-		tex_pixel = r->tex_addr + tex_y * r->tex_line + r->texture_x * (r->tex_bpp / 8);
+		tex_pixel = r->tex_addr + tex_y * r->tex_line \
+			+ r->texture_x * (r->tex_bpp / 8);
 		color = *(int *)tex_pixel;
 		if (r->side == 1)
 			color = (color >> 1) & 0x7F7F7F;
