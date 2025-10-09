@@ -241,12 +241,12 @@ typedef struct s_cubed
 
 // samuel edit 09.25
 // prototypes
-int		_s_draw_minimap(t_cubed *cubed);
+int		draw_minimap(t_cubed *cubed);
 // samuel edit
-void	_s_draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y);
+void	draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y);
 void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
 
-int	_s2_render_next_frame(t_cubed *cubed); // rework function paris
+int	render_next_frame(t_cubed *cubed); // rework function paris
 
 // raycasting prototypes
 void	general_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr);
@@ -298,7 +298,6 @@ int		process(t_cubed *cubed);
 // Draw
 void	draw_cell(t_cubed *cubed, int x, int y, int size, int color);
 // int		make_minimap(t_cubed *cubed);
-void	draw_minimap(t_cubed *cubed);
 void	reset_background(t_cubed *cubed);
 
 

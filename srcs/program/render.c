@@ -38,11 +38,11 @@ static void	_s2_render_scene(t_cubed *c)
 		texture_calculations(c, &r, x);
 		x++;
 	}
-	_s_draw_minimap(c);
+	draw_minimap(c);
 	mlx_put_image_to_window(c->mlx.mlx, c->mlx.win, c->mlx.img, 0, 0);
 }
 
-int	_s2_render_next_frame(t_cubed *cubed)
+int	render_next_frame(t_cubed *cubed)
 {
 	int	cell;
 

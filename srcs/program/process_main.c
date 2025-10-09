@@ -30,7 +30,7 @@ int	process(t_cubed *cubed)
 	mlx_hook(cubed->mlx.win, 2, 1L << 0, key_press, cubed);
 	mlx_hook(cubed->mlx.win, 3, 1L << 1, key_release, cubed);
 	mlx_hook(cubed->mlx.win, 17, 0, close_window, cubed);
-	mlx_loop_hook(cubed->mlx.mlx, _s2_render_next_frame, cubed);
+	mlx_loop_hook(cubed->mlx.mlx, render_next_frame, cubed);
 	mlx_loop(cubed->mlx.mlx);
 	return (SUCCESS);
 }

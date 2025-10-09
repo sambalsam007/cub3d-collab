@@ -43,7 +43,7 @@ void	_s_draw_cell(t_cubed *cubed, int x, int y, int size, int color)
 	}
 }
 
-int	_s_draw_minimap(t_cubed *cubed)
+int	draw_minimap(t_cubed *cubed)
 {
 	int		x;
 	int		y;
@@ -94,7 +94,7 @@ int	_s_draw_minimap(t_cubed *cubed)
 		}
 		y++;
 	}
-	_s_draw_player(cubed, cubed->p, scale, offset_x, offset_y);
+	draw_player(cubed, cubed->p, scale, offset_x, offset_y);
 
 	return (SUCCESS);
 }

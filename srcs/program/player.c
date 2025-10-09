@@ -12,7 +12,7 @@
 
 #include "cubed.h"
 
-void	_s_draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y)
+void	draw_player(t_cubed *cubed, t_player p, int scale, int offset_x, int offset_y)
 {
 	int		i;
 	int		j;
