@@ -62,18 +62,16 @@ void	_s2_render_scene(t_cubed *cubed)
 		find_x_coord_on_texture(cubed, &r);
 		calc_tex_x(&r);
 		calc_step(&r);
+		calc_tex_pos(&r);
 
 
 
-
-	    // starting texture y position
-	    double texPos = (r.drawStart - HEIGHT / 2 + r.lineHeight / 2) * r.step;
 
 	    for (int y = r.drawStart; y <= r.drawEnd; ++y) {
-		int texY = (int)texPos;
+		int texY = (int)r.texPos;
 		if (texY < 0) texY = 0;
 		if (texY >= r.texH) texY = r.texH - 1;
-		texPos += r.step;
+		r.texPos += r.step;
 
 		char *tex_pixel = r.texAddr + texY * r.texLine + r.texX * (r.texBpp / 8);
 		int color = *(int *)tex_pixel;

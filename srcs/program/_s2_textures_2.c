@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "cubed.h"
+
+// starting texture y position
+void	calc_tex_pos(t_ray *r)
+{
+	r->texPos = (r->drawStart - HEIGHT / 2 + r->lineHeight / 2) * r->step;
+}
