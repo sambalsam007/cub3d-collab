@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   _s2_render.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samd-hoo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/09 13:55:02 by samd-hoo          #+#    #+#             */
+/*   Updated: 2025/10/09 13:55:03 by samd-hoo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 
 /* TODO
@@ -23,6 +35,8 @@ void _s2_put_pixel(t_cubed *cubed, int x, int y, int color)
     char *dst = cubed->mlx.adr + (y * cubed->mlx.size_line + x * (cubed->mlx.bpp / 8));
     *(unsigned int*)dst = (unsigned int)color;
 }
+
+// not used?
 static void _s2_draw_vline(t_cubed *cubed, int x, int y0, int y1, int color)
 {
     if (x < 0 || x >= WIDTH) 
@@ -33,16 +47,11 @@ static void _s2_draw_vline(t_cubed *cubed, int x, int y0, int y1, int color)
 	    _s2_put_pixel(cubed, x, y, color);
 }
 
-// # define TEX_NORTH 0
-// # define TEX_SOUTH 1
-// # define TEX_WEST  2
-// # define TEX_EAST  3
-
-// replace your existing _s2_render_scene with this version
+// note:	in the loop, starting from define_texture_compass(), it's
+// 		mostly functions relating to texture
 void	_s2_render_scene(t_cubed *cubed)
 {
 	reset_background(cubed);
-
 	for (int x = 0; x < WIDTH; ++x)
 	{
 		t_ray r = cubed->ray;
@@ -55,8 +64,6 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_perpendicular_wall_dist(cubed, &r);
 		calc_line_height(&r);
 		calc_draw_start_end(&r);
-
-		// texture stuff
 		define_texture_compass(&r);
 		calc_hit_position_on_wall(cubed, &r);
 		find_x_coord_on_texture(cubed, &r);
@@ -64,19 +71,7 @@ void	_s2_render_scene(t_cubed *cubed)
 		calc_step(&r);
 		calc_tex_pos(&r);
 		draw_vertical_column(cubed, &r, x);
-
-
-
-	    /************** END TEXTURE **************/
-
-	    // If you still want a fallback flat column (not needed when textured)
-	    // int flat_color = 0x00AAFF;
-	    // if (side == 1) flat_color = (flat_color >> 1) & 0x7F7F7F;
-	    // _s2_draw_vline(cubed, x, r.drawStart, r.drawEnd, flat_color);
-
-	} // end for x
-
-	// draw to window
+	}
 	_s_draw_minimap(cubed);
 	mlx_put_image_to_window(cubed->mlx.mlx, cubed->mlx.win, cubed->mlx.img, 0, 0);
 }
