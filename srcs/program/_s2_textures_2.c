@@ -15,13 +15,13 @@
 // how much to move in the texture for each screen pixel
 void	calc_step(t_ray *r)
 {
-	r->step = (double)r->texH / (double)r->lineHeight;
+	r->step = (double)r->tex_h / (double)r->line_height;
 }
 
 // starting texture y position
 void	calc_tex_pos(t_ray *r)
 {
-	r->texPos = (r->drawStart - HEIGHT / 2 + r->lineHeight / 2) * r->step;
+	r->tex_pos = (r->draw_start - HEIGHT / 2 + r->line_height / 2) * r->step;
 }
 
 // if (side == 1) color = ...
@@ -35,16 +35,16 @@ void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr)
 	char	*tex_pixel;
 
 	x = current_ray_nbr;
-	y = r->drawStart;
-	while (y <= r->drawEnd)
+	y = r->draw_start;
+	while (y <= r->draw_end)
 	{
-		tex_y = (int)r->texPos;
+		tex_y = (int)r->tex_pos;
 		if (tex_y < 0)
 			tex_y = 0;
-		if (tex_y >= r->texH)
-			tex_y = r->texH - 1;
-		r->texPos += r->step;
-		tex_pixel = r->texAddr + tex_y * r->texLine + r->texX * (r->texBpp / 8);
+		if (tex_y >= r->tex_h)
+			tex_y = r->tex_h - 1;
+		r->tex_pos += r->step;
+		tex_pixel = r->tex_addr + tex_y * r->tex_line + r->texture_x * (r->tex_bpp / 8);
 		color = *(int *)tex_pixel;
 		if (r->side == 1)
 			color = (color >> 1) & 0x7F7F7F;

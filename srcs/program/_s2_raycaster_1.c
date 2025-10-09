@@ -17,51 +17,51 @@ void	calc_ray_dir(t_cubed *c, t_ray *r, int current_ray_nbr)
 	double	camera_x;
 
 	camera_x = 2.0 * current_ray_nbr / (double)WIDTH - 1.0;
-	r->rayDirX = c->p.dirX + c->p.planeX * camera_x;
-	r->rayDirY = c->p.dirY + c->p.planeY * camera_x;
+	r->ray_dir_x = c->p.dirX + c->p.planeX * camera_x;
+	r->ray_dir_y = c->p.dirY + c->p.planeY * camera_x;
 }
 
 // x, y	= tile coordinates
 // (NOT pixel coordinates)
 void	set_map_xy(t_cubed *c, t_ray *r)
 {
-	r->mapX = (int)c->p.x;
-	r->mapY = (int)c->p.y;
+	r->map_x = (int)c->p.x;
+	r->map_y = (int)c->p.y;
 }
 
 void	calc_delta_dist(t_ray *r)
 {
-	if (r->rayDirX == 0)
-		r->deltaDistX = 1e30;
+	if (r->ray_dir_x == 0)
+		r->delta_dist_x = 1e30;
 	else
-		r->deltaDistX = fabs(1.0 / r->rayDirX);
-	if (r->rayDirY == 0)
-		r->deltaDistY = 1e30;
+		r->delta_dist_x = fabs(1.0 / r->ray_dir_x);
+	if (r->ray_dir_y == 0)
+		r->delta_dist_y = 1e30;
 	else
-		r->deltaDistY = fabs(1.0 / r->rayDirY);
+		r->delta_dist_y = fabs(1.0 / r->ray_dir_y);
 }
 
 void	calc_side_dist(t_cubed *c, t_ray *r)
 {
-	if (r->rayDirX < 0)
+	if (r->ray_dir_x < 0)
 	{
-		r->stepX = -1;
-		r->sideDistX = (c->p.x - r->mapX) * r->deltaDistX;
+		r->step_x = -1;
+		r->side_dist_x = (c->p.x - r->map_x) * r->delta_dist_x;
 	}
 	else
 	{
-		r->stepX = 1;
-		r->sideDistX = (r->mapX + 1.0 - c->p.x) * r->deltaDistX;
+		r->step_x = 1;
+		r->side_dist_x = (r->map_x + 1.0 - c->p.x) * r->delta_dist_x;
 	}
-	if (r->rayDirY < 0)
+	if (r->ray_dir_y < 0)
 	{
-		r->stepY = -1;
-		r->sideDistY = (c->p.y - r->mapY) * r->deltaDistY;
+		r->step_y = -1;
+		r->side_dist_y = (c->p.y - r->map_y) * r->delta_dist_y;
 	}
 	else
 	{
-		r->stepY = 1;
-		r->sideDistY = (r->mapY + 1.0 - c->p.y) * r->deltaDistY;
+		r->step_y = 1;
+		r->side_dist_y = (r->map_y + 1.0 - c->p.y) * r->delta_dist_y;
 	}
 }
 
