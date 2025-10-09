@@ -54,13 +54,12 @@ SRCS_PROGRAM = \
 		$(SRCDIR)/program/keys.c \
 		$(SRCDIR)/program/player.c \
 		$(SRCDIR)/program/process_main.c \
-		$(SRCDIR)/program/_s_minimap.c \
-		$(SRCDIR)/program/_s_player.c \
-		$(SRCDIR)/program/_s2_render.c \
-		$(SRCDIR)/program/_s2_raycaster_1.c \
-		$(SRCDIR)/program/_s2_raycaster_2.c \
-		$(SRCDIR)/program/_s2_textures_1.c \
-		$(SRCDIR)/program/_s2_textures_2.c
+		$(SRCDIR)/program/minimap.c \
+		$(SRCDIR)/program/render.c \
+		$(SRCDIR)/program/raycaster_1.c \
+		$(SRCDIR)/program/raycaster_2.c \
+		$(SRCDIR)/program/textures_1.c \
+		$(SRCDIR)/program/textures_2.c
 
 SRCS_MAIN 	= $(SRCDIR)/main.c
 
