@@ -12,7 +12,7 @@
 
 #include "cubed.h"
 
-void	_s2_put_pixel(t_cubed *c, int x, int y, int color)
+void	put_pixel(t_cubed *c, int x, int y, int color)
 {
 	char	*dst;
 

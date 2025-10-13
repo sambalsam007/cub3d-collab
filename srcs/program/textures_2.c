@@ -49,7 +49,7 @@ void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr)
 		color = *(int *)tex_pixel;
 		if (r->side == 1)
 			color = (color >> 1) & 0x7F7F7F;
-		_s2_put_pixel(c, x, y, color);
+		put_pixel(c, x, y, color);
 		y++;
 	}
 }

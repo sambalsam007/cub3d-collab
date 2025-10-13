@@ -288,7 +288,7 @@ void	calc_tex_pos(t_ray *r);
 void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr);
 
 // rendering prototypes
-void _s2_put_pixel(t_cubed *cubed, int x, int y, int color);
+void put_pixel(t_cubed *cubed, int x, int y, int color);
 
 // Initializing functions
 int		is_player(char c);
