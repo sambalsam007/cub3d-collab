@@ -314,7 +314,7 @@ void	free_all(t_cubed *cubed);
 int		process(t_cubed *cubed);
 
 // Draw
-void	draw_cell(t_cubed *cubed, int x, int y, int size, int color);
+void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m);
 // int		make_minimap(t_cubed *cubed);
 void	reset_background(t_cubed *cubed);
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samd-hoo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/13 11:53:10 by samd-hoo          #+#    #+#             */
+/*   Updated: 2025/10/13 11:53:12 by samd-hoo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 
 // write the pixel color into the image buffer (at x,y)
@@ -30,12 +42,16 @@ void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color)
 // x, y are top left corner
 // so we do x+i and y+j to fill the entire cell
 // we draw a pixel at (x+i, y+j)
-void	draw_cell(t_cubed *cubed, int x, int y, int size, int color)
+void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m)
 {
 	int	i;
 	int	j;
+	int	size;
+	int	color;
 
 	i = 0;
+	size = m->scale;
+	color = m->color;
 	while (i < size)
 	{
 		j = 0;
@@ -65,8 +81,7 @@ void	iterate_over_minimap(t_cubed *cubed, t_minimap *m)
 				draw_cell(cubed,
 					m->offset_x + m->x * m->scale,
 					m->offset_y + m->y * m->scale,
-					m->scale,
-					m->color);
+					m);
 			m->x++;
 		}
 		m->y++;
