@@ -59,6 +59,14 @@ long	get_time_ms(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
+// write the pixel color into the image buffer (at x,y)
+// x = the x coordinate of the pixel
+// y = y coord... pixel
+//
+// dst = the spot in the mlx address that we are going to edit
+// calculate:
+// 		starting point of the address
+// 		+ (formula to calculate place for x y coordinate)
 void	my_mlx_pixel_put(t_cubed *c, int x, int y, int color)
 {
 	char	*dst;

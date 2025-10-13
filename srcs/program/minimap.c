@@ -12,23 +12,6 @@
 
 #include "cubed.h"
 
-// write the pixel color into the image buffer (at x,y)
-// x = the x coordinate of the pixel
-// y = y coord... pixel
-//
-// dst = the spot in the mlx address that we are going to edit
-// calculate:
-// 		starting point of the address
-// 		+ (formula to calculate place for x y coordinate)
-void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = cubed->mlx.adr \
-		+ (y * cubed->mlx.size_line + x * (cubed->mlx.bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
 // func: draw certain cell/tile on the img, in true size 
 // 				(so at its pixel position)
 // input:
@@ -57,7 +40,7 @@ void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m)
 		j = 0;
 		while (j < size)
 		{
-			_s_my_mlx_pixel_put(cubed, x + i, y + j, color);
+			my_mlx_pixel_put(cubed, x + i, y + j, color);
 			j++;
 		}
 		i++;

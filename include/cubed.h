@@ -256,7 +256,6 @@ typedef struct s_cubed
 int		draw_minimap(t_cubed *cubed);
 // samuel edit
 void	draw_player(t_cubed *cubed, t_player p, t_minimap m);
-void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color);
 
 int	render_next_frame(t_cubed *cubed); // rework function paris
 
