@@ -69,10 +69,10 @@
 // # define MAP_H 10
 
 // for wolf test
-#define MOVE_SPEED 0.05     // reduced because units are tiles now
+#define MOVE_SPEED 0.04    // reduced because units are tiles now
 
 // rotation speed
-#define ROT_SPEED 0.03      // increased (no need for tiny radians anymore)
+#define ROT_SPEED 0.04      // increased (no need for tiny radians anymore)
 
 // # define MOVE_SPEED 3.0f
 // // samuel edit 09.25
@@ -113,6 +113,16 @@ typedef enum e_rgb
 	GREEN = 1,
 	BLUE = 2
 }	t_rgb;
+
+typedef struct s_dir_ray
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}		t_dir_ray;
 
 typedef struct s_ray
 {
@@ -289,7 +299,6 @@ void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr);
 
 // minimap
 void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m);
-void	draw_line_minimap(t_cubed *cubed, int x0, int y0, int x1, int y1, int color);
 
 // rendering prototypes
 void put_pixel(t_cubed *cubed, int x, int y, int color);

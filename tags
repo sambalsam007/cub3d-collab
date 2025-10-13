@@ -10,18 +10,14 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
 $(LIBFT)	Makefile	/^$(LIBFT):$/;"	t
-$(LIBFT)	offline/Makefile	/^$(LIBFT):$/;"	t
 $(MLXDIR)/libmlx.a	Makefile	/^$(MLXDIR)\/libmlx.a:$/;"	t
-$(MLXDIR)/libmlx.a	offline/Makefile	/^$(MLXDIR)\/libmlx.a:$/;"	t
 $(NAME)	Makefile	/^$(NAME): $(OBJ) $(LIBFT) $(MLXDIR)\/libmlx.a$/;"	t
 $(NAME)	libft/Makefile	/^$(NAME): $(OBJS)$/;"	t
 $(NAME)	mlxlib/Makefile.mk	/^$(NAME)	: $(OBJ)$/;"	t
 $(NAME)	mlxlib/test/Makefile.mk	/^$(NAME): $(OBJ)$/;"	t
-$(NAME)	offline/Makefile	/^$(NAME): $(OBJ) $(LIBFT) $(MLXDIR)\/libmlx.a$/;"	t
 $(OBJ_DIR)/%.o	mlxlib/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
 %.o	Makefile	/^%.o: %.c$/;"	t
 %.o	libft/Makefile	/^%.o: %.c$/;"	t
-%.o	offline/Makefile	/^%.o: %.c$/;"	t
 AR	libft/Makefile	/^AR		= ar rcs$/;"	m
 AUTHOR	mlxlib/man/man1/mlx.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
 AUTHOR	mlxlib/man/man1/mlx_loop.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
@@ -36,8 +32,6 @@ AUTHOR	mlxlib/man/man3/mlx_pixel_put.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
 BLUE	Makefile	/^BLUE	= \\033[1;34m$/;"	m
 BLUE	include/cubed.h	/^	BLUE = 2$/;"	e	enum:e_rgb
 BLUE	libft/Makefile	/^BLUE	= \\033[1;34m$/;"	m
-BLUE	offline/Makefile	/^BLUE	= \\033[1;34m$/;"	m
-BLUE	offline/cubed.h	/^	BLUE = 2$/;"	e	enum:e_rgb
 BUFFER_SIZE	libft/libft.h	/^# define BUFFER_SIZE /;"	d
 CC	Makefile	/^CC		= cc$/;"	m
 CC	libft/Makefile	/^CC		= cc$/;"	m
@@ -45,16 +39,13 @@ CC	mlxlib/Makefile.mk	/^	CC = clang$/;"	m
 CC	mlxlib/Makefile.mk	/^CC	= gcc$/;"	m
 CC	mlxlib/test/Makefile.mk	/^	CC	= gcc$/;"	m
 CC	mlxlib/test/Makefile.mk	/^	CC = clang$/;"	m
-CC	offline/Makefile	/^CC		= cc$/;"	m
 CFLAGS	Makefile	/^CFLAGS	= -Iinclude -Ilibft -g $/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS	= -Wall -Wextra -Werror -Iinclude$/;"	m
 CFLAGS	mlxlib/Makefile.mk	/^CFLAGS	= -O3 -I$(INC)$/;"	m
 CFLAGS	mlxlib/test/Makefile.mk	/^CFLAGS= -I$(INC) -O3 -I.. -g$/;"	m
-CFLAGS	offline/Makefile	/^CFLAGS	= -Iinclude -Ilibft -g $/;"	m
 COLOR	mlxlib/man/man1/mlx_pixel_put.1	/^.SH COLOR MANAGEMENT$/;"	s	title:MiniLibX
 COLOR	mlxlib/man/man3/mlx_pixel_put.3	/^.SH COLOR MANAGEMENT$/;"	s	title:MiniLibX
 CUBED_H	include/cubed.h	/^# define CUBED_H$/;"	d
-CUBED_H	offline/cubed.h	/^# define CUBED_H$/;"	d
 DESCRIPTION	mlxlib/man/man1/mlx.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
 DESCRIPTION	mlxlib/man/man1/mlx_loop.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
 DESCRIPTION	mlxlib/man/man1/mlx_new_image.1	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
@@ -66,50 +57,31 @@ DESCRIPTION	mlxlib/man/man3/mlx_new_image.3	/^.SH DESCRIPTION$/;"	s	title:MiniLi
 DESCRIPTION	mlxlib/man/man3/mlx_new_window.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
 DESCRIPTION	mlxlib/man/man3/mlx_pixel_put.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
 DIV	include/cubed.h	/^#define DIV /;"	d
-DIV	offline/cubed.h	/^#define DIV /;"	d
 EAST	include/cubed.h	/^	EAST = 1,$/;"	e	enum:e_compas
-EAST	offline/cubed.h	/^	EAST = 1,$/;"	e	enum:e_compas
 ENV_DISPLAY	mlxlib/mlx_int.h	/^# define ENV_DISPLAY /;"	d
 EOF	mlxlib/configure	/^cat <<EOF$/;"	h
 ERROR	include/cubed.h	/^# define ERROR /;"	d
-ERROR	offline/cubed.h	/^# define ERROR /;"	d
 ERR_FILE	include/cubed.h	/^# define ERR_FILE /;"	d
-ERR_FILE	offline/cubed.h	/^# define ERR_FILE /;"	d
 ERR_FILE_CUB	include/cubed.h	/^# define ERR_FILE_CUB /;"	d
-ERR_FILE_CUB	offline/cubed.h	/^# define ERR_FILE_CUB /;"	d
 ERR_IMG	include/cubed.h	/^# define ERR_IMG /;"	d
-ERR_IMG	offline/cubed.h	/^# define ERR_IMG /;"	d
 ERR_INV_FILE	include/cubed.h	/^# define ERR_INV_FILE /;"	d
-ERR_INV_FILE	offline/cubed.h	/^# define ERR_INV_FILE /;"	d
 ERR_INV_LETTER	include/cubed.h	/^# define ERR_INV_LETTER /;"	d
-ERR_INV_LETTER	offline/cubed.h	/^# define ERR_INV_LETTER /;"	d
 ERR_INV_MAP	include/cubed.h	/^# define ERR_INV_MAP /;"	d
-ERR_INV_MAP	offline/cubed.h	/^# define ERR_INV_MAP /;"	d
 ERR_MAL	include/cubed.h	/^# define ERR_MAL /;"	d
-ERR_MAL	offline/cubed.h	/^# define ERR_MAL /;"	d
 ERR_MLX	include/cubed.h	/^# define ERR_MLX /;"	d
-ERR_MLX	offline/cubed.h	/^# define ERR_MLX /;"	d
 ERR_MORE_PLAYERS	include/cubed.h	/^# define ERR_MORE_PLAYERS /;"	d
-ERR_MORE_PLAYERS	offline/cubed.h	/^# define ERR_MORE_PLAYERS /;"	d
 ERR_NO_PLAYER	include/cubed.h	/^# define ERR_NO_PLAYER /;"	d
-ERR_NO_PLAYER	offline/cubed.h	/^# define ERR_NO_PLAYER /;"	d
 ERR_NO_TRUECOLOR	mlxlib/mlx_int.h	/^# define ERR_NO_TRUECOLOR /;"	d
 ERR_POS_PLAYER	include/cubed.h	/^# define ERR_POS_PLAYER /;"	d
-ERR_POS_PLAYER	offline/cubed.h	/^# define ERR_POS_PLAYER /;"	d
 ERR_USE	include/cubed.h	/^# define ERR_USE /;"	d
-ERR_USE	offline/cubed.h	/^# define ERR_USE /;"	d
 ERR_WIN	include/cubed.h	/^# define ERR_WIN /;"	d
-ERR_WIN	offline/cubed.h	/^# define ERR_WIN /;"	d
 FT_PRINTF_H	libft/src/printf/ft_printf.h	/^# define FT_PRINTF_H$/;"	d
 GOING	mlxlib/man/man1/mlx_loop.1	/^.SH GOING FURTHER WITH EVENTS$/;"	s	title:MiniLibX
 GOING	mlxlib/man/man3/mlx_loop.3	/^.SH GOING FURTHER WITH EVENTS$/;"	s	title:MiniLibX
 GREEN	Makefile	/^GREEN	= \\033[1;32m$/;"	m
 GREEN	include/cubed.h	/^	GREEN = 1,$/;"	e	enum:e_rgb
 GREEN	libft/Makefile	/^GREEN	= \\033[1;32m$/;"	m
-GREEN	offline/Makefile	/^GREEN	= \\033[1;32m$/;"	m
-GREEN	offline/cubed.h	/^	GREEN = 1,$/;"	e	enum:e_rgb
 HEIGHT	include/cubed.h	/^# define HEIGHT /;"	d
-HEIGHT	offline/cubed.h	/^# define HEIGHT /;"	d
 HEXLOW	libft/src/printf/ft_printf.h	/^# define HEXLOW /;"	d
 HEXUPP	libft/src/printf/ft_printf.h	/^# define HEXUPP /;"	d
 IM1_SX	mlxlib/test/main.c	/^#define	IM1_SX	/;"	d	file:
@@ -122,24 +94,15 @@ INCLIB	mlxlib/test/Makefile.mk	/^INCLIB=$(INC)\/..\/lib$/;"	m
 INCLUDE	mlxlib/man/man1/mlx.1	/^.SH INCLUDE FILE$/;"	s	title:MiniLibX
 INCLUDE	mlxlib/man/man3/mlx.3	/^.SH INCLUDE FILE$/;"	s	title:MiniLibX
 KEY_A	include/cubed.h	/^#  define KEY_A /;"	d
-KEY_A	offline/cubed.h	/^#  define KEY_A /;"	d
 KEY_D	include/cubed.h	/^#  define KEY_D /;"	d
-KEY_D	offline/cubed.h	/^#  define KEY_D /;"	d
 KEY_ESC	include/cubed.h	/^#  define KEY_ESC /;"	d
-KEY_ESC	offline/cubed.h	/^#  define KEY_ESC /;"	d
 KEY_J	include/cubed.h	/^#  define KEY_J /;"	d
-KEY_J	offline/cubed.h	/^#  define KEY_J /;"	d
 KEY_K	include/cubed.h	/^#  define KEY_K /;"	d
-KEY_K	offline/cubed.h	/^#  define KEY_K /;"	d
 KEY_S	include/cubed.h	/^#  define KEY_S /;"	d
-KEY_S	offline/cubed.h	/^#  define KEY_S /;"	d
 KEY_W	include/cubed.h	/^#  define KEY_W /;"	d
-KEY_W	offline/cubed.h	/^#  define KEY_W /;"	d
 LFLAGS	mlxlib/test/Makefile.mk	/^LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm$/;"	m
 LIBFT	Makefile	/^LIBFT		= $(LIBFTDIR)\/libft.a$/;"	m
-LIBFT	offline/Makefile	/^LIBFT		= $(LIBFTDIR)\/libft.a$/;"	m
 LIBFTDIR	Makefile	/^LIBFTDIR	= libft$/;"	m
-LIBFTDIR	offline/Makefile	/^LIBFTDIR	= libft$/;"	m
 LIBFT_H	libft/libft.h	/^# define LIBFT_H$/;"	d
 LIBRARY	mlxlib/man/man1/mlx.1	/^.SH LIBRARY FUNCTIONS$/;"	s	title:MiniLibX
 LIBRARY	mlxlib/man/man3/mlx.3	/^.SH LIBRARY FUNCTIONS$/;"	s	title:MiniLibX
@@ -147,13 +110,9 @@ LINKING	mlxlib/man/man1/mlx.1	/^.SH LINKING MiniLibX$/;"	s	title:MiniLibX
 LINKING	mlxlib/man/man3/mlx.3	/^.SH LINKING MiniLibX$/;"	s	title:MiniLibX
 LOCALHOST	mlxlib/mlx_int.h	/^# define LOCALHOST /;"	d
 MLX	Makefile	/^MLX			= $(MLXDIR)\/libmlx.a$/;"	m
-MLX	offline/Makefile	/^MLX			= $(MLXDIR)\/libmlx.a$/;"	m
 MLXDIR	Makefile	/^MLXDIR		= mlxlib$/;"	m
-MLXDIR	offline/Makefile	/^MLXDIR		= mlxlib$/;"	m
 MLXFLAGS	Makefile	/^MLXFLAGS	= -framework OpenGL -framework AppKit$/;"	m
 MLXFLAGS	Makefile	/^MLXFLAGS	= -lX11 -lXext -lm$/;"	m
-MLXFLAGS	offline/Makefile	/^MLXFLAGS	= -framework OpenGL -framework AppKit$/;"	m
-MLXFLAGS	offline/Makefile	/^MLXFLAGS	= -lX11 -lXext -lm$/;"	m
 MLX_H	mlxlib/mlx.h	/^#define	MLX_H$/;"	d
 MLX_INT_H	mlxlib/mlx_int.h	/^# define MLX_INT_H$/;"	d
 MLX_MAX_EVENT	mlxlib/mlx_int.h	/^# define MLX_MAX_EVENT /;"	d
@@ -161,9 +120,7 @@ MLX_TYPE_SHM	mlxlib/mlx_int.h	/^# define MLX_TYPE_SHM /;"	d
 MLX_TYPE_SHM_PIXMAP	mlxlib/mlx_int.h	/^# define MLX_TYPE_SHM_PIXMAP /;"	d
 MLX_TYPE_XIMAGE	mlxlib/mlx_int.h	/^# define MLX_TYPE_XIMAGE /;"	d
 MOVE_SPEED	include/cubed.h	/^#define MOVE_SPEED /;"	d
-MOVE_SPEED	offline/cubed.h	/^#define MOVE_SPEED /;"	d
 M_PI	include/cubed.h	/^#  define M_PI /;"	d
-M_PI	offline/cubed.h	/^#  define M_PI /;"	d
 MiniLibX	mlxlib/man/man1/mlx.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
 MiniLibX	mlxlib/man/man1/mlx_loop.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
 MiniLibX	mlxlib/man/man1/mlx_new_image.1	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
@@ -188,28 +145,20 @@ NAME	mlxlib/man/man3/mlx_new_image.3	/^.SH NAME$/;"	s	title:MiniLibX
 NAME	mlxlib/man/man3/mlx_new_window.3	/^.SH NAME$/;"	s	title:MiniLibX
 NAME	mlxlib/man/man3/mlx_pixel_put.3	/^.SH NAME$/;"	s	title:MiniLibX
 NAME	mlxlib/test/Makefile.mk	/^NAME= mlx-test$/;"	m
-NAME	offline/Makefile	/^NAME	= cub3d$/;"	m
 NAME_UNAME	mlxlib/Makefile.mk	/^NAME_UNAME	= libmlx_$(UNAME).a$/;"	m
 NORTH	include/cubed.h	/^	NORTH = 0,$/;"	e	enum:e_compas
-NORTH	offline/cubed.h	/^	NORTH = 0,$/;"	e	enum:e_compas
 OBJ	Makefile	/^OBJ			= $(SRC:.c=.o)$/;"	m
 OBJ	mlxlib/Makefile.mk	/^OBJ	= $(addprefix $(OBJ_DIR)\/,$(SRC:%.c=%.o))$/;"	m
 OBJ	mlxlib/test/Makefile.mk	/^OBJ = $(SRC:%.c=%.o)$/;"	m
-OBJ	offline/Makefile	/^OBJ			= $(SRC:.c=.o)$/;"	m
 OBJS	libft/Makefile	/^OBJS := $(SRCS:.c=.o)$/;"	m
 OBJ_DIR	mlxlib/Makefile.mk	/^OBJ_DIR = obj$/;"	m
 PRINT	include/cubed.h	/^#define PRINT(/;"	d
-PRINT	offline/cubed.h	/^#define PRINT(/;"	d
 PURPLE	Makefile	/^PURPLE	= \\033[1;35m$/;"	m
-PURPLE	offline/Makefile	/^PURPLE	= \\033[1;35m$/;"	m
 RED	Makefile	/^RED		= \\033[1;31m$/;"	m
 RED	include/cubed.h	/^	RED = 0,$/;"	e	enum:e_rgb
 RED	libft/Makefile	/^RED		= \\033[1;31m$/;"	m
-RED	offline/Makefile	/^RED		= \\033[1;31m$/;"	m
-RED	offline/cubed.h	/^	RED = 0,$/;"	e	enum:e_rgb
 RESET	Makefile	/^RESET	= \\033[0m$/;"	m
 RESET	libft/Makefile	/^RESET	= \\033[0m$/;"	m
-RESET	offline/Makefile	/^RESET	= \\033[0m$/;"	m
 RETURN	mlxlib/man/man1/mlx.1	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
 RETURN	mlxlib/man/man1/mlx_new_image.1	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
 RETURN	mlxlib/man/man1/mlx_new_window.1	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
@@ -219,7 +168,6 @@ RETURN	mlxlib/man/man3/mlx_new_window.3	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
 RETURN	mlxlib/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
 RM	libft/Makefile	/^RM		= rm -f$/;"	m
 ROT_SPEED	include/cubed.h	/^#define ROT_SPEED /;"	d
-ROT_SPEED	offline/cubed.h	/^#define ROT_SPEED /;"	d
 SEE	mlxlib/man/man1/mlx.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	mlxlib/man/man1/mlx_loop.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	mlxlib/man/man1/mlx_new_image.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
@@ -231,22 +179,15 @@ SEE	mlxlib/man/man3/mlx_new_image.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	mlxlib/man/man3/mlx_new_window.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	mlxlib/man/man3/mlx_pixel_put.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SOUTH	include/cubed.h	/^	SOUTH = 2,$/;"	e	enum:e_compas
-SOUTH	offline/cubed.h	/^	SOUTH = 2,$/;"	e	enum:e_compas
 SRC	Makefile	/^SRC			= $(SRCS_INIT) $(SRCS_MAIN) $(SRCS_CL_ER) $(SRCS_PROGRAM)$/;"	m
 SRC	mlxlib/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \\$/;"	m
 SRC	mlxlib/test/Makefile.mk	/^SRC = main.c$/;"	m
-SRC	offline/Makefile	/^SRC			= $(SRCS_INIT) $(SRCS_MAIN) $(SRCS_CL_ER) $(SRCS_PROGRAM)$/;"	m
 SRCDIR	Makefile	/^SRCDIR		= srcs$/;"	m
-SRCDIR	offline/Makefile	/^SRCDIR		= srcs$/;"	m
 SRCS	libft/Makefile	/^SRCS := $(SRC_ERROR) $(SRC_CHAR) $(SRC_STRING) $(SRC_MEMORY) $(SRC_CONV) \\$/;"	m
 SRCS_CL_ER	Makefile	/^SRCS_CL_ER	= \\$/;"	m
-SRCS_CL_ER	offline/Makefile	/^SRCS_CL_ER	= \\$/;"	m
 SRCS_INIT	Makefile	/^SRCS_INIT 	= \\$/;"	m
-SRCS_INIT	offline/Makefile	/^SRCS_INIT 	= \\$/;"	m
 SRCS_MAIN	Makefile	/^SRCS_MAIN 	= $(SRCDIR)\/main.c$/;"	m
-SRCS_MAIN	offline/Makefile	/^SRCS_MAIN 	= $(SRCDIR)\/main.c$/;"	m
 SRCS_PROGRAM	Makefile	/^SRCS_PROGRAM = \\$/;"	m
-SRCS_PROGRAM	offline/Makefile	/^SRCS_PROGRAM = \\$/;"	m
 SRC_ARR	libft/Makefile	/^SRC_ARR := \\$/;"	m
 SRC_CHAR	libft/Makefile	/^SRC_CHAR := \\$/;"	m
 SRC_CONV	libft/Makefile	/^SRC_CONV := \\$/;"	m
@@ -260,7 +201,6 @@ SRC_STRING	libft/Makefile	/^SRC_STRING := \\$/;"	m
 STORING	mlxlib/man/man1/mlx_new_image.1	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 STORING	mlxlib/man/man3/mlx_new_image.3	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 SUCCESS	include/cubed.h	/^# define SUCCESS /;"	d
-SUCCESS	offline/cubed.h	/^# define SUCCESS /;"	d
 SYNOPSYS	mlxlib/man/man1/mlx.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 SYNOPSYS	mlxlib/man/man1/mlx_loop.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 SYNOPSYS	mlxlib/man/man1/mlx_new_image.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
@@ -272,16 +212,12 @@ SYNOPSYS	mlxlib/man/man3/mlx_new_image.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 SYNOPSYS	mlxlib/man/man3/mlx_new_window.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 SYNOPSYS	mlxlib/man/man3/mlx_pixel_put.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 TILE_SIZE	include/cubed.h	/^# define TILE_SIZE /;"	d
-TILE_SIZE	offline/cubed.h	/^# define TILE_SIZE /;"	d
 UNAME	Makefile	/^UNAME		= $(shell uname)$/;"	m
 UNAME	mlxlib/Makefile.mk	/^UNAME = $(shell uname)$/;"	m
 UNAME	mlxlib/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
-UNAME	offline/Makefile	/^UNAME		= $(shell uname)$/;"	m
 WARN_SHM_ATTACH	mlxlib/mlx_int.h	/^# define WARN_SHM_ATTACH /;"	d
 WEST	include/cubed.h	/^	WEST = 3$/;"	e	enum:e_compas
-WEST	offline/cubed.h	/^	WEST = 3$/;"	e	enum:e_compas
 WIDTH	include/cubed.h	/^# define WIDTH /;"	d
-WIDTH	offline/cubed.h	/^# define WIDTH /;"	d
 WIN1_SX	mlxlib/test/main.c	/^#define	WIN1_SX	/;"	d	file:
 WIN1_SY	mlxlib/test/main.c	/^#define	WIN1_SY	/;"	d	file:
 X-WINDOW	mlxlib/man/man1/mlx.1	/^.SH X-WINDOW CONCEPT$/;"	s	title:MiniLibX
@@ -293,45 +229,30 @@ XPM	mlxlib/man/man3/mlx_new_image.3	/^.SH XPM IMAGES$/;"	s	title:MiniLibX
 X_ShmAttach	mlxlib/mlx_new_image.c	/^#define	X_ShmAttach	/;"	d	file:
 YELLOW	Makefile	/^YELLOW	= \\033[1;33m$/;"	m
 YELLOW	libft/Makefile	/^YELLOW	= \\033[1;33m$/;"	m
-YELLOW	offline/Makefile	/^YELLOW	= \\033[1;33m$/;"	m
-_s2_put_pixel	offline/render.c	/^void	_s2_put_pixel(t_cubed *c, int x, int y, int color)$/;"	f	typeref:typename:void
-_s2_put_pixel	srcs/program/render.c	/^void	_s2_put_pixel(t_cubed *c, int x, int y, int color)$/;"	f	typeref:typename:void
 _s2_render_scene	offline/render.c	/^static void	_s2_render_scene(t_cubed *c)$/;"	f	typeref:typename:void	file:
 _s2_render_scene	srcs/program/render.c	/^static void	_s2_render_scene(t_cubed *c)$/;"	f	typeref:typename:void	file:
-_s_my_mlx_pixel_put	offline/minimap.c	/^void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color)$/;"	f	typeref:typename:void
-_s_my_mlx_pixel_put	srcs/program/minimap.c	/^void	_s_my_mlx_pixel_put(t_cubed *cubed, int x, int y, int color)$/;"	f	typeref:typename:void
 adr	include/cubed.h	/^	char		*adr;$/;"	m	struct:s_mlx	typeref:typename:char *
 adr	include/cubed.h	/^	char	*adr;$/;"	m	struct:s_tex	typeref:typename:char *
-adr	offline/cubed.h	/^	char		*adr;$/;"	m	struct:s_mlx	typeref:typename:char *
-adr	offline/cubed.h	/^	char	*adr;$/;"	m	struct:s_tex	typeref:typename:char *
 agency	libft/src/gnl/get_next_line.c	/^static char	*agency(int fd, char *line, char *buf)$/;"	f	typeref:typename:char *	file:
 all	Makefile	/^all: banner $(NAME)$/;"	t
 all	libft/Makefile	/^all: $(NAME)$/;"	t
 all	mlxlib/Makefile	/^all	: do_configure$/;"	t
 all	mlxlib/Makefile.mk	/^all	: $(NAME)$/;"	t
 all	mlxlib/test/Makefile.mk	/^all: $(NAME)$/;"	t
-all	offline/Makefile	/^all: banner $(NAME)$/;"	t
 angle	include/cubed.h	/^	float	angle;$/;"	m	struct:s_player	typeref:typename:float
 angle	include/cubed.h	/^    float	angle;$/;"	m	struct:s_ray	typeref:typename:float
-angle	offline/cubed.h	/^	float	angle;$/;"	m	struct:s_player	typeref:typename:float
-angle	offline/cubed.h	/^    float	angle;$/;"	m	struct:s_ray	typeref:typename:float
 append_line	srcs/init/read_file.c	/^static char	*append_line(char *content, char *line)$/;"	f	typeref:typename:char *	file:
 at_exit	mlxlib/test/run_tests.sh	/^at_exit() {$/;"	f
 banner	Makefile	/^banner:$/;"	t
-banner	offline/Makefile	/^banner:$/;"	t
 bpp	include/cubed.h	/^	int			bpp;$/;"	m	struct:s_mlx	typeref:typename:int
 bpp	include/cubed.h	/^	int		bpp;$/;"	m	struct:s_tex	typeref:typename:int
 bpp	mlxlib/mlx_int.h	/^	int				bpp;$/;"	m	struct:s_img	typeref:typename:int
-bpp	offline/cubed.h	/^	int			bpp;$/;"	m	struct:s_mlx	typeref:typename:int
-bpp	offline/cubed.h	/^	int		bpp;$/;"	m	struct:s_tex	typeref:typename:int
 bpp1	mlxlib/test/main.c	/^int	bpp1;$/;"	v	typeref:typename:int
 bpp2	mlxlib/test/main.c	/^int	bpp2;$/;"	v	typeref:typename:int
 bpp3	mlxlib/test/main.c	/^int	bpp3;$/;"	v	typeref:typename:int
 bpp4	mlxlib/test/main.c	/^int	bpp4;$/;"	v	typeref:typename:int
 c	include/cubed.h	/^	char	c;$/;"	m	struct:s_rect	typeref:typename:char
 c	include/cubed.h	/^	int		c;$/;"	m	struct:s_player	typeref:typename:int
-c	offline/cubed.h	/^	char	c;$/;"	m	struct:s_rect	typeref:typename:char
-c	offline/cubed.h	/^	int		c;$/;"	m	struct:s_player	typeref:typename:int
 c_check	libft/src/arr/ft_split.c	/^int	c_check(char s, char c)$/;"	f	typeref:typename:int
 c_dup	libft/src/arr/ft_split.c	/^char	*c_dup(char const *str, char c)$/;"	f	typeref:typename:char *
 c_len	libft/src/arr/ft_split.c	/^int	c_len(char const *str, char c)$/;"	f	typeref:typename:int
@@ -358,7 +279,6 @@ calc_tex_x	srcs/program/textures_1.c	/^void	calc_tex_x(t_ray *r)$/;"	f	typeref:t
 can_move	offline/player.c	/^int	can_move(t_cubed *cubed, float nx, float ny)$/;"	f	typeref:typename:int
 can_move	srcs/program/player.c	/^int	can_move(t_cubed *cubed, float nx, float ny)$/;"	f	typeref:typename:int
 cell	include/cubed.h	/^	int		cell;$/;"	m	struct:s_minimap	typeref:typename:int
-cell	offline/cubed.h	/^	int		cell;$/;"	m	struct:s_minimap	typeref:typename:int
 check	mlxlib/Makefile.mk	/^check: all$/;"	t
 check_for_hit	offline/raycaster_2.c	/^void	check_for_hit(t_cubed *c, t_ray *r)$/;"	f	typeref:typename:void
 check_for_hit	srcs/program/raycaster_2.c	/^void	check_for_hit(t_cubed *c, t_ray *r)$/;"	f	typeref:typename:void
@@ -370,29 +290,22 @@ clean	mlxlib/Makefile	/^clean	:$/;"	t
 clean	mlxlib/Makefile.mk	/^clean	:$/;"	t
 clean	mlxlib/configure	/^clean(){$/;"	f
 clean	mlxlib/test/Makefile.mk	/^clean:$/;"	t
-clean	offline/Makefile	/^clean: banner$/;"	t
 close_window	offline/keys.c	/^int	close_window(void *param)$/;"	f	typeref:typename:int
 close_window	srcs/program/keys.c	/^int	close_window(void *param)$/;"	f	typeref:typename:int
 cmap	mlxlib/mlx_int.h	/^	Colormap	cmap;$/;"	m	struct:s_xvar	typeref:typename:Colormap
 col	mlxlib/mlx_int.h	/^	int		col;$/;"	m	struct:s_xpm_col	typeref:typename:int
 color	include/cubed.h	/^	int		color;$/;"	m	struct:s_minimap	typeref:typename:int
 color	mlxlib/mlx_int.h	/^	int		color;$/;"	m	struct:s_col_name	typeref:typename:int
-color	offline/cubed.h	/^	int		color;$/;"	m	struct:s_minimap	typeref:typename:int
 color_c	include/cubed.h	/^	int			color_c;$/;"	m	struct:s_data	typeref:typename:int
-color_c	offline/cubed.h	/^	int			color_c;$/;"	m	struct:s_data	typeref:typename:int
 color_f	include/cubed.h	/^	int			color_f;$/;"	m	struct:s_data	typeref:typename:int
-color_f	offline/cubed.h	/^	int			color_f;$/;"	m	struct:s_data	typeref:typename:int
 color_map_1	mlxlib/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f	typeref:typename:int
 color_map_2	mlxlib/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f	typeref:typename:int
 compas	include/cubed.h	/^    t_compas	compas;$/;"	m	struct:s_data	typeref:typename:t_compas
-compas	offline/cubed.h	/^    t_compas	compas;$/;"	m	struct:s_data	typeref:typename:t_compas
 content	libft/libft.h	/^	long			content;$/;"	m	struct:s_list	typeref:typename:long
 copy_and_find	srcs/init/parse_map.c	/^static int	copy_and_find(t_cubed *cubed, char **lines, int h)$/;"	f	typeref:typename:int	file:
 cords_p	include/cubed.h	/^    int     	cords_p[2];$/;"	m	struct:s_data	typeref:typename:int[2]
-cords_p	offline/cubed.h	/^    int     	cords_p[2];$/;"	m	struct:s_data	typeref:typename:int[2]
 data	include/cubed.h	/^	t_data		data;$/;"	m	struct:s_cubed	typeref:typename:t_data
 data	mlxlib/mlx_int.h	/^	char			*data;$/;"	m	struct:s_img	typeref:typename:char *
-data	offline/cubed.h	/^	t_data		data;$/;"	m	struct:s_cubed	typeref:typename:t_data
 data1	mlxlib/test/main.c	/^char	*data1;$/;"	v	typeref:typename:char *
 data2	mlxlib/test/main.c	/^char	*data2;$/;"	v	typeref:typename:char *
 data3	mlxlib/test/main.c	/^char	*data3;$/;"	v	typeref:typename:char *
@@ -401,41 +314,34 @@ decrgb	mlxlib/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar	typeref:typename
 define_texture_compass	offline/textures_1.c	/^void	define_texture_compass(t_ray *r)$/;"	f	typeref:typename:void
 define_texture_compass	srcs/program/textures_1.c	/^void	define_texture_compass(t_ray *r)$/;"	f	typeref:typename:void
 delta_dist_x	include/cubed.h	/^	double	delta_dist_x;$/;"	m	struct:s_ray	typeref:typename:double
-delta_dist_x	offline/cubed.h	/^	double	delta_dist_x;$/;"	m	struct:s_ray	typeref:typename:double
 delta_dist_y	include/cubed.h	/^	double	delta_dist_y;$/;"	m	struct:s_ray	typeref:typename:double
-delta_dist_y	offline/cubed.h	/^	double	delta_dist_y;$/;"	m	struct:s_ray	typeref:typename:double
 depth	mlxlib/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar	typeref:typename:int
 dirX	include/cubed.h	/^	double	dirX;$/;"	m	struct:s_player	typeref:typename:double
-dirX	offline/cubed.h	/^	double	dirX;$/;"	m	struct:s_player	typeref:typename:double
 dirY	include/cubed.h	/^	double	dirY;$/;"	m	struct:s_player	typeref:typename:double
-dirY	offline/cubed.h	/^	double	dirY;$/;"	m	struct:s_player	typeref:typename:double
 display	mlxlib/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar	typeref:typename:Display *
 distance	include/cubed.h	/^    float	distance;$/;"	m	struct:s_ray	typeref:typename:float
-distance	offline/cubed.h	/^    float	distance;$/;"	m	struct:s_ray	typeref:typename:float
 divider	scripts/compiler.sh	/^divider() {$/;"	f
 do_configure	mlxlib/Makefile	/^do_configure	:$/;"	t
 do_flush	mlxlib/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar	typeref:typename:int
 draw_cell	offline/minimap.c	/^void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m)$/;"	f	typeref:typename:void
 draw_cell	srcs/program/minimap.c	/^void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m)$/;"	f	typeref:typename:void
 draw_end	include/cubed.h	/^	int	draw_end;$/;"	m	struct:s_ray	typeref:typename:int
-draw_end	offline/cubed.h	/^	int	draw_end;$/;"	m	struct:s_ray	typeref:typename:int
+draw_line_minimap	offline/minimap.c	/^void	draw_line_minimap(t_cubed *cubed, int x0, int y0, int x1, int y1, int color)$/;"	f	typeref:typename:void
+draw_line_minimap	srcs/program/minimap.c	/^void	draw_line_minimap(t_cubed *cubed, int x0, int y0, int x1, int y1, int color)$/;"	f	typeref:typename:void
 draw_minimap	offline/minimap.c	/^int	draw_minimap(t_cubed *cubed)$/;"	f	typeref:typename:int
 draw_minimap	srcs/program/minimap.c	/^int	draw_minimap(t_cubed *cubed)$/;"	f	typeref:typename:int
 draw_player	offline/player.c	/^void	draw_player(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
 draw_player	srcs/program/player.c	/^void	draw_player(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
+draw_player_ray	offline/player.c	/^void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
+draw_player_ray	srcs/program/player.c	/^void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
 draw_start	include/cubed.h	/^	int	draw_start;$/;"	m	struct:s_ray	typeref:typename:int
-draw_start	offline/cubed.h	/^	int	draw_start;$/;"	m	struct:s_ray	typeref:typename:int
 draw_vertical_column	offline/textures_2.c	/^void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr)$/;"	f	typeref:typename:void
 draw_vertical_column	srcs/program/textures_2.c	/^void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr)$/;"	f	typeref:typename:void
 e_compas	include/cubed.h	/^typedef enum e_compas$/;"	g
-e_compas	offline/cubed.h	/^typedef enum e_compas$/;"	g
 e_rgb	include/cubed.h	/^typedef enum e_rgb$/;"	g
-e_rgb	offline/cubed.h	/^typedef enum e_rgb$/;"	g
 end_loop	mlxlib/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar	typeref:typename:int
 endian	include/cubed.h	/^	int			endian;$/;"	m	struct:s_mlx	typeref:typename:int
 endian	include/cubed.h	/^	int		endian;$/;"	m	struct:s_tex	typeref:typename:int
-endian	offline/cubed.h	/^	int			endian;$/;"	m	struct:s_mlx	typeref:typename:int
-endian	offline/cubed.h	/^	int		endian;$/;"	m	struct:s_tex	typeref:typename:int
 endian1	mlxlib/test/main.c	/^int	endian1;$/;"	v	typeref:typename:int
 endian2	mlxlib/test/main.c	/^int	endian2;$/;"	v	typeref:typename:int
 endian3	mlxlib/test/main.c	/^int	endian3;$/;"	v	typeref:typename:int
@@ -449,14 +355,11 @@ f_type	libft/src/printf/ft_fprintf.c	/^static int	f_type(char s, va_list va)$/;"
 f_type	libft/src/printf/ft_printf.c	/^static int	f_type(char s, va_list va)$/;"	f	typeref:typename:int	file:
 fclean	Makefile	/^fclean: banner$/;"	t
 fclean	libft/Makefile	/^fclean: clean$/;"	t
-fclean	offline/Makefile	/^fclean: banner$/;"	t
 find_x_coord_on_texture	offline/textures_1.c	/^void	find_x_coord_on_texture(t_cubed *c, t_ray *r)$/;"	f	typeref:typename:void
 find_x_coord_on_texture	srcs/program/textures_1.c	/^void	find_x_coord_on_texture(t_cubed *c, t_ray *r)$/;"	f	typeref:typename:void
 format	mlxlib/mlx_int.h	/^	int				format;$/;"	m	struct:s_img	typeref:typename:int
 found	include/cubed.h	/^	int		found;$/;"	m	struct:s_tex	typeref:typename:int
-found	offline/cubed.h	/^	int		found;$/;"	m	struct:s_tex	typeref:typename:int
 fov	include/cubed.h	/^	float	fov;$/;"	m	struct:s_player	typeref:typename:float
-fov	offline/cubed.h	/^	float	fov;$/;"	m	struct:s_player	typeref:typename:float
 free_all	srcs/clean_and_error/err_msg.c	/^void	free_all(t_cubed *cubed)$/;"	f	typeref:typename:void
 free_mlx	srcs/clean_and_error/err_msg.c	/^void	free_mlx(t_cubed *cubed)$/;"	f	typeref:typename:void
 free_static	libft/src/gnl/get_next_line.c	/^static void	free_static(char **s)$/;"	f	typeref:typename:void	file:
@@ -544,16 +447,11 @@ get_time_ms	offline/utils.c	/^long	get_time_ms(void)$/;"	f	typeref:typename:long
 get_time_ms	srcs/program/utils.c	/^long	get_time_ms(void)$/;"	f	typeref:typename:long
 get_xlib_include_path	mlxlib/configure	/^get_xlib_include_path(){$/;"	f
 h	include/cubed.h	/^	float	h;$/;"	m	struct:s_rect	typeref:typename:float
-h	offline/cubed.h	/^	float	h;$/;"	m	struct:s_rect	typeref:typename:float
 height	include/cubed.h	/^	int		height;$/;"	m	struct:s_tex	typeref:typename:int
 height	mlxlib/mlx_int.h	/^	int				height;$/;"	m	struct:s_img	typeref:typename:int
-height	offline/cubed.h	/^	int		height;$/;"	m	struct:s_tex	typeref:typename:int
 hit	include/cubed.h	/^	int	hit;$/;"	m	struct:s_ray	typeref:typename:int
-hit	offline/cubed.h	/^	int	hit;$/;"	m	struct:s_ray	typeref:typename:int
 hit_x	include/cubed.h	/^    int		hit_x;$/;"	m	struct:s_ray	typeref:typename:int
-hit_x	offline/cubed.h	/^    int		hit_x;$/;"	m	struct:s_ray	typeref:typename:int
 hit_y	include/cubed.h	/^    int		hit_y;$/;"	m	struct:s_ray	typeref:typename:int
-hit_y	offline/cubed.h	/^    int		hit_y;$/;"	m	struct:s_ray	typeref:typename:int
 hook	mlxlib/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list	typeref:typename:int (*)()
 hooks	mlxlib/mlx_int.h	/^	t_event_list		hooks[MLX_MAX_EVENT];$/;"	m	struct:s_win_list	typeref:typename:t_event_list[]
 im1	mlxlib/test/main.c	/^void    *im1;$/;"	v	typeref:typename:void *
@@ -563,8 +461,6 @@ im4	mlxlib/test/main.c	/^void	*im4;$/;"	v	typeref:typename:void *
 image	mlxlib/mlx_int.h	/^	XImage			*image;$/;"	m	struct:s_img	typeref:typename:XImage *
 img	include/cubed.h	/^	void		*img;$/;"	m	struct:s_mlx	typeref:typename:void *
 img	include/cubed.h	/^	void	*img;$/;"	m	struct:s_tex	typeref:typename:void *
-img	offline/cubed.h	/^	void		*img;$/;"	m	struct:s_mlx	typeref:typename:void *
-img	offline/cubed.h	/^	void	*img;$/;"	m	struct:s_tex	typeref:typename:void *
 index	libft/libft.h	/^	int				index;$/;"	m	struct:s_list	typeref:typename:int
 init	srcs/init/utils.c	/^void	init(t_cubed *cubed)$/;"	f	typeref:typename:void
 init_cubed	srcs/init/init_cubed.c	/^int	init_cubed(t_cubed *cubed, char *file)$/;"	f	typeref:typename:int
@@ -588,11 +484,8 @@ key_win1	mlxlib/test/main.c	/^int	key_win1(int key,void *p)$/;"	f	typeref:typena
 key_win2	mlxlib/test/main.c	/^int	key_win2(int key,void *p)$/;"	f	typeref:typename:int
 key_win3	mlxlib/test/main.c	/^int	key_win3(int key,void *p)$/;"	f	typeref:typename:int
 keys	include/cubed.h	/^	int			keys[300];$/;"	m	struct:s_cubed	typeref:typename:int[300]
-keys	offline/cubed.h	/^	int			keys[300];$/;"	m	struct:s_cubed	typeref:typename:int[300]
 last_time	include/cubed.h	/^	long		last_time;$/;"	m	struct:s_cubed	typeref:typename:long
-last_time	offline/cubed.h	/^	long		last_time;$/;"	m	struct:s_cubed	typeref:typename:long
 line_height	include/cubed.h	/^	int	line_height;$/;"	m	struct:s_ray	typeref:typename:int
-line_height	offline/cubed.h	/^	int	line_height;$/;"	m	struct:s_ray	typeref:typename:int
 list_flags	scripts/wrapper.sh	/^list_flags() {$/;"	f
 load_texture	srcs/init/color.c	/^void	load_texture(t_cubed *cubed, t_compas dir, char *path)$/;"	f	typeref:typename:void
 local_endian	mlxlib/test/main.c	/^int	local_endian;$/;"	v	typeref:typename:int
@@ -610,30 +503,20 @@ main	mlxlib/test/new_win.c	/^int main()$/;"	f	typeref:typename:int
 main	mlxlib/test/run_tests.sh	/^main(){$/;"	f
 main	srcs/main.c	/^int	main(int ac, char **av)$/;"	f	typeref:typename:int
 map	include/cubed.h	/^    char    	**map;$/;"	m	struct:s_data	typeref:typename:char **
-map	offline/cubed.h	/^    char    	**map;$/;"	m	struct:s_data	typeref:typename:char **
 map_h	include/cubed.h	/^    int		map_h;$/;"	m	struct:s_data	typeref:typename:int
-map_h	offline/cubed.h	/^    int		map_h;$/;"	m	struct:s_data	typeref:typename:int
 map_height	include/cubed.h	/^	int		map_height;$/;"	m	struct:s_minimap	typeref:typename:int
-map_height	offline/cubed.h	/^	int		map_height;$/;"	m	struct:s_minimap	typeref:typename:int
 map_w	include/cubed.h	/^    int		map_w;$/;"	m	struct:s_data	typeref:typename:int
-map_w	offline/cubed.h	/^    int		map_w;$/;"	m	struct:s_data	typeref:typename:int
 map_width	include/cubed.h	/^	int		map_width;$/;"	m	struct:s_minimap	typeref:typename:int
-map_width	offline/cubed.h	/^	int		map_width;$/;"	m	struct:s_minimap	typeref:typename:int
 map_x	include/cubed.h	/^	int	map_x;$/;"	m	struct:s_ray	typeref:typename:int
-map_x	offline/cubed.h	/^	int	map_x;$/;"	m	struct:s_ray	typeref:typename:int
 map_y	include/cubed.h	/^	int	map_y;$/;"	m	struct:s_ray	typeref:typename:int
-map_y	offline/cubed.h	/^	int	map_y;$/;"	m	struct:s_ray	typeref:typename:int
 mask	mlxlib/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list	typeref:typename:int
 minimap	include/cubed.h	/^    t_minimap	minimap;$/;"	m	struct:s_cubed	typeref:typename:t_minimap
-minimap	offline/cubed.h	/^    t_minimap	minimap;$/;"	m	struct:s_cubed	typeref:typename:t_minimap
 minimap_settings	offline/minimap.c	/^int	minimap_settings(t_cubed *cubed, t_minimap *m)$/;"	f	typeref:typename:int
 minimap_settings	srcs/program/minimap.c	/^int	minimap_settings(t_cubed *cubed, t_minimap *m)$/;"	f	typeref:typename:int
 mlx	include/cubed.h	/^	t_mlx		mlx;$/;"	m	struct:s_cubed	typeref:typename:t_mlx
 mlx	include/cubed.h	/^	void		*mlx;$/;"	m	struct:s_mlx	typeref:typename:void *
 mlx	mlxlib/test/main.c	/^void	*mlx;$/;"	v	typeref:typename:void *
 mlx	mlxlib/test/new_win.c	/^void *mlx;$/;"	v	typeref:typename:void *
-mlx	offline/cubed.h	/^	t_mlx		mlx;$/;"	m	struct:s_cubed	typeref:typename:t_mlx
-mlx	offline/cubed.h	/^	void		*mlx;$/;"	m	struct:s_mlx	typeref:typename:void *
 mlx_X_error	mlxlib/mlx_new_image.c	/^int	mlx_X_error;$/;"	v	typeref:typename:int
 mlx_clear_window	mlxlib/mlx_clear_window.c	/^int		mlx_clear_window(t_xvar *xvar,t_win_list *win)$/;"	f	typeref:typename:int
 mlx_col_name	mlxlib/mlx_rgb.c	/^struct s_col_name mlx_col_name[] =$/;"	v	typeref:struct:s_col_name[]
@@ -714,12 +597,9 @@ name	mlxlib/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col	typeref:typename:int
 next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 next	mlxlib/mlx_int.h	/^	struct s_win_list	*next;$/;"	m	struct:s_win_list	typeref:struct:s_win_list *
 offset_x	include/cubed.h	/^	int		offset_x;$/;"	m	struct:s_minimap	typeref:typename:int
-offset_x	offline/cubed.h	/^	int		offset_x;$/;"	m	struct:s_minimap	typeref:typename:int
 offset_y	include/cubed.h	/^	int		offset_y;$/;"	m	struct:s_minimap	typeref:typename:int
-offset_y	offline/cubed.h	/^	int		offset_y;$/;"	m	struct:s_minimap	typeref:typename:int
 open_all_files	scripts/wrapper.sh	/^open_all_files() {$/;"	f
 p	include/cubed.h	/^	t_player	p;$/;"	m	struct:s_cubed	typeref:typename:t_player
-p	offline/cubed.h	/^	t_player	p;$/;"	m	struct:s_cubed	typeref:typename:t_player
 param	mlxlib/mlx_int.h	/^	void	*param;$/;"	m	struct:s_event_list	typeref:typename:void *
 parse_args	mlxlib/configure	/^parse_args(){$/;"	f
 parse_file	srcs/init/init_cubed.c	/^int	parse_file(t_cubed *cubed, char **lines)$/;"	f	typeref:typename:int
@@ -727,12 +607,9 @@ parse_header_line	srcs/init/color.c	/^int parse_header_line(t_cubed *cubed, char
 parse_map	srcs/init/parse_map.c	/^int	parse_map(t_cubed *cubed, char **lines)$/;"	f	typeref:typename:int
 parse_rgb	srcs/init/color.c	/^int	parse_rgb(char *s)$/;"	f	typeref:typename:int
 perp_wall_dist	include/cubed.h	/^	double	perp_wall_dist;$/;"	m	struct:s_ray	typeref:typename:double
-perp_wall_dist	offline/cubed.h	/^	double	perp_wall_dist;$/;"	m	struct:s_ray	typeref:typename:double
 pix	mlxlib/mlx_int.h	/^	Pixmap			pix;$/;"	m	struct:s_img	typeref:typename:Pixmap
 planeX	include/cubed.h	/^	double	planeX;$/;"	m	struct:s_player	typeref:typename:double
-planeX	offline/cubed.h	/^	double	planeX;$/;"	m	struct:s_player	typeref:typename:double
 planeY	include/cubed.h	/^	double	planeY;$/;"	m	struct:s_player	typeref:typename:double
-planeY	offline/cubed.h	/^	double	planeY;$/;"	m	struct:s_player	typeref:typename:double
 player_forward_backward	offline/movement.c	/^void	player_forward_backward(t_cubed *cubed)$/;"	f	typeref:typename:void
 player_forward_backward	srcs/program/movement.c	/^void	player_forward_backward(t_cubed *cubed)$/;"	f	typeref:typename:void
 player_rotate_left	offline/movement.c	/^void	player_rotate_left(t_cubed *c)$/;"	f	typeref:typename:void
@@ -745,19 +622,16 @@ private_cmap	mlxlib/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar	typeref
 process	offline/process_main.c	/^int	process(t_cubed *cubed)$/;"	f	typeref:typename:int
 process	srcs/program/process_main.c	/^int	process(t_cubed *cubed)$/;"	f	typeref:typename:int
 pshm_format	mlxlib/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar	typeref:typename:int
+put_pixel	offline/render.c	/^void	put_pixel(t_cubed *c, int x, int y, int color)$/;"	f	typeref:typename:void
+put_pixel	srcs/program/render.c	/^void	put_pixel(t_cubed *c, int x, int y, int color)$/;"	f	typeref:typename:void
 r	include/cubed.h	/^	float	r;$/;"	m	struct:s_player	typeref:typename:float
-r	offline/cubed.h	/^	float	r;$/;"	m	struct:s_player	typeref:typename:float
 ray	include/cubed.h	/^	t_ray		ray;$/;"	m	struct:s_cubed	typeref:typename:t_ray
-ray	offline/cubed.h	/^	t_ray		ray;$/;"	m	struct:s_cubed	typeref:typename:t_ray
 ray_dir_x	include/cubed.h	/^	double	ray_dir_x;$/;"	m	struct:s_ray	typeref:typename:double
-ray_dir_x	offline/cubed.h	/^	double	ray_dir_x;$/;"	m	struct:s_ray	typeref:typename:double
 ray_dir_y	include/cubed.h	/^	double	ray_dir_y;$/;"	m	struct:s_ray	typeref:typename:double
-ray_dir_y	offline/cubed.h	/^	double	ray_dir_y;$/;"	m	struct:s_ray	typeref:typename:double
 re	Makefile	/^re: banner fclean all$/;"	t
 re	libft/Makefile	/^re: fclean all/;"	t
 re	mlxlib/Makefile	/^re	: clean all$/;"	t
 re	mlxlib/test/Makefile.mk	/^re: clean all$/;"	t
-re	offline/Makefile	/^re: banner fclean all$/;"	t
 read_file	srcs/init/read_file.c	/^char	*read_file(const char *file)$/;"	f	typeref:typename:char *
 render_next_frame	offline/render.c	/^int	render_next_frame(t_cubed *cubed)$/;"	f	typeref:typename:int
 render_next_frame	srcs/program/render.c	/^int	render_next_frame(t_cubed *cubed)$/;"	f	typeref:typename:int
@@ -766,30 +640,21 @@ reset_background	srcs/program/draw.c	/^void	reset_background(t_cubed *cubed)$/;"
 root	mlxlib/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
 s_col_name	mlxlib/mlx_int.h	/^struct	s_col_name$/;"	s
 s_cubed	include/cubed.h	/^typedef struct s_cubed$/;"	s
-s_cubed	offline/cubed.h	/^typedef struct s_cubed$/;"	s
 s_data	include/cubed.h	/^typedef struct s_data$/;"	s
-s_data	offline/cubed.h	/^typedef struct s_data$/;"	s
 s_event_list	mlxlib/mlx_int.h	/^typedef struct	s_event_list$/;"	s
 s_img	mlxlib/mlx_int.h	/^typedef struct	s_img$/;"	s
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
 s_minimap	include/cubed.h	/^typedef struct s_minimap$/;"	s
-s_minimap	offline/cubed.h	/^typedef struct s_minimap$/;"	s
 s_mlx	include/cubed.h	/^typedef struct s_mlx$/;"	s
-s_mlx	offline/cubed.h	/^typedef struct s_mlx$/;"	s
 s_player	include/cubed.h	/^typedef struct s_player$/;"	s
-s_player	offline/cubed.h	/^typedef struct s_player$/;"	s
 s_ray	include/cubed.h	/^typedef struct s_ray$/;"	s
-s_ray	offline/cubed.h	/^typedef struct s_ray$/;"	s
 s_rect	include/cubed.h	/^typedef struct	s_rect$/;"	s
-s_rect	offline/cubed.h	/^typedef struct	s_rect$/;"	s
 s_tex	include/cubed.h	/^typedef struct s_tex$/;"	s
-s_tex	offline/cubed.h	/^typedef struct s_tex$/;"	s
 s_win_list	mlxlib/mlx_int.h	/^typedef struct	s_win_list$/;"	s
 s_xpm_col	mlxlib/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
 s_xvar	mlxlib/mlx_int.h	/^typedef struct	s_xvar$/;"	s
 saved_mode	mlxlib/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v	typeref:typename:RRMode
 scale	include/cubed.h	/^	int		scale;$/;"	m	struct:s_minimap	typeref:typename:int
-scale	offline/cubed.h	/^	int		scale;$/;"	m	struct:s_minimap	typeref:typename:int
 screen	mlxlib/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar	typeref:typename:int
 set_map_size	srcs/init/parse_map.c	/^static void	set_map_size(t_cubed *cubed, char **lines, int *h, int *w)$/;"	f	typeref:typename:void	file:
 set_map_xy	offline/raycaster_1.c	/^void	set_map_xy(t_cubed *c, t_ray *r)$/;"	f	typeref:typename:void
@@ -801,82 +666,52 @@ show	mlxlib/Makefile.mk	/^show:$/;"	t
 show	mlxlib/test/Makefile.mk	/^show:$/;"	t
 show_help	mlxlib/configure	/^show_help(){$/;"	f
 side	include/cubed.h	/^	int	side;$/;"	m	struct:s_ray	typeref:typename:int
-side	offline/cubed.h	/^	int	side;$/;"	m	struct:s_ray	typeref:typename:int
 side_dist_x	include/cubed.h	/^	double	side_dist_x;$/;"	m	struct:s_ray	typeref:typename:double
-side_dist_x	offline/cubed.h	/^	double	side_dist_x;$/;"	m	struct:s_ray	typeref:typename:double
 side_dist_y	include/cubed.h	/^	double	side_dist_y;$/;"	m	struct:s_ray	typeref:typename:double
-side_dist_y	offline/cubed.h	/^	double	side_dist_y;$/;"	m	struct:s_ray	typeref:typename:double
 sigint_handler	mlxlib/test/run_tests.sh	/^sigint_handler(){$/;"	f
 size_line	include/cubed.h	/^	int			size_line;$/;"	m	struct:s_mlx	typeref:typename:int
 size_line	include/cubed.h	/^	int		size_line;$/;"	m	struct:s_tex	typeref:typename:int
 size_line	mlxlib/mlx_int.h	/^	int				size_line;$/;"	m	struct:s_img	typeref:typename:int
-size_line	offline/cubed.h	/^	int			size_line;$/;"	m	struct:s_mlx	typeref:typename:int
-size_line	offline/cubed.h	/^	int		size_line;$/;"	m	struct:s_tex	typeref:typename:int
 sl1	mlxlib/test/main.c	/^int	sl1;$/;"	v	typeref:typename:int
 sl2	mlxlib/test/main.c	/^int	sl2;$/;"	v	typeref:typename:int
 sl3	mlxlib/test/main.c	/^int	sl3;$/;"	v	typeref:typename:int
 sl4	mlxlib/test/main.c	/^int	sl4;$/;"	v	typeref:typename:int
 step	include/cubed.h	/^	double	step;$/;"	m	struct:s_ray	typeref:typename:double
-step	offline/cubed.h	/^	double	step;$/;"	m	struct:s_ray	typeref:typename:double
 step_x	include/cubed.h	/^	int	step_x;$/;"	m	struct:s_ray	typeref:typename:int
-step_x	offline/cubed.h	/^	int	step_x;$/;"	m	struct:s_ray	typeref:typename:int
 step_y	include/cubed.h	/^	int	step_y;$/;"	m	struct:s_ray	typeref:typename:int
-step_y	offline/cubed.h	/^	int	step_y;$/;"	m	struct:s_ray	typeref:typename:int
 strlcpy_is_not_posix	mlxlib/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f	typeref:typename:unsigned int
 t_compas	include/cubed.h	/^}	t_compas;$/;"	t	typeref:enum:e_compas
-t_compas	offline/cubed.h	/^}	t_compas;$/;"	t	typeref:enum:e_compas
 t_cubed	include/cubed.h	/^}   t_cubed;$/;"	t	typeref:struct:s_cubed
-t_cubed	offline/cubed.h	/^}   t_cubed;$/;"	t	typeref:struct:s_cubed
 t_data	include/cubed.h	/^}	t_data;$/;"	t	typeref:struct:s_data
-t_data	offline/cubed.h	/^}	t_data;$/;"	t	typeref:struct:s_data
 t_event_list	mlxlib/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list
 t_img	mlxlib/mlx_int.h	/^}				t_img;$/;"	t	typeref:struct:s_img
 t_list	libft/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
 t_minimap	include/cubed.h	/^}   t_minimap;$/;"	t	typeref:struct:s_minimap
-t_minimap	offline/cubed.h	/^}   t_minimap;$/;"	t	typeref:struct:s_minimap
 t_mlx	include/cubed.h	/^}	t_mlx;$/;"	t	typeref:struct:s_mlx
-t_mlx	offline/cubed.h	/^}	t_mlx;$/;"	t	typeref:struct:s_mlx
 t_player	include/cubed.h	/^}	t_player;$/;"	t	typeref:struct:s_player
-t_player	offline/cubed.h	/^}	t_player;$/;"	t	typeref:struct:s_player
 t_ray	include/cubed.h	/^}   t_ray;$/;"	t	typeref:struct:s_ray
-t_ray	offline/cubed.h	/^}   t_ray;$/;"	t	typeref:struct:s_ray
 t_rect	include/cubed.h	/^} t_rect;$/;"	t	typeref:struct:s_rect
-t_rect	offline/cubed.h	/^} t_rect;$/;"	t	typeref:struct:s_rect
 t_rgb	include/cubed.h	/^}	t_rgb;$/;"	t	typeref:enum:e_rgb
-t_rgb	offline/cubed.h	/^}	t_rgb;$/;"	t	typeref:enum:e_rgb
 t_tex	include/cubed.h	/^}	t_tex;$/;"	t	typeref:struct:s_tex
-t_tex	offline/cubed.h	/^}	t_tex;$/;"	t	typeref:struct:s_tex
 t_win_list	mlxlib/mlx_int.h	/^}				t_win_list;$/;"	t	typeref:struct:s_win_list
 t_xpm_col	mlxlib/mlx_int.h	/^}				t_xpm_col;$/;"	t	typeref:struct:s_xpm_col
 t_xvar	mlxlib/mlx_int.h	/^}				t_xvar;$/;"	t	typeref:struct:s_xvar
 test_default_main	mlxlib/test/run_tests.sh	/^test_default_main(){$/;"	f
 tex_addr	include/cubed.h	/^	char	*tex_addr;$/;"	m	struct:s_ray	typeref:typename:char *
-tex_addr	offline/cubed.h	/^	char	*tex_addr;$/;"	m	struct:s_ray	typeref:typename:char *
 tex_bpp	include/cubed.h	/^	int	tex_bpp;$/;"	m	struct:s_ray	typeref:typename:int
-tex_bpp	offline/cubed.h	/^	int	tex_bpp;$/;"	m	struct:s_ray	typeref:typename:int
 tex_h	include/cubed.h	/^	int	tex_h;$/;"	m	struct:s_ray	typeref:typename:int
-tex_h	offline/cubed.h	/^	int	tex_h;$/;"	m	struct:s_ray	typeref:typename:int
 tex_line	include/cubed.h	/^	int	tex_line;$/;"	m	struct:s_ray	typeref:typename:int
-tex_line	offline/cubed.h	/^	int	tex_line;$/;"	m	struct:s_ray	typeref:typename:int
 tex_num	include/cubed.h	/^	t_compas	tex_num;$/;"	m	struct:s_ray	typeref:typename:t_compas
-tex_num	offline/cubed.h	/^	t_compas	tex_num;$/;"	m	struct:s_ray	typeref:typename:t_compas
 tex_pos	include/cubed.h	/^	double	tex_pos;$/;"	m	struct:s_ray	typeref:typename:double
-tex_pos	offline/cubed.h	/^	double	tex_pos;$/;"	m	struct:s_ray	typeref:typename:double
 tex_w	include/cubed.h	/^	int	tex_w;$/;"	m	struct:s_ray	typeref:typename:int
-tex_w	offline/cubed.h	/^	int	tex_w;$/;"	m	struct:s_ray	typeref:typename:int
 tex_x	include/cubed.h	/^	int		tex_x;$/;"	m	struct:s_ray	typeref:typename:int
-tex_x	offline/cubed.h	/^	int		tex_x;$/;"	m	struct:s_ray	typeref:typename:int
 tex_y	include/cubed.h	/^	int		tex_y;$/;"	m	struct:s_ray	typeref:typename:int
-tex_y	offline/cubed.h	/^	int		tex_y;$/;"	m	struct:s_ray	typeref:typename:int
 texture	include/cubed.h	/^	t_tex		texture[4];$/;"	m	struct:s_cubed	typeref:typename:t_tex[4]
-texture	offline/cubed.h	/^	t_tex		texture[4];$/;"	m	struct:s_cubed	typeref:typename:t_tex[4]
 texture_calculations	offline/textures_1.c	/^void	texture_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr)$/;"	f	typeref:typename:void
 texture_calculations	srcs/program/textures_1.c	/^void	texture_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr)$/;"	f	typeref:typename:void
 texture_x	include/cubed.h	/^	int	texture_x;$/;"	m	struct:s_ray	typeref:typename:int
-texture_x	offline/cubed.h	/^	int	texture_x;$/;"	m	struct:s_ray	typeref:typename:int
 type	include/cubed.h	/^	char	type;$/;"	m	struct:s_rect	typeref:typename:char
 type	mlxlib/mlx_int.h	/^	int				type;$/;"	m	struct:s_img	typeref:typename:int
-type	offline/cubed.h	/^	char	type;$/;"	m	struct:s_rect	typeref:typename:char
 update	scripts/compiler.sh	/^update() {$/;"	f
 update_player	offline/player.c	/^void	update_player(t_cubed *cubed)$/;"	f	typeref:typename:void
 update_player	srcs/program/player.c	/^void	update_player(t_cubed *cubed)$/;"	f	typeref:typename:void
@@ -885,18 +720,12 @@ valid_filename	srcs/main.c	/^static int	valid_filename(char *filename)$/;"	f	typ
 validate_map	srcs/init/utils.c	/^int	validate_map(t_cubed *cubed, int h, int w)$/;"	f	typeref:typename:int
 visual	mlxlib/mlx_int.h	/^	Visual		*visual;$/;"	m	struct:s_xvar	typeref:typename:Visual *
 w	include/cubed.h	/^	float	w;$/;"	m	struct:s_rect	typeref:typename:float
-w	offline/cubed.h	/^	float	w;$/;"	m	struct:s_rect	typeref:typename:float
 wall_b	include/cubed.h	/^	double 	wall_b;$/;"	m	struct:s_ray	typeref:typename:double
-wall_b	offline/cubed.h	/^	double 	wall_b;$/;"	m	struct:s_ray	typeref:typename:double
 wall_t	include/cubed.h	/^	double 	wall_t;$/;"	m	struct:s_ray	typeref:typename:double
-wall_t	offline/cubed.h	/^	double 	wall_t;$/;"	m	struct:s_ray	typeref:typename:double
 wall_x	include/cubed.h	/^	double	wall_x;$/;"	m	struct:s_ray	typeref:typename:double
-wall_x	offline/cubed.h	/^	double	wall_x;$/;"	m	struct:s_ray	typeref:typename:double
 width	include/cubed.h	/^	int		width;$/;"	m	struct:s_tex	typeref:typename:int
 width	mlxlib/mlx_int.h	/^	int				width;$/;"	m	struct:s_img	typeref:typename:int
-width	offline/cubed.h	/^	int		width;$/;"	m	struct:s_tex	typeref:typename:int
 win	include/cubed.h	/^	void		*win;$/;"	m	struct:s_mlx	typeref:typename:void *
-win	offline/cubed.h	/^	void		*win;$/;"	m	struct:s_mlx	typeref:typename:void *
 win1	mlxlib/test/main.c	/^void	*win1;$/;"	v	typeref:typename:void *
 win1	mlxlib/test/new_win.c	/^void *win1;$/;"	v	typeref:typename:void *
 win2	mlxlib/test/main.c	/^void    *win2;$/;"	v	typeref:typename:void *
@@ -910,14 +739,8 @@ wm_protocols	mlxlib/mlx_int.h	/^	Atom		wm_protocols;$/;"	m	struct:s_xvar	typeref
 x	include/cubed.h	/^	double	x; \/\/ is tile coordinates, NOT pixel coordinates$/;"	m	struct:s_player	typeref:typename:double
 x	include/cubed.h	/^	float	x;$/;"	m	struct:s_rect	typeref:typename:float
 x	include/cubed.h	/^	int		x;$/;"	m	struct:s_minimap	typeref:typename:int
-x	offline/cubed.h	/^	double	x; \/\/ is tile coordinates, NOT pixel coordinates$/;"	m	struct:s_player	typeref:typename:double
-x	offline/cubed.h	/^	float	x;$/;"	m	struct:s_rect	typeref:typename:float
-x	offline/cubed.h	/^	int		x;$/;"	m	struct:s_minimap	typeref:typename:int
 xpm1_x	mlxlib/test/main.c	/^int	xpm1_x;$/;"	v	typeref:typename:int
 xpm1_y	mlxlib/test/main.c	/^int	xpm1_y;$/;"	v	typeref:typename:int
 y	include/cubed.h	/^	double	y;$/;"	m	struct:s_player	typeref:typename:double
 y	include/cubed.h	/^	float	y;$/;"	m	struct:s_rect	typeref:typename:float
 y	include/cubed.h	/^	int		y;$/;"	m	struct:s_minimap	typeref:typename:int
-y	offline/cubed.h	/^	double	y;$/;"	m	struct:s_player	typeref:typename:double
-y	offline/cubed.h	/^	float	y;$/;"	m	struct:s_rect	typeref:typename:float
-y	offline/cubed.h	/^	int		y;$/;"	m	struct:s_minimap	typeref:typename:int

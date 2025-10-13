@@ -12,8 +12,6 @@
 
 #include "cubed.h"
 
-#include "cubed.h"
-
 // draw a pixel line on the minimap, stopping at walls
 void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)
 {
