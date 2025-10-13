@@ -53,6 +53,7 @@ SRCS_PROGRAM = \
 		$(SRCDIR)/program/utils.c \
 		$(SRCDIR)/program/keys.c \
 		$(SRCDIR)/program/player.c \
+		$(SRCDIR)/program/direction_ray.c \
 		$(SRCDIR)/program/movement.c \
 		$(SRCDIR)/program/process_main.c \
 		$(SRCDIR)/program/minimap.c \

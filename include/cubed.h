@@ -114,15 +114,18 @@ typedef enum e_rgb
 	BLUE = 2
 }	t_rgb;
 
-typedef struct s_dir_ray
+typedef struct s_player_ray
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-}		t_dir_ray;
+	float	ray_x;
+	float	ray_y;
+	float	step;
+	int		map_x;
+	int		map_y;
+	int		minimap_x0;
+	int		minimap_y0;
+	int		minimap_x1;
+	int		minimap_y1;
+}		t_player_ray;
 
 typedef struct s_ray
 {
@@ -297,8 +300,9 @@ void	calc_step(t_ray *r);
 void	calc_tex_pos(t_ray *r);
 void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr);
 
-// minimap
+// direction ray prototypes
 void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m);
+void	super_nice_loop(t_cubed *c, t_player_ray *pr, t_minimap *m, t_player *p);
 
 // rendering prototypes
 void put_pixel(t_cubed *cubed, int x, int y, int color);
