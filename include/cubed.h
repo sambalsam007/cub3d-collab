@@ -287,6 +287,10 @@ void	calc_step(t_ray *r);
 void	calc_tex_pos(t_ray *r);
 void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr);
 
+// minimap
+void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m);
+void	draw_line_minimap(t_cubed *cubed, int x0, int y0, int x1, int y1, int color);
+
 // rendering prototypes
 void put_pixel(t_cubed *cubed, int x, int y, int color);
 

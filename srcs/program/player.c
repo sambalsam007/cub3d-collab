@@ -12,6 +12,41 @@
 
 #include "cubed.h"
 
+#include "cubed.h"
+
+// draw a pixel line on the minimap, stopping at walls
+void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)
+{
+	float	ray_x = p.x;
+	float	ray_y = p.y;
+	float	step = 0.05f; // smaller = smoother
+	int		map_x;
+	int		map_y;
+	int		minimap_x0 = m.offset_x + (int)(p.x * m.scale);
+	int		minimap_y0 = m.offset_y + (int)(p.y * m.scale);
+	int		minimap_x1;
+	int		minimap_y1;
+
+	while (1)
+	{
+		map_x = (int)ray_x;
+		map_y = (int)ray_y;
+		if (map_x < 0 || map_y < 0 || map_y >= cubed->data.map_h || map_x >= cubed->data.map_w)
+			break ;
+		if (cubed->data.map[map_y][map_x] == '1')
+			break ;
+
+		ray_x += p.dirX * step;
+		ray_y += p.dirY * step;
+
+		minimap_x1 = m.offset_x + (int)(ray_x * m.scale);
+		minimap_y1 = m.offset_y + (int)(ray_y * m.scale);
+
+		my_mlx_pixel_put(cubed, minimap_x1, minimap_y1, 0xFF0000);
+	}
+}
+
+
 // make player dot ~ 2x scale (so it's visible)
 void	draw_player(t_cubed *cubed, t_player p, t_minimap m)
 {
