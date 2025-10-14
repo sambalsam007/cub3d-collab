@@ -82,23 +82,35 @@ void	init_player(t_cubed *cubed)
 	cubed->p.fov = M_PI / 3;
 	if (cubed->data.compas == NORTH)
 	{
-		cubed->p.angle = -M_PI / 2;
-		printf("north\n"); // for debugging
+		// cubed->p.angle = -M_PI / 2;
+		cubed->p.dirX = 0;
+		cubed->p.dirY = -1;
+		cubed->p.planeX = 0.66;
+		cubed->p.planeY = 0;
 	}
 	else if (cubed->data.compas == SOUTH)
 	{
-		cubed->p.angle = M_PI / 2;
-		printf("south\n");
+		// cubed->p.angle = M_PI / 2;
+		cubed->p.dirX = 0;
+		cubed->p.dirY = 1;
+		cubed->p.planeX = -0.66;
+		cubed->p.planeY = 0;
 	}
 	else if (cubed->data.compas == EAST)
 	{
-		cubed->p.angle = 0;
-		printf("east\n");
+		// cubed->p.angle = 0;
+		cubed->p.dirX = 1;
+		cubed->p.dirY = 0;
+		cubed->p.planeX = 0;
+		cubed->p.planeY = 0.66;
 	}
 	else if (cubed->data.compas == WEST)
 	{
-		cubed->p.angle = M_PI;
-		printf("west\n");
+		// cubed->p.angle = M_PI;
+		cubed->p.dirX = -1;
+		cubed->p.dirY = 0;
+		cubed->p.planeX = 0;
+		cubed->p.planeY = -0.66;
 	}
 }
 

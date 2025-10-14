@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/samd-hoo/collab.cub3d/	//
+!_TAG_PROC_CWD	/home/event/collab.cub3d/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -326,14 +326,12 @@ do_flush	mlxlib/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar	typeref:typenam
 draw_cell	offline/minimap.c	/^void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m)$/;"	f	typeref:typename:void
 draw_cell	srcs/program/minimap.c	/^void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m)$/;"	f	typeref:typename:void
 draw_end	include/cubed.h	/^	int	draw_end;$/;"	m	struct:s_ray	typeref:typename:int
-draw_line_minimap	offline/minimap.c	/^void	draw_line_minimap(t_cubed *cubed, int x0, int y0, int x1, int y1, int color)$/;"	f	typeref:typename:void
-draw_line_minimap	srcs/program/minimap.c	/^void	draw_line_minimap(t_cubed *cubed, int x0, int y0, int x1, int y1, int color)$/;"	f	typeref:typename:void
 draw_minimap	offline/minimap.c	/^int	draw_minimap(t_cubed *cubed)$/;"	f	typeref:typename:int
 draw_minimap	srcs/program/minimap.c	/^int	draw_minimap(t_cubed *cubed)$/;"	f	typeref:typename:int
 draw_player	offline/player.c	/^void	draw_player(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
 draw_player	srcs/program/player.c	/^void	draw_player(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
-draw_player_ray	offline/player.c	/^void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
-draw_player_ray	srcs/program/player.c	/^void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
+draw_player_ray	offline/direction_ray.c	/^void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
+draw_player_ray	srcs/program/direction_ray.c	/^void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m)$/;"	f	typeref:typename:void
 draw_start	include/cubed.h	/^	int	draw_start;$/;"	m	struct:s_ray	typeref:typename:int
 draw_vertical_column	offline/textures_2.c	/^void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr)$/;"	f	typeref:typename:void
 draw_vertical_column	srcs/program/textures_2.c	/^void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr)$/;"	f	typeref:typename:void
@@ -507,12 +505,18 @@ map_h	include/cubed.h	/^    int		map_h;$/;"	m	struct:s_data	typeref:typename:int
 map_height	include/cubed.h	/^	int		map_height;$/;"	m	struct:s_minimap	typeref:typename:int
 map_w	include/cubed.h	/^    int		map_w;$/;"	m	struct:s_data	typeref:typename:int
 map_width	include/cubed.h	/^	int		map_width;$/;"	m	struct:s_minimap	typeref:typename:int
+map_x	include/cubed.h	/^	int		map_x;$/;"	m	struct:s_player_ray	typeref:typename:int
 map_x	include/cubed.h	/^	int	map_x;$/;"	m	struct:s_ray	typeref:typename:int
+map_y	include/cubed.h	/^	int		map_y;$/;"	m	struct:s_player_ray	typeref:typename:int
 map_y	include/cubed.h	/^	int	map_y;$/;"	m	struct:s_ray	typeref:typename:int
 mask	mlxlib/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list	typeref:typename:int
 minimap	include/cubed.h	/^    t_minimap	minimap;$/;"	m	struct:s_cubed	typeref:typename:t_minimap
 minimap_settings	offline/minimap.c	/^int	minimap_settings(t_cubed *cubed, t_minimap *m)$/;"	f	typeref:typename:int
 minimap_settings	srcs/program/minimap.c	/^int	minimap_settings(t_cubed *cubed, t_minimap *m)$/;"	f	typeref:typename:int
+minimap_x0	include/cubed.h	/^	int		minimap_x0;$/;"	m	struct:s_player_ray	typeref:typename:int
+minimap_x1	include/cubed.h	/^	int		minimap_x1;$/;"	m	struct:s_player_ray	typeref:typename:int
+minimap_y0	include/cubed.h	/^	int		minimap_y0;$/;"	m	struct:s_player_ray	typeref:typename:int
+minimap_y1	include/cubed.h	/^	int		minimap_y1;$/;"	m	struct:s_player_ray	typeref:typename:int
 mlx	include/cubed.h	/^	t_mlx		mlx;$/;"	m	struct:s_cubed	typeref:typename:t_mlx
 mlx	include/cubed.h	/^	void		*mlx;$/;"	m	struct:s_mlx	typeref:typename:void *
 mlx	mlxlib/test/main.c	/^void	*mlx;$/;"	v	typeref:typename:void *
@@ -628,6 +632,8 @@ r	include/cubed.h	/^	float	r;$/;"	m	struct:s_player	typeref:typename:float
 ray	include/cubed.h	/^	t_ray		ray;$/;"	m	struct:s_cubed	typeref:typename:t_ray
 ray_dir_x	include/cubed.h	/^	double	ray_dir_x;$/;"	m	struct:s_ray	typeref:typename:double
 ray_dir_y	include/cubed.h	/^	double	ray_dir_y;$/;"	m	struct:s_ray	typeref:typename:double
+ray_x	include/cubed.h	/^	float	ray_x;$/;"	m	struct:s_player_ray	typeref:typename:float
+ray_y	include/cubed.h	/^	float	ray_y;$/;"	m	struct:s_player_ray	typeref:typename:float
 re	Makefile	/^re: banner fclean all$/;"	t
 re	libft/Makefile	/^re: fclean all/;"	t
 re	mlxlib/Makefile	/^re	: clean all$/;"	t
@@ -647,6 +653,7 @@ s_list	libft/libft.h	/^typedef struct s_list$/;"	s
 s_minimap	include/cubed.h	/^typedef struct s_minimap$/;"	s
 s_mlx	include/cubed.h	/^typedef struct s_mlx$/;"	s
 s_player	include/cubed.h	/^typedef struct s_player$/;"	s
+s_player_ray	include/cubed.h	/^typedef struct s_player_ray$/;"	s
 s_ray	include/cubed.h	/^typedef struct s_ray$/;"	s
 s_rect	include/cubed.h	/^typedef struct	s_rect$/;"	s
 s_tex	include/cubed.h	/^typedef struct s_tex$/;"	s
@@ -677,9 +684,12 @@ sl2	mlxlib/test/main.c	/^int	sl2;$/;"	v	typeref:typename:int
 sl3	mlxlib/test/main.c	/^int	sl3;$/;"	v	typeref:typename:int
 sl4	mlxlib/test/main.c	/^int	sl4;$/;"	v	typeref:typename:int
 step	include/cubed.h	/^	double	step;$/;"	m	struct:s_ray	typeref:typename:double
+step	include/cubed.h	/^	float	step;$/;"	m	struct:s_player_ray	typeref:typename:float
 step_x	include/cubed.h	/^	int	step_x;$/;"	m	struct:s_ray	typeref:typename:int
 step_y	include/cubed.h	/^	int	step_y;$/;"	m	struct:s_ray	typeref:typename:int
 strlcpy_is_not_posix	mlxlib/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f	typeref:typename:unsigned int
+super_nice_loop	offline/direction_ray.c	/^void	super_nice_loop(t_cubed *c, t_player_ray *pr, t_minimap *m, t_player *p)$/;"	f	typeref:typename:void
+super_nice_loop	srcs/program/direction_ray.c	/^void	super_nice_loop(t_cubed *c, t_player_ray *pr, t_minimap *m, t_player *p)$/;"	f	typeref:typename:void
 t_compas	include/cubed.h	/^}	t_compas;$/;"	t	typeref:enum:e_compas
 t_cubed	include/cubed.h	/^}   t_cubed;$/;"	t	typeref:struct:s_cubed
 t_data	include/cubed.h	/^}	t_data;$/;"	t	typeref:struct:s_data
@@ -689,6 +699,7 @@ t_list	libft/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
 t_minimap	include/cubed.h	/^}   t_minimap;$/;"	t	typeref:struct:s_minimap
 t_mlx	include/cubed.h	/^}	t_mlx;$/;"	t	typeref:struct:s_mlx
 t_player	include/cubed.h	/^}	t_player;$/;"	t	typeref:struct:s_player
+t_player_ray	include/cubed.h	/^}		t_player_ray;$/;"	t	typeref:struct:s_player_ray
 t_ray	include/cubed.h	/^}   t_ray;$/;"	t	typeref:struct:s_ray
 t_rect	include/cubed.h	/^} t_rect;$/;"	t	typeref:struct:s_rect
 t_rgb	include/cubed.h	/^}	t_rgb;$/;"	t	typeref:enum:e_rgb
