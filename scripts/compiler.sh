@@ -12,7 +12,7 @@ update() {
 	# gcc "$script" -L../minilibx-linux -lmlx -lXext -lX11 -lm -o cub3d
 	make fclean 
 	make
-	./cub3d maps/fun_1.cub
+	./cub3d maps/spawn.cub
 	# [[ $? != 0 ]] && { echo 'fail compile'; return 1; } \
 	divider
 }
