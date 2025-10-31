@@ -23,7 +23,7 @@ int	close_window(void *param)
 
 int	key_press(int key, t_cubed *cubed)
 {
-	if (key >= 0 && key < 300)
+	if (key >= 0 && key < 66000)
 		cubed->keys[key] = 1;
 	if (key == KEY_ESC)
 		close_window(cubed);
@@ -32,7 +32,7 @@ int	key_press(int key, t_cubed *cubed)
 
 int	key_release(int key, t_cubed *cubed)
 {
-	if (key >= 0 && key < 300)
+	if (key >= 0 && key < 66000)
 		cubed->keys[key] = 0;
 	return (0);
 }

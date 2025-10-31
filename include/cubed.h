@@ -54,8 +54,8 @@
 #  define KEY_S   115
 #  define KEY_D   100
 // samuel edit 09.25
-#  define KEY_J   106 // TODO
-#  define KEY_K   107 // TODO
+#  define KEY_J   65361 // TODO
+#  define KEY_K   65363 // TODO
 # endif
 
 # define ERROR 1
@@ -260,7 +260,7 @@ typedef struct s_cubed
 	t_tex		texture[4];
 	t_ray		ray;
     t_minimap	minimap;
-	int			keys[300];
+	int			keys[99999];
 	long		last_time;
 }   t_cubed;
 
