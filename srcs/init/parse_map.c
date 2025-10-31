@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:14:21 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/09/19 20:25:08 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:41:33 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	get_line_width(char *line)
 	return (last + 1);
 }
 
-// store map size (in tiles) in struct
 static void	set_map_size(t_cubed *cubed, char **lines, int *h, int *w)
 {
 	int	len;
@@ -64,22 +63,21 @@ static void	set_map_size(t_cubed *cubed, char **lines, int *h, int *w)
 	cubed->data.map_h = *h;
 	cubed->data.map_w = *w;
 }
-/*
-static void	get_map_size(char **lines, int *h, int *w)
-{
-	int	len;
 
-	*h = 0;
-	*w = 0;
-	while (lines[*h])
+static int	check_line_player(t_cubed *cubed, char *line, int y, int *found)
+{
+	int	x;
+
+	x = 0;
+	while (line[x])
 	{
-		len = get_line_width(lines[*h]);
-		if (len > *w)
-			*w = len;
-		(*h)++;
+		if (is_player(line[x]))
+			if (set_player(cubed, line[x], x, y, found))
+				return (ERROR);
+		x++;
 	}
+	return (SUCCESS);
 }
-*/
 
 static int	copy_and_find(t_cubed *cubed, char **lines, int h)
 {
@@ -96,12 +94,8 @@ static int	copy_and_find(t_cubed *cubed, char **lines, int h)
 		cubed->data.map[y] = ft_strdup(lines[y]);
 		if (!cubed->data.map[y])
 			return (err_msg(ERR_MAL), ERROR);
-		for (int x = 0; cubed->data.map[y][x]; x++)
-		{
-			if (is_player(cubed->data.map[y][x]))
-				if (set_player(cubed, cubed->data.map[y][x], x, y, &found))
-					return (ERROR);
-		}
+		if (check_line_player(cubed, cubed->data.map[y], y, &found))
+			return (ERROR);
 		y++;
 	}
 	cubed->data.map[h] = NULL;
@@ -122,3 +116,20 @@ int	parse_map(t_cubed *cubed, char **lines)
 		return (err_msg(ERR_INV_MAP), ERROR);
 	return (SUCCESS);
 }
+
+/*
+static void	get_map_size(char **lines, int *h, int *w)
+{
+	int	len;
+
+	*h = 0;
+	*w = 0;
+	while (lines[*h])
+	{
+		len = get_line_width(lines[*h]);
+		if (len > *w)
+			*w = len;
+		(*h)++;
+	}
+}
+*/
