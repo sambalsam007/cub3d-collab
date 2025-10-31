@@ -39,9 +39,25 @@ void	free_mlx(t_cubed *cubed)
 	}
 }
 
+void	free_textures(t_cubed *cubed)
+{
+	t_tex	*tex;
+	int	i;
+
+	tex = cubed->texture;
+	i = 0;
+	while (i < 4)
+	{
+		if (tex[i].found == 1 && tex[i].img)
+			mlx_destroy_image(cubed->mlx.mlx, tex[i].img);
+		i++;
+	}
+}
+
 void	free_all(t_cubed *cubed)
 {
 	if (cubed->data.map)
 		ft_freearr(cubed->data.map);
+	free_textures(cubed);
 	free_mlx(cubed);
 }
