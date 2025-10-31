@@ -39,8 +39,8 @@
 #  define KEY_S   1
 #  define KEY_D   2
 // samuel edit 09.25
-#  define KEY_J   38 // TODO
-#  define KEY_K   40 // TODO
+#  define KEY_J   123 // TODO
+#  define KEY_K   124 // TODO
 # endif
 
 # ifdef __linux__
