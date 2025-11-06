@@ -201,12 +201,12 @@ typedef struct s_set_player
 typedef struct s_data
 {
 	t_compas	compas;
-	char **map;
-	int map_h;
-	int map_w;
-		int	cords_p[2];
-		int	color_c;
-	int		color_f;
+	char		**map;
+	int			map_h;
+	int			map_w;
+	int			cords_p[2];
+	int			color_c;
+	int			color_f;
 }	t_data;
 
 typedef struct s_rect
@@ -230,7 +230,6 @@ typedef struct s_cubed
 	int			keys[99999];
 	long		last_time;
 }	t_cubed;
-
 
 // samuel edit 09.25
 // prototypes
