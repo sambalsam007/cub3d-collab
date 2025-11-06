@@ -14,32 +14,29 @@
 
 int	check_surround(char **map, int y, int x, int h)
 {
-	int	ny;
-	int	nx;
 	int	rowlen;
 
-	ny = y - 1;
-	nx = x;
-	if (ny < 0)
+	y = y - 1;
+	if (y < 0)
 		return (ERROR);
-	rowlen = ft_strlen(map[ny]);
-	if (nx >= rowlen || map[ny][nx] == ' ' || map[ny][nx] == '\0')
+	rowlen = ft_strlen(map[y]);
+	if (x >= rowlen || map[y][x] == ' ' || map[y][x] == '\0')
 		return (ERROR);
-	ny = y + 1;
-	if (ny >= h)
+	y = y + 1;
+	if (y >= h)
 		return (ERROR);
-	rowlen = ft_strlen(map[ny]);
-	if (nx >= rowlen || map[ny][nx] == ' ' || map[ny][nx] == '\0')
+	rowlen = ft_strlen(map[y]);
+	if (x >= rowlen || map[y][x] == ' ' || map[y][x] == '\0')
 		return (ERROR);
-	ny = y;
-	nx = x - 1;
-	if (nx < 0)
+	y = y;
+	x = x - 1;
+	if (x < 0)
 		return (ERROR);
-	if (map[ny][nx] == ' ' || map[ny][nx] == '\0')
+	if (map[y][x] == ' ' || map[y][x] == '\0')
 		return (ERROR);
-	nx = x + 1;
-	rowlen = ft_strlen(map[ny]);
-	if (nx >= rowlen || map[ny][nx] == ' ' || map[ny][nx] == '\0')
+	x = x + 1;
+	rowlen = ft_strlen(map[y]);
+	if (x >= rowlen || map[y][x] == ' ' || map[y][x] == '\0')
 		return (ERROR);
 	return (SUCCESS);
 }
