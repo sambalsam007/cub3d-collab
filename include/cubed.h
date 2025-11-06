@@ -25,38 +25,18 @@
 # include "../mlxlib/mlx.h"
 # include "../libft/libft.h"
 
-// this is for testing/ debugging
-#define PRINT(var, fmt) \
-	printf("%s ("fmt")\n", #var, var)
-#define DIV \
-	printf("------------------\n");
-
-# ifdef __APPLE__
-// macOS keycodes
-#  define KEY_ESC 53
-#  define KEY_W   13
-#  define KEY_A   0
-#  define KEY_S   1
-#  define KEY_D   2
-// samuel edit 09.25
-#  define KEY_J   123 // TODO
-#  define KEY_K   124 // TODO
-# endif
-
-# ifdef __linux__
 // Linux (X11) keycodes
-#  include <X11/X.h>
-#  include <X11/Xlib.h>
-#  include <X11/keysym.h>
-#  define KEY_ESC 65307
-#  define KEY_W   119
-#  define KEY_A   97
-#  define KEY_S   115
-#  define KEY_D   100
+# include <X11/X.h>
+# include <X11/Xlib.h>
+# include <X11/keysym.h>
+# define KEY_ESC 65307
+# define KEY_W   119
+# define KEY_A   97
+# define KEY_S   115
+# define KEY_D   100
 // samuel edit 09.25
-#  define KEY_J   65361 // TODO
-#  define KEY_K   65363 // TODO
-# endif
+# define KEY_J   65361 // TODO
+# define KEY_K   65363 // TODO
 
 # define ERROR 1
 # define SUCCESS 0
@@ -69,10 +49,10 @@
 // # define MAP_H 10
 
 // for wolf test
-#define MOVE_SPEED 0.04    // reduced because units are tiles now
+# define MOVE_SPEED 0.04    // reduced because units are tiles now
 
 // rotation speed
-#define ROT_SPEED 0.04      // increased (no need for tiny radians anymore)
+# define ROT_SPEED 0.04      // increased (no need for tiny radians anymore)
 
 // # define MOVE_SPEED 3.0f
 // // samuel edit 09.25
@@ -129,10 +109,10 @@ typedef struct s_player_ray
 
 typedef struct s_ray
 {
-    float	angle;
-    float	distance;
-    int		hit_x;
-    int		hit_y;
+	float	angle;
+	float	distance;
+	int	hit_x;
+	int	hit_y;
 	// int		side;
 	double 	wall_t;
 	double 	wall_b;
@@ -237,13 +217,13 @@ typedef struct s_set_player
 
 typedef struct s_data
 {
+	t_compas	compas;
 	char **map;
 	int map_h;
 	int map_w;
-	int cords_p[2];
-	int color_c;
-	int color_f;
-	t_compas	compas;
+		int	cords_p[2];
+		int	color_c;
+	int		color_f;
 }	t_data;
 
 typedef struct s_rect
