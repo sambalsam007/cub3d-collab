@@ -31,9 +31,7 @@ void	free_mlx(t_cubed *cubed)
 	}
 	if (cubed->mlx.mlx)
 	{
-		#ifdef __linux__
-			mlx_destroy_display(cubed->mlx.mlx);
-		#endif
+		mlx_destroy_display(cubed->mlx.mlx);
 		free(cubed->mlx.mlx);
 		cubed->mlx.mlx = NULL;
 	}
@@ -42,7 +40,7 @@ void	free_mlx(t_cubed *cubed)
 void	free_textures(t_cubed *cubed)
 {
 	t_tex	*tex;
-	int	i;
+	int		i;
 
 	tex = cubed->texture;
 	i = 0;
