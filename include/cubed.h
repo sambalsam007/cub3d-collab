@@ -237,18 +237,16 @@ typedef struct s_set_player
 
 typedef struct s_data
 {
-    char    	**map;
-    // samuel edit
-    int		map_h;
-    int		map_w;
-
-    int     	cords_p[2];
-	int			color_c;
-	int			color_f;
-    t_compas	compas;
+	char **map;
+	int map_h;
+	int map_w;
+	int cords_p[2];
+	int color_c;
+	int color_f;
+	t_compas	compas;
 }	t_data;
 
-typedef struct	s_rect
+typedef struct s_rect
 {
 	char	type;
 	float	x;
@@ -256,7 +254,7 @@ typedef struct	s_rect
 	float	w;
 	float	h;
 	char	c;
-} t_rect;
+}	t_rect;
 
 typedef struct s_cubed
 {
@@ -265,18 +263,17 @@ typedef struct s_cubed
 	t_mlx		mlx;
 	t_tex		texture[4];
 	t_ray		ray;
-    t_minimap	minimap;
+	t_minimap	minimap;
 	int			keys[99999];
 	long		last_time;
-}   t_cubed;
+}	t_cubed;
 
 // samuel edit 09.25
 // prototypes
 int		draw_minimap(t_cubed *cubed);
 // samuel edit
 void	draw_player(t_cubed *cubed, t_player p, t_minimap m);
-
-int	render_next_frame(t_cubed *cubed); // rework function paris
+int		render_next_frame(t_cubed *cubed);
 
 // movement prototypes
 void	player_forward_backward(t_cubed *cubed);
@@ -308,10 +305,11 @@ void	draw_vertical_column(t_cubed *c, t_ray *r, int current_ray_nbr);
 
 // direction ray prototypes
 void	draw_player_ray(t_cubed *cubed, t_player p, t_minimap m);
-void	super_nice_loop(t_cubed *c, t_player_ray *pr, t_minimap *m, t_player *p);
+void	super_nice_loop(t_cubed *c, t_player_ray *pr, \
+		t_minimap *m, t_player *p);
 
 // rendering prototypes
-void put_pixel(t_cubed *cubed, int x, int y, int color);
+void	put_pixel(t_cubed *cubed, int x, int y, int color);
 
 // Initializing functions
 int		is_player(char c);
@@ -341,7 +339,6 @@ int		process(t_cubed *cubed);
 void	draw_cell(t_cubed *cubed, int x, int y, t_minimap *m);
 // int		make_minimap(t_cubed *cubed);
 void	reset_background(t_cubed *cubed);
-
 
 // Player
 int		can_move(t_cubed *cubed, float nx, float ny);
