@@ -25,6 +25,7 @@
 # include "../mlxlib/mlx.h"
 # include "../libft/libft.h"
 
+// Linux (X11) keycodes
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
@@ -33,6 +34,7 @@
 # define KEY_A   97
 # define KEY_S   115
 # define KEY_D   100
+// samuel edit 09.25
 # define KEY_J   65361 // TODO
 # define KEY_K   65363 // TODO
 
@@ -42,10 +44,23 @@
 # define WIDTH 800
 # define HEIGHT 600
 
-# define MOVE_SPEED 0.04
-# define ROT_SPEED 0.04
-# define TILE_SIZE 64
+// make this modular?
+// # define MAP_W 10
+// # define MAP_H 10
 
+// for wolf test
+# define MOVE_SPEED 0.04    // reduced because units are tiles now
+
+// rotation speed
+# define ROT_SPEED 0.04      // increased (no need for tiny radians anymore)
+
+// # define MOVE_SPEED 3.0f
+// // samuel edit 09.25
+// // change rotation speed 0.05 -> 0.005
+// # define ROT_SPEED 0.05f
+// samuel edit
+# define TILE_SIZE 64
+// # define TILE_SIZE 2
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
@@ -94,41 +109,43 @@ typedef struct s_player_ray
 
 typedef struct s_ray
 {
+	float	angle;
+	float	distance;
+	int	hit_x;
+	int	hit_y;
+	// int		side;
+	double 	wall_t;
+	double 	wall_b;
+	int		tex_x;
+	int		tex_y;
+	// samuel edit
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int	map_x;
+	int	map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int	step_x;
+	int	step_y;
+	int	hit;
+	int	side;
+	double	perp_wall_dist;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
+	double	wall_x;
 	t_compas	tex_num;
-	float		angle;
-	float		distance;
-	int			hit_x;
-	int			hit_y;
-	int			tex_x;
-	int			tex_y;
-	int			map_x;
-	int			map_y;
-	int			step_x;
-	int			step_y;
-	int			hit;
-	int			side;
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
-	int			tex_w;
-	int			tex_h;
-	int			tex_bpp;
-	int			tex_line;
-	int			texture_x;
-	char		*tex_addr;
-	double		ray_dir_x;
-	double		ray_dir_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		perp_wall_dist;
-	double		wall_x;
-	double		step;
-	double		tex_pos;
-	double		wall_t;
-	double		wall_b;
-}	t_ray;
+	int	tex_w;
+	int	tex_h;
+	int	tex_bpp;
+	int	tex_line;
+	char	*tex_addr;
+	int	texture_x;
+	double	step;
+	double	tex_pos;
+}   t_ray;
 
 typedef struct s_tex
 {
@@ -172,7 +189,7 @@ typedef struct s_minimap
 	int		offset_y;
 	int		map_width;
 	int		map_height;
-}	t_minimap;
+}   t_minimap;
 
 typedef struct s_player
 {
@@ -230,7 +247,6 @@ typedef struct s_cubed
 	int			keys[99999];
 	long		last_time;
 }	t_cubed;
-
 
 // samuel edit 09.25
 // prototypes
