@@ -17,8 +17,8 @@ void	calc_ray_dir(t_cubed *c, t_ray *r, int current_ray_nbr)
 	double	camera_x;
 
 	camera_x = 2.0 * current_ray_nbr / (double)WIDTH - 1.0;
-	r->ray_dir_x = c->p.dirX + c->p.planeX * camera_x;
-	r->ray_dir_y = c->p.dirY + c->p.planeY * camera_x;
+	r->ray_dir_x = c->p.dir_x + c->p.plane_x * camera_x;
+	r->ray_dir_y = c->p.dir_y + c->p.plane_y * camera_x;
 }
 
 // x, y	= tile coordinates

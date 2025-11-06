@@ -23,24 +23,24 @@ static void	init_player_part2(t_cubed *cubed)
 {
 	if (cubed->data.compas == SOUTH)
 	{
-		cubed->p.dirX = 0;
-		cubed->p.dirY = 1;
-		cubed->p.planeX = -0.66;
-		cubed->p.planeY = 0;
+		cubed->p.dir_x = 0;
+		cubed->p.dir_y = 1;
+		cubed->p.plane_x = -0.66;
+		cubed->p.plane_y = 0;
 	}
 	else if (cubed->data.compas == EAST)
 	{
-		cubed->p.dirX = 1;
-		cubed->p.dirY = 0;
-		cubed->p.planeX = 0;
-		cubed->p.planeY = 0.66;
+		cubed->p.dir_x = 1;
+		cubed->p.dir_y = 0;
+		cubed->p.plane_x = 0;
+		cubed->p.plane_y = 0.66;
 	}
 	else if (cubed->data.compas == WEST)
 	{
-		cubed->p.dirX = -1;
-		cubed->p.dirY = 0;
-		cubed->p.planeX = 0;
-		cubed->p.planeY = -0.66;
+		cubed->p.dir_x = -1;
+		cubed->p.dir_y = 0;
+		cubed->p.plane_x = 0;
+		cubed->p.plane_y = -0.66;
 	}
 }
 
@@ -53,10 +53,10 @@ void	init_player(t_cubed *cubed)
 	cubed->p.fov = M_PI / 3;
 	if (cubed->data.compas == NORTH)
 	{
-		cubed->p.dirX = 0;
-		cubed->p.dirY = -1;
-		cubed->p.planeX = 0.66;
-		cubed->p.planeY = 0;
+		cubed->p.dir_x = 0;
+		cubed->p.dir_y = -1;
+		cubed->p.plane_x = 0.66;
+		cubed->p.plane_y = 0;
 	}
 	else
 		init_player_part2(cubed);

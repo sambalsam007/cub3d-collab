@@ -24,8 +24,8 @@ void	super_nice_loop(t_cubed *c, t_player_ray *pr, t_minimap *m, t_player *p)
 			break ;
 		if (c->data.map[pr->map_y][pr->map_x] == '1')
 			break ;
-		pr->ray_x += p->dirX * pr->step;
-		pr->ray_y += p->dirY * pr->step;
+		pr->ray_x += p->dir_x * pr->step;
+		pr->ray_y += p->dir_y * pr->step;
 		pr->minimap_x1 = m->offset_x + (int)(pr->ray_x * m->scale);
 		pr->minimap_y1 = m->offset_y + (int)(pr->ray_y * m->scale);
 		my_mlx_pixel_put(c, pr->minimap_x1, pr->minimap_y1, 0xFF0000);

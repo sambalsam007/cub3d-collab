@@ -186,10 +186,10 @@ typedef struct s_player
 	float	angle;
 	int		c;
 	// samuel edit
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_set_player

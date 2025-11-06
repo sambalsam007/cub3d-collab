@@ -18,8 +18,8 @@
 // boven links.
 // het neemt mlx_hook om singiale van keybinds te ontvangen
 //
-// dirX, dirY	= the direction the player faces when spawning
-// planeX, ...	= these coordinates are used to calculate FOV
+// dir_x, dir_y	= the direction the player faces when spawning
+// plane_x, ...	= these coordinates are used to calculate FOV
 
 int	process(t_cubed *cubed)
 {

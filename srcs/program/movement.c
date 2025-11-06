@@ -25,8 +25,8 @@ void	player_forward_backward(t_cubed *cubed)
 		move_step -= MOVE_SPEED;
 	if (move_step != 0.0)
 	{
-		nx = cubed->p.x + cubed->p.dirX * move_step;
-		ny = cubed->p.y + cubed->p.dirY * move_step;
+		nx = cubed->p.x + cubed->p.dir_x * move_step;
+		ny = cubed->p.y + cubed->p.dir_y * move_step;
 		if (can_move(cubed, nx, ny))
 		{
 			cubed->p.x = nx;
@@ -42,8 +42,8 @@ void	player_strafe_left_right(t_cubed *cubed)
 
 	if (cubed->keys[KEY_A])
 	{
-		nx = cubed->p.x - cubed->p.planeX * (MOVE_SPEED);
-		ny = cubed->p.y - cubed->p.planeY * (MOVE_SPEED);
+		nx = cubed->p.x - cubed->p.plane_x * (MOVE_SPEED);
+		ny = cubed->p.y - cubed->p.plane_y * (MOVE_SPEED);
 		if (can_move(cubed, nx, ny))
 		{
 			cubed->p.x = nx;
@@ -52,8 +52,8 @@ void	player_strafe_left_right(t_cubed *cubed)
 	}
 	if (cubed->keys[KEY_D])
 	{
-		nx = cubed->p.x + cubed->p.planeX * (MOVE_SPEED);
-		ny = cubed->p.y + cubed->p.planeY * (MOVE_SPEED);
+		nx = cubed->p.x + cubed->p.plane_x * (MOVE_SPEED);
+		ny = cubed->p.y + cubed->p.plane_y * (MOVE_SPEED);
 		if (can_move(cubed, nx, ny))
 		{
 			cubed->p.x = nx;
@@ -67,16 +67,16 @@ void	player_rotate_left(t_cubed *c)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = c->p.dirX;
-	c->p.dirX = c->p.dirX * cos(-ROT_SPEED) \
-		- c->p.dirY * sin(-ROT_SPEED);
-	c->p.dirY = old_dir_x * sin(-ROT_SPEED) \
-		+ c->p.dirY * cos(-ROT_SPEED);
-	old_plane_x = c->p.planeX;
-	c->p.planeX = c->p.planeX * cos(-ROT_SPEED) \
-		- c->p.planeY * sin(-ROT_SPEED);
-	c->p.planeY = old_plane_x * sin(-ROT_SPEED) \
-		+ c->p.planeY * cos(-ROT_SPEED);
+	old_dir_x = c->p.dir_x;
+	c->p.dir_x = c->p.dir_x * cos(-ROT_SPEED) \
+		- c->p.dir_y * sin(-ROT_SPEED);
+	c->p.dir_y = old_dir_x * sin(-ROT_SPEED) \
+		+ c->p.dir_y * cos(-ROT_SPEED);
+	old_plane_x = c->p.plane_x;
+	c->p.plane_x = c->p.plane_x * cos(-ROT_SPEED) \
+		- c->p.plane_y * sin(-ROT_SPEED);
+	c->p.plane_y = old_plane_x * sin(-ROT_SPEED) \
+		+ c->p.plane_y * cos(-ROT_SPEED);
 }
 
 void	player_rotate_right(t_cubed *c)
@@ -84,14 +84,14 @@ void	player_rotate_right(t_cubed *c)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = c->p.dirX;
-	c->p.dirX = c->p.dirX * cos(ROT_SPEED) \
-		- c->p.dirY * sin(ROT_SPEED);
-	c->p.dirY = old_dir_x * sin(ROT_SPEED) \
-		+ c->p.dirY * cos(ROT_SPEED);
-	old_plane_x = c->p.planeX;
-	c->p.planeX = c->p.planeX * cos(ROT_SPEED) \
-		- c->p.planeY * sin(ROT_SPEED);
-	c->p.planeY = old_plane_x * sin(ROT_SPEED) \
-		+ c->p.planeY * cos(ROT_SPEED);
+	old_dir_x = c->p.dir_x;
+	c->p.dir_x = c->p.dir_x * cos(ROT_SPEED) \
+		- c->p.dir_y * sin(ROT_SPEED);
+	c->p.dir_y = old_dir_x * sin(ROT_SPEED) \
+		+ c->p.dir_y * cos(ROT_SPEED);
+	old_plane_x = c->p.plane_x;
+	c->p.plane_x = c->p.plane_x * cos(ROT_SPEED) \
+		- c->p.plane_y * sin(ROT_SPEED);
+	c->p.plane_y = old_plane_x * sin(ROT_SPEED) \
+		+ c->p.plane_y * cos(ROT_SPEED);
 }

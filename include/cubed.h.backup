@@ -205,7 +205,7 @@ typedef struct s_player
 	// samuel edit
 	double	dirX;
 	double	dirY;
-	double	planeX;
+	double	plane_x;
 	double	planeY;
 }	t_player;
 
