@@ -45,6 +45,7 @@ SRCS_INIT 	= \
 		$(SRCDIR)/init/parse_map_1.c \
 		$(SRCDIR)/init/parse_map_2.c \
 		$(SRCDIR)/init/init_cubed.c \
+		$(SRCDIR)/init/init_player.c \
 		$(SRCDIR)/init/read_file.c \
 		$(SRCDIR)/init/utils.c \
 		$(SRCDIR)/init/color.c
