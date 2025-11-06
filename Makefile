@@ -42,7 +42,8 @@ SRCS_CL_ER	= \
 		$(SRCDIR)/clean_and_error/err_msg.c
 
 SRCS_INIT 	= \
-		$(SRCDIR)/init/parse_map.c \
+		$(SRCDIR)/init/parse_map_1.c \
+		$(SRCDIR)/init/parse_map_2.c \
 		$(SRCDIR)/init/init_cubed.c \
 		$(SRCDIR)/init/read_file.c \
 		$(SRCDIR)/init/utils.c \
