@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samd-hoo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/06 15:20:30 by samd-hoo          #+#    #+#             */
+/*   Updated: 2025/11/06 15:20:31 by samd-hoo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cubed.h"
 
 int	is_player(char c)
@@ -5,6 +17,31 @@ int	is_player(char c)
 	if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 		return (1);
 	return (0);
+}
+
+static void	init_player_part2(t_cubed *cubed)
+{
+	if (cubed->data.compas == SOUTH)
+	{
+		cubed->p.dirX = 0;
+		cubed->p.dirY = 1;
+		cubed->p.planeX = -0.66;
+		cubed->p.planeY = 0;
+	}
+	else if (cubed->data.compas == EAST)
+	{
+		cubed->p.dirX = 1;
+		cubed->p.dirY = 0;
+		cubed->p.planeX = 0;
+		cubed->p.planeY = 0.66;
+	}
+	else if (cubed->data.compas == WEST)
+	{
+		cubed->p.dirX = -1;
+		cubed->p.dirY = 0;
+		cubed->p.planeX = 0;
+		cubed->p.planeY = -0.66;
+	}
 }
 
 void	init_player(t_cubed *cubed)
@@ -16,34 +53,11 @@ void	init_player(t_cubed *cubed)
 	cubed->p.fov = M_PI / 3;
 	if (cubed->data.compas == NORTH)
 	{
-		// cubed->p.angle = -M_PI / 2;
 		cubed->p.dirX = 0;
 		cubed->p.dirY = -1;
 		cubed->p.planeX = 0.66;
 		cubed->p.planeY = 0;
 	}
-	else if (cubed->data.compas == SOUTH)
-	{
-		// cubed->p.angle = M_PI / 2;
-		cubed->p.dirX = 0;
-		cubed->p.dirY = 1;
-		cubed->p.planeX = -0.66;
-		cubed->p.planeY = 0;
-	}
-	else if (cubed->data.compas == EAST)
-	{
-		// cubed->p.angle = 0;
-		cubed->p.dirX = 1;
-		cubed->p.dirY = 0;
-		cubed->p.planeX = 0;
-		cubed->p.planeY = 0.66;
-	}
-	else if (cubed->data.compas == WEST)
-	{
-		// cubed->p.angle = M_PI;
-		cubed->p.dirX = -1;
-		cubed->p.dirY = 0;
-		cubed->p.planeX = 0;
-		cubed->p.planeY = -0.66;
-	}
+	else
+		init_player_part2(cubed);
 }
