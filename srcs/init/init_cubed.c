@@ -30,7 +30,7 @@ int	init_mlx_struct(t_cubed *cubed)
 
 static int	check_header_complete(t_cubed *cubed)
 {
-	t_tex *tex;
+	t_tex	*tex;
 
 	tex = cubed->texture;
 	if (tex[NORTH].found != 1 || tex[SOUTH].found != 1 || \
@@ -75,11 +75,15 @@ static int	init_lines(char *file, char ***lines)
 	return (SUCCESS);
 }
 
-//init_cubed dat alles parsed zoals de map muur vloer en plafond texturen en initializeerd
+//init_cubed dat alles parsed zoals de map muur vloer en plafond texturen 
+//	en initializeerd
+//
 //init Het begint door alles op Null te zetten
 //init_mlx_struct Initializeren van mlx
 //init_lines Leest de file en parsed het in de data struct
-//parse_file Leest eerst de header en neemt de texturen uit en parsed de map erna 
+//parse_file Leest eerst de header en neemt de texturen uit 
+//	en parsed de map erna 
+//
 //init_player Initializeerd de speler
 int	init_cubed(t_cubed *cubed, char *file)
 {

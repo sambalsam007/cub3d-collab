@@ -57,7 +57,7 @@ void	load_texture(t_cubed *cubed, t_compas dir, char *path)
 	tex[dir].found = 1;
 }
 
-int parse_header_line(t_cubed *cubed, char *line)
+int	parse_header_line(t_cubed *cubed, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		return (load_texture(cubed, NORTH, &line[3]), SUCCESS);

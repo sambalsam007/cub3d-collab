@@ -47,15 +47,16 @@ static void	set_map_size(t_cubed *cubed, char **lines, int *h, int *w)
 
 static int	check_line_player(t_cubed *cubed, char *line, int y, int *found)
 {
-	int	x;
+	t_set_player	sp;
 
-	x = 0;
-	while (line[x])
+	sp.x = 0;
+	sp.y = y;
+	while (line[sp.x])
 	{
-		if (is_player(line[x]))
-			if (set_player(cubed, line[x], x, y, found))
+		if (is_player(line[sp.x]))
+			if (set_player(cubed, line[sp.x], sp, found))
 				return (ERROR);
-		x++;
+		sp.x++;
 	}
 	return (SUCCESS);
 }
