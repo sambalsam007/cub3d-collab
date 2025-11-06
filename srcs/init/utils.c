@@ -44,7 +44,6 @@ int	check_surround(char **map, int y, int x, int h)
 	return (SUCCESS);
 }
 
-
 int	validate_map(t_cubed *cubed, int h, int w)
 {
 	int	y;
@@ -56,9 +55,11 @@ int	validate_map(t_cubed *cubed, int h, int w)
 		x = -1;
 		while (++x < w)
 		{
-			if (cubed->data.map[y][x] == '0' || is_player(cubed->data.map[y][x]))
+			if (cubed->data.map[y][x] == '0' \
+					|| is_player(cubed->data.map[y][x]))
 			{
-				if (check_surround(cubed->data.map, y, x, h) == ERROR)
+				if (check_surround(cubed->data.map, y, x, h) \
+						== ERROR)
 					return (ERROR);
 			}
 		}
