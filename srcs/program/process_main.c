@@ -23,11 +23,6 @@
 
 int	process(t_cubed *cubed)
 {
-	// is now initialized in init_player() init/utils.c
-	// cubed->p.dirX = 1.0;
-	// cubed->p.dirY = 0.0;
-	// cubed->p.planeX = 0.0;
-	// cubed->p.planeY = 0.66;
 	mlx_hook(cubed->mlx.win, 2, 1L << 0, key_press, cubed);
 	mlx_hook(cubed->mlx.win, 3, 1L << 1, key_release, cubed);
 	mlx_hook(cubed->mlx.win, 17, 0, close_window, cubed);

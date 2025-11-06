@@ -24,30 +24,28 @@ static int	valid_filename(char *filename)
 }
 
 //Main branches of to all main functions being
-//init_cubed dat alles parsed zoals de map muur vloer en plafond texturen en initializeerd
-//process is de hoofd functie om heel de programa te laten lopen en visualiseren
+//init_cubed dat alles parsed zoals de map muur vloer 
+//en plafond texturen en initializeerd
+//
+//process is de hoofd functie om heel 
+//de programa te laten lopen en visualiseren
 int	main(int ac, char **av)
 {
 	t_cubed	cubed;
-	
+	int		i;
+
+	i = 0;
 	if (ac != 2 || !valid_filename(av[1]))
 		return (err_msg(ERR_USE), ERROR);
 	else
 	{
 		if (init_cubed(&cubed, av[1]))
 			return (ERROR);
-		for (int i=0; cubed.data.map[i]; i++)
+		while (cubed.data.map[i])
 		{
 			printf("%s\n", cubed.data.map[i]);
+			i++;
 		}
-
-		// TODO remove
-		// samuel edit 09.25
-		// printf("cubed data cords_p 0 (%d):\n", cubed.data.cords_p[0]);
-		// printf("cubed data cords_p 0 (%d)\n", cubed.data.cords_p[1]);
-		// printf("cubed data color c (%d)\n", cubed.data.color_c);
-		// printf("cubed data color f (%d)\n", cubed.data.color_f);
-
 		if (process(&cubed))
 			return (ERROR);
 	}
