@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 13:16:32 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:23:57 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:28:03 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parse_rgb(char *s)
 	return ((rgb[RED] << 16) | (rgb[GREEN] << 8) | rgb[BLUE]);
 }
 
-void	load_texture(t_cubed *cubed, t_compas dir, char *path)
+int	load_texture(t_cubed *cubed, t_compas dir, char *path)
 {
 	int		w;
 	int		h;
@@ -40,35 +40,29 @@ void	load_texture(t_cubed *cubed, t_compas dir, char *path)
 
 	tex = cubed->texture;
 	if (tex[dir].found == 1)
-	{
-		printf("thing\n");
-		tex[dir].found = -1;
-		return ;
-	}
+		return (ERROR);
 	printf("address: %p\n", cubed->mlx.mlx);
 	tex[dir].img = mlx_xpm_file_to_image(cubed->mlx.mlx, path, &w, &h);
 	if (!tex[dir].img)
-	{
-		tex[dir].found = -1;
-		return ;
-	}
+		return (ERROR);
 	tex[dir].adr = mlx_get_data_addr(tex[dir].img, &tex[dir].bpp, \
 		&tex[dir].size_line, &tex[dir].endian);
 	tex[dir].width = w;
 	tex[dir].height = h;
 	tex[dir].found = 1;
+	return (SUCCESS);
 }
 
 int	parse_header_line(t_cubed *cubed, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		return (load_texture(cubed, NORTH, &line[3]), SUCCESS);
+		return (load_texture(cubed, NORTH, &line[3]));
 	if (ft_strncmp(line, "EA ", 3) == 0)
-		return (load_texture(cubed, EAST, &line[3]), SUCCESS);
+		return (load_texture(cubed, EAST, &line[3]));
 	if (ft_strncmp(line, "SO ", 3) == 0)
-		return (load_texture(cubed, SOUTH, &line[3]), SUCCESS);
+		return (load_texture(cubed, SOUTH, &line[3]));
 	if (ft_strncmp(line, "WE ", 3) == 0)
-		return (load_texture(cubed, WEST, &line[3]), SUCCESS);
+		return (load_texture(cubed, WEST, &line[3]));
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		cubed->data.color_f = parse_rgb(line + 2);

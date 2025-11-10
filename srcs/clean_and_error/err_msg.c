@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:07:43 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:23:42 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:25:56 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_textures(t_cubed *cubed)
 	int		i;
 
 	tex = cubed->texture;
-	i = -1;
+	i = 0;
 	while (i < 4)
 	{
 		if (tex[i].found == 1 && tex[i].img)
