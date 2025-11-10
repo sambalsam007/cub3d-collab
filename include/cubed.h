@@ -55,7 +55,7 @@
 # define ERR_FILE_CUB "File must be a .cub file: filename.cub"
 # define ERR_FILE "Error accessing file"
 # define ERR_INV_LETTER "Invalid character in map"
-# define ERR_INV_FILE "Invalid data in file"
+# define ERR_INV_FILE "Invalid data in file" 
 # define ERR_MORE_PLAYERS "To many players on map"
 # define ERR_NO_PLAYER "No player was found on map"
 # define ERR_POS_PLAYER "Invalid position of player"
@@ -207,6 +207,8 @@ typedef struct s_data
 	int			cords_p[2];
 	int			color_c;
 	int			color_f;
+	int			color_c_found;
+	int			color_f_found;
 }	t_data;
 
 typedef struct s_rect
@@ -286,7 +288,7 @@ void	init(t_cubed *cubed);
 void	init_player(t_cubed *cubed);
 char	*read_file(const char *path);
 int		parse_rgb(char *s);
-void	load_texture(t_cubed *cubed, t_compas dir, char *path);
+int	load_texture(t_cubed *cubed, t_compas dir, char *path);
 int		parse_header_line(t_cubed *cubed, char *line);
 
 // Cleaning and Errors

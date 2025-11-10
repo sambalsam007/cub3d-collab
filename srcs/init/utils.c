@@ -84,6 +84,8 @@ void	init_loops(t_cubed *cubed)
 	i = 0;
 	while (i < 99999)
 		cubed->keys[i++] = 0;
+	cubed->data.color_c_found = 0;
+	cubed->data.color_f_found = 0;
 }
 
 void	init(t_cubed *cubed)

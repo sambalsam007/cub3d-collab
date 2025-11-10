@@ -53,6 +53,27 @@ int	load_texture(t_cubed *cubed, t_compas dir, char *path)
 	return (SUCCESS);
 }
 
+static int	func(t_cubed *cubed, char *line)
+{
+	if (ft_strncmp(line, "F ", 2) == 0)
+	{
+		if (cubed->data.color_f_found == 1)
+			return (ERROR);
+		cubed->data.color_f = parse_rgb(line + 2);
+		cubed->data.color_f_found = 1;
+		return (SUCCESS);
+	}
+	if (ft_strncmp(line, "C ", 2) == 0)
+	{
+		if (cubed->data.color_c_found == 1)
+			return (ERROR);
+		cubed->data.color_c = parse_rgb(line + 2);
+		cubed->data.color_c_found = 1;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
 int	parse_header_line(t_cubed *cubed, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
@@ -63,16 +84,8 @@ int	parse_header_line(t_cubed *cubed, char *line)
 		return (load_texture(cubed, SOUTH, &line[3]));
 	if (ft_strncmp(line, "WE ", 3) == 0)
 		return (load_texture(cubed, WEST, &line[3]));
-	if (ft_strncmp(line, "F ", 2) == 0)
-	{
-		cubed->data.color_f = parse_rgb(line + 2);
-		return (SUCCESS);
-	}
-	if (ft_strncmp(line, "C ", 2) == 0)
-	{
-		cubed->data.color_c = parse_rgb(line + 2);
-		return (SUCCESS);
-	}
+	if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
+		return (func(cubed, line));
 	if (ft_strncmp(line, "\0", 1) == 0)
 		return (SUCCESS);
 	return (ERROR);
