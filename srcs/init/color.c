@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 13:16:32 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/10/31 15:18:48 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:23:57 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int	parse_rgb(char *s)
 	t_rgb	rgb[3];
 
 	parts = ft_split(s, ',');
-	if (!parts || ft_arrlen(parts) != 3)
+	if (!parts)
 		return (-1);
+	if (ft_arrlen(parts) != 3)
+		return (ft_freearr(parts), -1);
 	rgb[RED] = ft_atoi(parts[0]);
 	rgb[GREEN] = ft_atoi(parts[1]);
 	rgb[BLUE] = ft_atoi(parts[2]);
