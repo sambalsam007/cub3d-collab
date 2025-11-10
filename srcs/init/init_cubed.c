@@ -93,9 +93,9 @@ int	init_cubed(t_cubed *cubed, char *file)
 	if (init_mlx_struct(cubed))
 		return (free_all(cubed), ERROR);
 	if (init_lines(file, &lines))
-		return (ERROR);
+		return (ft_freearr(lines), free_all(cubed), ERROR);
 	if (parse_file(cubed, lines))
-		return (ft_freearr(lines), ERROR);
+		return (ft_freearr(lines), free_all(cubed), ERROR);
 	ft_freearr(lines);
 	init_player(cubed);
 	return (SUCCESS);

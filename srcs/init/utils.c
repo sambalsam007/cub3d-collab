@@ -28,7 +28,6 @@ int	check_surround(char **map, int y, int x, int h)
 	rowlen = ft_strlen(map[y]);
 	if (x >= rowlen || map[y][x] == ' ' || map[y][x] == '\0')
 		return (ERROR);
-	y = y;
 	x = x - 1;
 	if (x < 0)
 		return (ERROR);
@@ -49,8 +48,8 @@ int	validate_map(t_cubed *cubed, int h, int w)
 	y = -1;
 	while (++y < h)
 	{
-		x = -1;
-		while (++x < w)
+		x = 0;
+		while (x < w && cubed->data.map[y][x])
 		{
 			if (cubed->data.map[y][x] == '0' \
 					|| is_player(cubed->data.map[y][x]))
@@ -59,6 +58,7 @@ int	validate_map(t_cubed *cubed, int h, int w)
 						== ERROR)
 					return (ERROR);
 			}
+			x++;
 		}
 	}
 	return (SUCCESS);
@@ -82,7 +82,7 @@ void	init_loops(t_cubed *cubed)
 		i++;
 	}
 	i = 0;
-	while (i < 300)
+	while (i < 99999)
 		cubed->keys[i++] = 0;
 }
 
