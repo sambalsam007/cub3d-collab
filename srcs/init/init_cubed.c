@@ -17,7 +17,7 @@ int	init_mlx_struct(t_cubed *cubed)
 	cubed->mlx.mlx = mlx_init();
 	if (!cubed->mlx.mlx)
 		return (err_msg(ERR_MLX), ERROR);
-	cubed->mlx.win = mlx_new_window(cubed->mlx.mlx, WIDTH, HEIGHT, "Cub3der");
+	cubed->mlx.win = mlx_new_window(cubed->mlx.mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!cubed->mlx.win)
 		return (err_msg(ERR_WIN), ERROR);
 	cubed->mlx.img = mlx_new_image(cubed->mlx.mlx, WIDTH, HEIGHT);

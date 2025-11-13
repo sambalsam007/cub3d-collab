@@ -5,5 +5,32 @@
 	of your choice.
 
 	run
-	./cub3d test-maps-invalid/missing-texture.cub
+	./cub3D test-maps/invalid/missing-texture.cub
 	the message is not ok
+
+[] color/texture parsing - leading zeros 
+
+	=> F 001,255,000
+
+	./cub3D test-maps/color-texture-parsing/leading-zeros-rgb.cub
+
+	this is not working right now.
+	chatgpt says this should work
+
+[] color/texture parsing - extra spaces (colors)
+
+	=> C 173 , 216 , 230
+
+	./cub3D test-maps/color-texture-parsing/extra-spaces-colors.cub
+
+	this is not working right now.
+	chatgpt says this should work
+
+[] color/texture parsing - non-numeric RGB values
+
+	==> C 173,a,230
+
+	./cub3D test-maps/color-texture-parsing/non-numeric-rgb.cub
+	
+	moet van chatgpt werken
+	is het echt nodig?
