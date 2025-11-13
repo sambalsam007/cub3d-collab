@@ -1,0 +1,9 @@
+[] change the error message to fit the pdf description
+
+	pdf: If any misconfiguration of any kind is encountered in the file, the program
+	must exit properly and return "Error\n" followed by an explicit error message
+	of your choice.
+
+	run
+	./cub3d test-maps-invalid/missing-texture.cub
+	the message is not ok
