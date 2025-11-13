@@ -5,14 +5,14 @@
 	of your choice.
 
 	run
-	./cub3D test-maps/invalid/missing-texture.cub
+	./cub3D test-maps/invalid/err-missing-texture.cub
 	the message is not ok
 
 [] color/texture parsing - leading zeros 
 
 	=> F 001,255,000
 
-	./cub3D test-maps/color-texture-parsing/leading-zeros-rgb.cub
+	./cub3D test-maps/color-texture-parsing/ok-leading-zeros-rgb.cub
 
 	this is not working right now.
 	chatgpt says this should work
@@ -21,7 +21,7 @@
 
 	=> C 173 , 216 , 230
 
-	./cub3D test-maps/color-texture-parsing/extra-spaces-colors.cub
+	./cub3D test-maps/color-texture-parsing/ok-extra-spaces-colors.cub
 
 	this is not working right now.
 	chatgpt says this should work
@@ -30,7 +30,29 @@
 
 	==> C 173,a,230
 
-	./cub3D test-maps/color-texture-parsing/non-numeric-rgb.cub
+	./cub3D test-maps/color-texture-parsing/err-non-numeric-rgb.cub
 	
 	moet van chatgpt werken
 	is het echt nodig?
+	--update : ik denk van niet.
+
+[] make re - not working
+
+	make
+	make re
+	--> no ./cub3D file is made
+
+	make re
+	--> no ./cub3D file is made
+
+[] mistake : invalid characters are accepted
+
+	./cub3D test-maps/invalid/err-invalid-characters.cub
+
+	there is a '2' in the map.
+	but it still opens the game
+	u can't go through teh place where the '2' is
+
+[] run ./scripts/valgrind.sh
+
+	some have invalid free
