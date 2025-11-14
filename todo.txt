@@ -1,3 +1,5 @@
+======= FIX ==============
+
 [] change the error message to fit the pdf description
 
 	pdf: If any misconfiguration of any kind is encountered in the file, the program
@@ -16,25 +18,6 @@
 
 	this is not working right now.
 	chatgpt says this should work
-
-[] color/texture parsing - extra spaces (colors)
-
-	=> C 173 , 216 , 230
-
-	./cub3D test-maps/color-texture-parsing/ok-extra-spaces-colors.cub
-
-	this is not working right now.
-	chatgpt says this should work
-
-[] color/texture parsing - non-numeric RGB values
-
-	==> C 173,a,230
-
-	./cub3D test-maps/color-texture-parsing/err-non-numeric-rgb.cub
-	
-	moet van chatgpt werken
-	is het echt nodig?
-	--update : ik denk van niet.
 
 [] make re - not working
 
@@ -57,3 +40,25 @@
 [] run ./scripts/valgrind.sh
 
 	some have invalid free
+
+======= IGNORE ==============
+
+[] color/texture parsing - extra spaces (colors)
+
+	=> C 173 , 216 , 230
+
+	./cub3D test-maps/color-texture-parsing/ok-extra-spaces-colors.cub
+
+	this is not working right now.
+	chatgpt says this should work
+
+[] color/texture parsing - non-numeric RGB values
+
+	==> C 173,a,230
+
+	./cub3D test-maps/color-texture-parsing/err-non-numeric-rgb.cub
+	
+	moet van chatgpt werken
+	is het echt nodig?
+	--update : ik denk van niet.
+
