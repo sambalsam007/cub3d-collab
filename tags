@@ -130,7 +130,7 @@ MiniLibX	mlxlib/man/man3/mlx_loop.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
 MiniLibX	mlxlib/man/man3/mlx_new_image.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
 MiniLibX	mlxlib/man/man3/mlx_new_window.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
 MiniLibX	mlxlib/man/man3/mlx_pixel_put.3	/^.TH MiniLibX 3 "September 19, 2002"$/;"	t
-NAME	Makefile	/^NAME	= cub3d$/;"	m
+NAME	Makefile	/^NAME	= cub3D$/;"	m
 NAME	libft/Makefile	/^NAME	= libft.a$/;"	m
 NAME	mlxlib/Makefile.mk	/^NAME		= libmlx.a$/;"	m
 NAME	mlxlib/man/man1/mlx.1	/^.SH NAME$/;"	s	title:MiniLibX
@@ -282,7 +282,9 @@ col	mlxlib/mlx_int.h	/^	int		col;$/;"	m	struct:s_xpm_col	typeref:typename:int
 color	include/cubed.h	/^	int		color;$/;"	m	struct:s_minimap	typeref:typename:int
 color	mlxlib/mlx_int.h	/^	int		color;$/;"	m	struct:s_col_name	typeref:typename:int
 color_c	include/cubed.h	/^	int			color_c;$/;"	m	struct:s_data	typeref:typename:int
+color_c_found	include/cubed.h	/^	int			color_c_found;$/;"	m	struct:s_data	typeref:typename:int
 color_f	include/cubed.h	/^	int			color_f;$/;"	m	struct:s_data	typeref:typename:int
+color_f_found	include/cubed.h	/^	int			color_f_found;$/;"	m	struct:s_data	typeref:typename:int
 color_map_1	mlxlib/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f	typeref:typename:int
 color_map_2	mlxlib/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f	typeref:typename:int
 compas	include/cubed.h	/^	t_compas	compas;$/;"	m	struct:s_data	typeref:typename:t_compas
@@ -304,6 +306,7 @@ dir_x	include/cubed.h	/^	double	dir_x;$/;"	m	struct:s_player	typeref:typename:do
 dir_y	include/cubed.h	/^	double	dir_y;$/;"	m	struct:s_player	typeref:typename:double
 display	mlxlib/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar	typeref:typename:Display *
 distance	include/cubed.h	/^	float		distance;$/;"	m	struct:s_ray	typeref:typename:float
+div	scripts/valgrind.sh	/^div()$/;"	f
 divider	scripts/compiler.sh	/^divider() {$/;"	f
 do_configure	mlxlib/Makefile	/^do_configure	:$/;"	t
 do_flush	mlxlib/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar	typeref:typename:int
@@ -408,6 +411,7 @@ ft_strtrim	libft/src/string/ft_strtrim.c	/^char	*ft_strtrim(char *s1, char trim_
 ft_substr	libft/src/string/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f	typeref:typename:char *
 ft_tolower	libft/src/char/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f	typeref:typename:int
 ft_toupper	libft/src/char/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f	typeref:typename:int
+func	srcs/init/color.c	/^static int	func(t_cubed *cubed, char *line)$/;"	f	typeref:typename:int	file:
 gc	mlxlib/mlx_int.h	/^	GC					gc;$/;"	m	struct:s_win_list	typeref:typename:GC
 gc	mlxlib/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img	typeref:typename:GC
 general_calculations	srcs/program/raycaster_1.c	/^void	general_calculations(t_cubed *cubed, t_ray *ray, int current_ray_nbr)$/;"	f	typeref:typename:void
@@ -442,6 +446,7 @@ init_loops	srcs/init/utils.c	/^void	init_loops(t_cubed *cubed)$/;"	f	typeref:typ
 init_mlx_struct	srcs/init/init_cubed.c	/^int	init_mlx_struct(t_cubed *cubed)$/;"	f	typeref:typename:int
 init_player	srcs/init/init_player.c	/^void	init_player(t_cubed *cubed)$/;"	f	typeref:typename:void
 init_player_part2	srcs/init/init_player.c	/^static void	init_player_part2(t_cubed *cubed)$/;"	f	typeref:typename:void	file:
+invalid_free=	scripts/valgrind.sh	/^invalid_free=()$/;"	f
 is_in	srcs/program/player.c	/^int	is_in(float x, float y, t_player p)$/;"	f	typeref:typename:int
 is_player	srcs/init/init_player.c	/^int	is_player(char c)$/;"	f	typeref:typename:int
 is_trimmed	libft/src/string/ft_strtrim.c	/^int	is_trimmed(char c, char *set)$/;"	f	typeref:typename:int
@@ -457,7 +462,7 @@ keys	include/cubed.h	/^	int			keys[99999];$/;"	m	struct:s_cubed	typeref:typename
 last_time	include/cubed.h	/^	long		last_time;$/;"	m	struct:s_cubed	typeref:typename:long
 line_height	include/cubed.h	/^	int			line_height;$/;"	m	struct:s_ray	typeref:typename:int
 list_flags	scripts/wrapper.sh	/^list_flags() {$/;"	f
-load_texture	srcs/init/color.c	/^void	load_texture(t_cubed *cubed, t_compas dir, char *path)$/;"	f	typeref:typename:void
+load_texture	srcs/init/color.c	/^int	load_texture(t_cubed *cubed, t_compas dir, char *path)$/;"	f	typeref:typename:int
 local_endian	mlxlib/test/main.c	/^int	local_endian;$/;"	v	typeref:typename:int
 log_error	mlxlib/configure	/^log_error(){$/;"	f
 log_error	mlxlib/test/run_tests.sh	/^log_error(){$/;"	f
@@ -687,6 +692,8 @@ type	mlxlib/mlx_int.h	/^	int				type;$/;"	m	struct:s_img	typeref:typename:int
 update	scripts/compiler.sh	/^update() {$/;"	f
 update_player	srcs/program/player.c	/^void	update_player(t_cubed *cubed)$/;"	f	typeref:typename:void
 use_xshm	mlxlib/mlx_int.h	/^	int			use_xshm;$/;"	m	struct:s_xvar	typeref:typename:int
+valgrind_fail=	scripts/valgrind.sh	/^valgrind_fail=()$/;"	f
+valgrind_ok=	scripts/valgrind.sh	/^valgrind_ok=()$/;"	f
 valid_filename	srcs/main.c	/^static int	valid_filename(char *filename)$/;"	f	typeref:typename:int	file:
 validate_map	srcs/init/utils.c	/^int	validate_map(t_cubed *cubed, int h, int w)$/;"	f	typeref:typename:int
 visual	mlxlib/mlx_int.h	/^	Visual		*visual;$/;"	m	struct:s_xvar	typeref:typename:Visual *

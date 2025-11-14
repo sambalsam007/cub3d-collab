@@ -21,6 +21,7 @@ static int	get_line_width(char *line)
 	last = -1;
 	while (line[i])
 	{
+		// != 1, 0, !isplayer, ! ' ' ! '\t'
 		if (line[i] == '1' || line[i] == '0' || is_player(line[i]))
 			last = i;
 		i++;
@@ -93,7 +94,7 @@ int	parse_map(t_cubed *cubed, char **lines)
 
 	set_map_size(cubed, lines, &h, &w);
 	if (copy_and_find(cubed, lines, h))
-		return (ft_freearr(lines), ERROR);
+		return (ERROR);
 	if (validate_map(cubed, h, w))
 		return (err_msg(ERR_INV_MAP), ERROR);
 	return (SUCCESS);

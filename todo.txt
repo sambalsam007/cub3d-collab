@@ -40,6 +40,8 @@
 [] run ./scripts/valgrind.sh
 
 	some have invalid free
+	test-maps/invalid/err-multiple-players.cub
+	test-maps/invalid/err-no-player.cub
 
 ======= IGNORE ==============
 

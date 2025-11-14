@@ -16,6 +16,8 @@ void	ft_freearr(char **arr)
 {
 	int	i;
 
+	if (!arr)
+		return;
 	i = -1;
 	while (arr[++i])
 		free(arr[i]);
