@@ -37,7 +37,7 @@
 	but it still opens the game
 	u can't go through teh place where the '2' is
 
-[] run ./scripts/valgrind.sh
+[x] run ./scripts/valgrind.sh
 
 	some have invalid free
 	test-maps/invalid/err-multiple-players.cub
