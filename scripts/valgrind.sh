@@ -6,10 +6,9 @@ echo test valgrind
 tempdoc=/tmp/cubed.valgrind.testdoc.txt
 :>"$tempdoc"
 map="test-maps/valid/valid-basic.cub"
-if [[ ! -f "cub3D" ]];then
-	make fclean
-	make
-fi
+
+make fclean
+make
 
 div()
 {
@@ -21,12 +20,16 @@ div()
 valgrind_ok=()
 valgrind_fail=()
 invalid_free=()
+flagged_maps=()
 test_maps=($(find test-maps))
 for map in "${test_maps[@]}"; do
 	div
 	echo -e "current map : $map"
 	valgrind ./cub3D "$map" >"$tempdoc" 2>&1
 	no_leaks=0
+	if grep -q "FLAGGED" "$tempdoc"; then
+		flagged_maps+=($map)
+	fi
 	if grep -q "Invalid free" "$tempdoc"; then
 		invalid_free+=($map)
 	fi
@@ -62,6 +65,12 @@ done
 div
 echo -e "${c_red}🕱invalid free / etc : "
 for v_map in "${invalid_free[@]}"; do
+	echo "$v_map"
+done
+
+div
+echo -e "${c_red}🕱FLAGGED MAPS : "
+for v_map in "${flagged_maps[@]}"; do
 	echo "$v_map"
 done
 

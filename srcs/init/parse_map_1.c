@@ -21,7 +21,6 @@ static int	get_line_width(char *line)
 	last = -1;
 	while (line[i])
 	{
-		// todo != 1, 0, !isplayer, ! ' ' ! '\t'
 		if (line[i] == '1' || line[i] == '0' || is_player(line[i]))
 			last = i;
 		i++;

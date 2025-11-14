@@ -1,5 +1,10 @@
 ======= FIX ==============
 
+[] invalid char outside map???
+
+	is this bad?
+	./cub3D test-maps/invalid/err-invalid-character-outside-map.cub 
+
 [] change the error message to fit the pdf description
 
 	pdf: If any misconfiguration of any kind is encountered in the file, the program
