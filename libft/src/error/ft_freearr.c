@@ -18,8 +18,12 @@ void	ft_freearr(char **arr)
 
 	if (!arr)
 		return;
-	i = -1;
-	while (arr[++i])
+	i = 0;
+	while (arr[i])
+	{
 		free(arr[i]);
-	free(arr);
+		i++;
+	}
+	if (arr)
+		free(arr);
 }

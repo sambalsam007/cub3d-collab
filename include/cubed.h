@@ -288,7 +288,7 @@ void	init(t_cubed *cubed);
 void	init_player(t_cubed *cubed);
 char	*read_file(const char *path);
 int		parse_rgb(char *s);
-int	load_texture(t_cubed *cubed, t_compas dir, char *path);
+int		load_texture(t_cubed *cubed, t_compas dir, char *path);
 int		parse_header_line(t_cubed *cubed, char *line);
 
 // Cleaning and Errors

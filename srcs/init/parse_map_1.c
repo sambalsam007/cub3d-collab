@@ -21,7 +21,7 @@ static int	get_line_width(char *line)
 	last = -1;
 	while (line[i])
 	{
-		// != 1, 0, !isplayer, ! ' ' ! '\t'
+		// todo != 1, 0, !isplayer, ! ' ' ! '\t'
 		if (line[i] == '1' || line[i] == '0' || is_player(line[i]))
 			last = i;
 		i++;
@@ -66,12 +66,16 @@ static int	copy_and_find(t_cubed *cubed, char **lines, int h)
 {
 	int	y;
 	int	found;
+	int	i;
 
 	y = 0;
+	i = 0;
 	found = 0;
 	cubed->data.map = malloc(sizeof(char *) * (h + 1));
 	if (!cubed->data.map)
 		return (err_msg(ERR_MAL), ERROR);
+	while (i <= h)
+		cubed->data.map[i++] = NULL;
 	while (y < h)
 	{
 		cubed->data.map[y] = ft_strdup(lines[y]);
