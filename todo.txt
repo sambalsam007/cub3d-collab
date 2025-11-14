@@ -47,7 +47,8 @@
 
 [] mistake : invalid characters are accepted
 
-	./cub3D test-maps/invalid/err-invalid-characters.cub
+	./cub3D test-maps/invalid/err-invalid-characters-numeric.cub
+	./cub3D test-maps/invalid/err-invalid-characters-alpha.cub
 
 	there is a '2' in the map.
 	but it still opens the game
