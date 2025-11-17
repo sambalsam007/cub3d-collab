@@ -6,11 +6,25 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 13:16:32 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/11/17 13:02:54 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:26:20 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubed.h"
+
+static int	validate_rgb(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]) && s[i] != ',')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
 
 int	parse_rgb(char *s)
 {
@@ -19,16 +33,11 @@ int	parse_rgb(char *s)
 	int	i;
 
 	i = 0;
-	while (s[i] == ' ' && s[i])
+	while (s[i] == ' ')
 		i++;
 	s += i;
-	i = 0;
-	while (s[i])
-	{
-		if (!ft_isdigit(s[i]) && s[i] != ',')
-			return (-1);
-		i++;
-	}
+	if (validate_rgb(s) == -1)
+		return (-1);
 	parts = ft_split(s, ',');
 	if (!parts)
 		return (-1);
@@ -57,7 +66,6 @@ int	load_texture(t_cubed *cubed, t_compas dir, char *path)
 	tex = cubed->texture;
 	if (tex[dir].found == 1)
 		return (ERROR);
-	printf("address: %p\n", cubed->mlx.mlx);
 	tex[dir].img = mlx_xpm_file_to_image(cubed->mlx.mlx, path + i, &w, &h);
 	if (!tex[dir].img)
 		return (ERROR);
