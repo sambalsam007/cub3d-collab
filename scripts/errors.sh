@@ -66,4 +66,5 @@ for v_map in "${test_result_1_nope[@]}"; do echo "$v_map"; done
 
 printf "${c_reset}"
 
+make fclean
 

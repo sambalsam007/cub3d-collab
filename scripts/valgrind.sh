@@ -77,3 +77,4 @@ done
 printf "${c_reset}"
 
 
+make fclean
