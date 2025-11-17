@@ -281,6 +281,7 @@ int		is_player(char c);
 int		check_surround(char **map, int y, int x, int h);
 int		validate_map(t_cubed *cubed, int h, int w);
 int		parse_map(t_cubed *cubed, char **lines);
+int		check_for_invalid_chars(char **lines);
 int		set_player(t_cubed *cubed, char c, t_set_player sp, int *found);
 
 int		init_cubed(t_cubed *cubed, char *file);

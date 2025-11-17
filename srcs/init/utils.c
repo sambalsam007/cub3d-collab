@@ -12,6 +12,49 @@
 
 #include "cubed.h"
 
+// this checks the lines of the map until the end
+//
+// example:	"111111111      "
+// 		"1100S01111	"
+// 		"1111011	"
+// 		"11111		"
+//
+// this example contains spaces and/or tabs.
+// so, valid chars are :
+//
+// 	1	0
+// 	N	E
+// 	S	W
+// 	' '	\t
+//
+int	check_for_invalid_chars(char **lines)
+{
+	int	i;
+	int	y;
+
+	i = -1;
+	while (lines[++i])
+	{
+		y = -1;
+		while (lines[i][++y])
+		{
+			if (lines[i][y] != '1' \
+					&& lines[i][y] != '0' \
+					&& lines[i][y] != 'N' \
+					&& lines[i][y] != 'E' \
+					&& lines[i][y] != 'S' \
+					&& lines[i][y] != 'W' \
+					&& lines[i][y] != ' ' \
+					&& lines[i][y] != '\t' \
+					)
+			{
+				return (1);
+			}
+		}
+	}
+	return (0);
+}
+
 int	check_surround(char **map, int y, int x, int h)
 {
 	int	rowlen;

@@ -90,47 +90,6 @@ static int	copy_and_find(t_cubed *cubed, char **lines, int h)
 	return (SUCCESS);
 }
 
-// this checks the lines of the map until the end
-//
-// example:	"111111111      "
-// 		"1100S01111	"
-// 		"1111011	"
-// 		"11111		"
-//
-// this example contains spaces and/or tabs.
-// so, valid chars are :
-//
-// 	1	0
-// 	N	E
-// 	S	W
-// 	' '	\t
-//
-int	check_for_invalid_chars(char **lines)
-{
-	for (int i = 0; lines[i]; i++)
-	{
-		for (int y = 0; lines[i][y]; y++)
-		{
-			printf("(%c)", lines[i][y]);
-			if (lines[i][y] != '1' \
-					&& lines[i][y] != '0' \
-					&& lines[i][y] != 'N' \
-					&& lines[i][y] != 'E' \
-					&& lines[i][y] != 'S' \
-					&& lines[i][y] != 'W' \
-					&& lines[i][y] != ' ' \
-					&& lines[i][y] != '\t' \
-					)
-			{
-				return (1);
-			}
-		}
-		printf("\n");
-	}
-	
-	return (0);
-}
-
 int	parse_map(t_cubed *cubed, char **lines)
 {
 	int	h;

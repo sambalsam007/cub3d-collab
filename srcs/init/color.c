@@ -30,7 +30,7 @@ int	parse_rgb(char *s)
 {
 	char	**parts;
 	t_rgb	rgb[3];
-	int	i;
+	int		i;
 
 	i = 0;
 	while (s[i] == ' ')
