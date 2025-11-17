@@ -28,6 +28,7 @@ for map in "${test_maps[@]}"; do
 	echo -e "current map : $map"
 	./cub3D "$map" >"$tempdoc" 2>&1
 	_return=$?
+	cat "$tempdoc"
 	if grep -q "FLAGGED" "$tempdoc"; then
 		flagged_maps+=($map)
 	fi
