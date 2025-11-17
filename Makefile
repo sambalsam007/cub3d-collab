@@ -30,7 +30,7 @@ CC		= cc
 # no errors plz
 # CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -fsanitize=address -g 
 # CFLAGS	= -Iinclude -Ilibft -fsanitize=address -g 
-CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft
+CFLAGS	= -Wall -Wextra -Werror -Iinclude -Ilibft -g
 # MLX		= -lmlx -lXext -lX11 -lm
 
 # **************************************************************************** #

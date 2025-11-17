@@ -1,10 +1,11 @@
 ======= FIX ==============
 
-[] check : did we do floodfill?
+[x] check : did we do floodfill?
 	
 	check the 2d array map, any invalid chars?
+	==> i think w e did
 
-[] mistake : invalid characters are accepted
+[x] mistake : invalid characters are accepted
 
 	./cub3D test-maps/invalid/err-invalid-characters-numeric.cub
 	./cub3D test-maps/invalid/err-invalid-characters-alpha.cub
