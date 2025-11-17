@@ -138,7 +138,6 @@ int	parse_map(t_cubed *cubed, char **lines)
 
 	if (check_for_invalid_chars(lines) == 1)
 		return (ERROR);
-	// todo add new filter so map with spaces and tabs at end of line are allowed
 	set_map_size(cubed, lines, &h, &w);
 	if (copy_and_find(cubed, lines, h))
 		return (ERROR);
