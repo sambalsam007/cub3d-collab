@@ -27,7 +27,7 @@ static int	get_line_width(char *line)
 	}
 	return (last + 1);
 }
-
+ 
 static void	set_map_size(t_cubed *cubed, char **lines, int *h, int *w)
 {
 	int	len;
