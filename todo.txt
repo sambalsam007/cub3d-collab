@@ -2,11 +2,13 @@
 
 [] fix : in header u must be able to seperate each element with spaces/tabs
 
-	PDF : Except for the map, each type of information 
-	from an element can be separated by one or more spaces.
+	misschien moet je het in parse_header_line() oplossen?
 
 	./cub3D test-maps/valid/ok-valid-multiple-spaces.cub
 	is not working right now
+
+	PDF : Except for the map, each type of information 
+	from an element can be separated by one or more spaces.
 
 [x] check : did we do floodfill?
 	
