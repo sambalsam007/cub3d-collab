@@ -1,5 +1,9 @@
 ======= FIX ==============
 
+[] check : did we do floodfill?
+	
+	check the 2d array map, any invalid chars?
+
 [] mistake : invalid characters are accepted
 
 	./cub3D test-maps/invalid/err-invalid-characters-numeric.cub
