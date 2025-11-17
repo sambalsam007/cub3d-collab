@@ -1,5 +1,13 @@
 ======= FIX ==============
 
+[] fix : in header u must be able to seperate each element with spaces/tabs
+
+	PDF : Except for the map, each type of information 
+	from an element can be separated by one or more spaces.
+
+	./cub3D test-maps/valid/ok-valid-multiple-spaces.cub
+	is not working right now
+
 [x] check : did we do floodfill?
 	
 	check the 2d array map, any invalid chars?
