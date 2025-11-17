@@ -1,6 +1,6 @@
 ======= FIX ==============
 
-[] fix : in header u must be able to seperate each element with spaces/tabs
+[x] fix : in header u must be able to seperate each element with spaces
 
 	misschien moet je het in parse_header_line() oplossen?
 
@@ -29,9 +29,9 @@
 	is this bad?
 	./cub3D test-maps/invalid/err-invalid-character-outside-map.cub 
 
-[] invalid char (outside) map --> add error message
+[x] invalid char (outside) map --> add error message
 
-[] change the error message to fit the pdf description
+[]x change the error message to fit the pdf description
 
 	pdf: If any misconfiguration of any kind is encountered in the file, the program
 	must exit properly and return "Error\n" followed by an explicit error message
@@ -41,7 +41,7 @@
 	./cub3D test-maps/invalid/err-missing-texture.cub
 	the message is not ok
 
-[] color/texture parsing - leading zeros 
+[x] color/texture parsing - leading zeros 
 
 	=> F 001,255,000
 
@@ -50,7 +50,7 @@
 	this is not working right now.
 	chatgpt says this should work
 
-[] make re - not working
+[x] make re - not working
 
 	make
 	make re
