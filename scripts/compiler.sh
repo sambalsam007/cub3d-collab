@@ -13,7 +13,7 @@ update() {
 	make fclean 
 	make
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
-		./cub3d maps/fun_1.cub
+		./cub3D test-maps/invalid/err-invalid-characters-alpha.cub
 	# [[ $? != 0 ]] && { echo 'fail compile'; return 1; } \
 	divider
 }
