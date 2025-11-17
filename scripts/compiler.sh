@@ -12,8 +12,8 @@ update() {
 	# gcc "$script" -L../minilibx-linux -lmlx -lXext -lX11 -lm -o cub3d
 	make fclean 
 	make
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
-		./cub3D test-maps/valid/pdf-example.cub
+	# valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+		./cub3D test-maps/hole/err-1.cub
 	# [[ $? != 0 ]] && { echo 'fail compile'; return 1; } \
 	divider
 }

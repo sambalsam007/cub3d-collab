@@ -1,5 +1,7 @@
 ======= FIX ==============
 
+[] hole in the wall
+
 [x] fix : in header u must be able to seperate each element with spaces
 
 	misschien moet je het in parse_header_line() oplossen?
@@ -31,7 +33,7 @@
 
 [x] invalid char (outside) map --> add error message
 
-[]x change the error message to fit the pdf description
+[x] change the error message to fit the pdf description
 
 	pdf: If any misconfiguration of any kind is encountered in the file, the program
 	must exit properly and return "Error\n" followed by an explicit error message

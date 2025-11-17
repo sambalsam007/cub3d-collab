@@ -22,7 +22,11 @@ test_result_1_ok=()
 test_result_0_nope=()
 test_result_1_nope=()
 flagged_maps=()
-test_maps=($(find test-maps))
+if [[ "$1" == "hole" ]]; then
+	test_maps=($(find test-maps/hole))
+else
+	test_maps=($(find test-maps))
+fi
 for map in "${test_maps[@]}"; do
 	div
 	echo -e "current map : $map"
