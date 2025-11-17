@@ -53,16 +53,17 @@
 # define ERR_MAL "Memory allocation failed"
 # define ERR_INV_MAP "The map is or wrong or incomplete"
 # define ERR_FILE_CUB "File must be a .cub file: filename.cub"
-# define ERR_FILE "Error accessing file"
+# define ERR_FILE "Error while accessing file"
 # define ERR_INV_LETTER "Invalid character in map"
 # define ERR_INV_FILE "Invalid data in file" 
 # define ERR_MORE_PLAYERS "To many players on map"
 # define ERR_NO_PLAYER "No player was found on map"
 # define ERR_POS_PLAYER "Invalid position of player"
-# define ERR_USE "Error usage! Expected: ./cub3d filename.cub"
+# define ERR_USE "Usage! Expected: ./cub3d filename.cub"
 # define ERR_MLX "Could not start mlx"
 # define ERR_WIN "Could not create mlx window"
 # define ERR_IMG "Could not create mlx image"
+# define ERR_INV_CHAR "Invalid character(s)"
 
 typedef enum e_compas
 {

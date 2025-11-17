@@ -43,7 +43,6 @@ int	main(int ac, char **av)
 			return (ERROR);
 		while (cubed.data.map[i])
 		{
-			printf("%s\n", cubed.data.map[i]);
 			i++;
 		}
 		if (process(&cubed))

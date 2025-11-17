@@ -14,7 +14,7 @@
 
 void	err_msg(char *error)
 {
-	printf("%s\n", error);
+	printf("Error\n%s\n", error);
 }
 
 void	free_mlx(t_cubed *cubed)

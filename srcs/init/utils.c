@@ -48,7 +48,7 @@ int	check_for_invalid_chars(char **lines)
 					&& lines[i][y] != '\t' \
 					)
 			{
-				return (1);
+				return (err_msg(ERR_INV_CHAR), ERROR);
 			}
 		}
 	}
