@@ -24,10 +24,12 @@
 	but it still opens the game
 	u can't go through teh place where the '2' is
 
-[] invalid char outside map???
+[x] invalid char outside map???
 
 	is this bad?
 	./cub3D test-maps/invalid/err-invalid-character-outside-map.cub 
+
+[] invalid char (outside) map --> add error message
 
 [] change the error message to fit the pdf description
 
