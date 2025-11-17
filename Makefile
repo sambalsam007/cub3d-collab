@@ -6,7 +6,7 @@
 #    By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/01 16:36:52 by pdaskalo          #+#    #+#              #
-#    Updated: 2025/09/23 18:39:21 by pdaskalo         ###   ########.fr        #
+#    Updated: 2025/11/17 12:32:13 by pdaskalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,7 +128,6 @@ fclean: banner
 	@echo "$(YELLOW)[CUB3D] Objects removed ✘$(RESET)"
 	@rm -f $(NAME)
 	@$(MAKE) -C $(LIBFTDIR) fclean
-	@$(MAKE) -C $(MLXDIR) fclean
 	@echo "$(RED)[CUB3D] Executable removed ✘$(RESET)"
 
 re: banner fclean all

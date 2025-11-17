@@ -1,18 +1,9 @@
-SO		    ./textures/blue.xpm
-
-
-EA ./textures/b.xpm
-C 173,216,230
-
+NO   ./textures/red.xpm
+SO   ./textures/blue.xpm
+EA    ./textures/b.xpm
 WE ./textures/a.xpm
-F		155,155,139
-
-
-
-
-
-
-NO       ./textures/red.xpm
+C 173,216,230
+F  155,155,139
 
 111111111
 100000101

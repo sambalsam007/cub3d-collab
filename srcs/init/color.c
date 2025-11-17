@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 13:16:32 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/11/10 15:28:03 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:02:54 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,19 @@ int	parse_rgb(char *s)
 {
 	char	**parts;
 	t_rgb	rgb[3];
+	int	i;
 
+	i = 0;
+	while (s[i] == ' ' && s[i])
+		i++;
+	s += i;
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]) && s[i] != ',')
+			return (-1);
+		i++;
+	}
 	parts = ft_split(s, ',');
 	if (!parts)
 		return (-1);
@@ -36,13 +48,17 @@ int	load_texture(t_cubed *cubed, t_compas dir, char *path)
 {
 	int		w;
 	int		h;
+	int		i;
 	t_tex	*tex;
 
+	i = 0;
+	while (path[i] == ' ' && path[i])
+		i++;
 	tex = cubed->texture;
 	if (tex[dir].found == 1)
 		return (ERROR);
 	printf("address: %p\n", cubed->mlx.mlx);
-	tex[dir].img = mlx_xpm_file_to_image(cubed->mlx.mlx, path, &w, &h);
+	tex[dir].img = mlx_xpm_file_to_image(cubed->mlx.mlx, path + i, &w, &h);
 	if (!tex[dir].img)
 		return (ERROR);
 	tex[dir].adr = mlx_get_data_addr(tex[dir].img, &tex[dir].bpp, \
@@ -55,19 +71,19 @@ int	load_texture(t_cubed *cubed, t_compas dir, char *path)
 
 static int	func(t_cubed *cubed, char *line)
 {
-	if (ft_strncmp(line, "F ", 2) == 0)
+	if (ft_strncmp(line, "F", 1) == 0)
 	{
 		if (cubed->data.color_f_found == 1)
 			return (ERROR);
-		cubed->data.color_f = parse_rgb(line + 2);
+		cubed->data.color_f = parse_rgb(line + 1);
 		cubed->data.color_f_found = 1;
 		return (SUCCESS);
 	}
-	if (ft_strncmp(line, "C ", 2) == 0)
+	if (ft_strncmp(line, "C", 1) == 0)
 	{
 		if (cubed->data.color_c_found == 1)
 			return (ERROR);
-		cubed->data.color_c = parse_rgb(line + 2);
+		cubed->data.color_c = parse_rgb(line + 1);
 		cubed->data.color_c_found = 1;
 		return (SUCCESS);
 	}
@@ -76,15 +92,15 @@ static int	func(t_cubed *cubed, char *line)
 
 int	parse_header_line(t_cubed *cubed, char *line)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0)
+	if (ft_strncmp(line, "NO", 2) == 0)
 		return (load_texture(cubed, NORTH, &line[3]));
-	if (ft_strncmp(line, "EA ", 3) == 0)
+	if (ft_strncmp(line, "EA", 2) == 0)
 		return (load_texture(cubed, EAST, &line[3]));
-	if (ft_strncmp(line, "SO ", 3) == 0)
+	if (ft_strncmp(line, "SO", 2) == 0)
 		return (load_texture(cubed, SOUTH, &line[3]));
-	if (ft_strncmp(line, "WE ", 3) == 0)
+	if (ft_strncmp(line, "WE", 2) == 0)
 		return (load_texture(cubed, WEST, &line[3]));
-	if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
+	if (ft_strncmp(line, "F", 1) == 0 || ft_strncmp(line, "C", 1) == 0)
 		return (func(cubed, line));
 	if (ft_strncmp(line, "\0", 1) == 0)
 		return (SUCCESS);
