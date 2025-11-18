@@ -101,16 +101,6 @@ static int	check_header_complete(t_cubed *cubed)
 // 	return (SUCCESS);
 // }
 
-int	line_len(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s && s[len])
-		len++;
-	return (len);
-}
-
 int	check_vertical(char **lines, int i, int j)
 {
 	int	len_up;
@@ -118,12 +108,12 @@ int	check_vertical(char **lines, int i, int j)
 
 	if (i == 0)
 		return (ERROR);
-	len_up = line_len(lines[i - 1]);
+	len_up = ft_strlen(lines[i - 1]);
 	if (j >= len_up || lines[i - 1][j] == ' ')
 		return (ERROR);
 	if (!lines[i + 1])
 		return (ERROR);
-	len_down = line_len(lines[i + 1]);
+	len_down = ft_strlen(lines[i + 1]);
 	if (j >= len_down || lines[i + 1][j] == ' ')
 		return (ERROR);
 	return (SUCCESS);
@@ -137,7 +127,7 @@ int	check_horizontal(char **lines, int i, int j)
 		return (ERROR);
 	if (lines[i][j - 1] == ' ')
 		return (ERROR);
-	len_cur = line_len(lines[i]);
+	len_cur = ft_strlen(lines[i]);
 	if (j + 1 >= len_cur || lines[i][j + 1] == ' ')
 		return (ERROR);
 	return (SUCCESS);
