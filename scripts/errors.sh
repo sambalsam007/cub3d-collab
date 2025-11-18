@@ -24,6 +24,8 @@ test_result_1_nope=()
 flagged_maps=()
 if [[ "$1" == "hole" ]]; then
 	test_maps=($(find test-maps/hole))
+elif [[ "$1" == "wacky" ]]; then
+	test_maps=($(find test-maps/wacky))
 else
 	test_maps=($(find test-maps))
 fi

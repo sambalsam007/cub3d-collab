@@ -136,9 +136,15 @@ int	check_horizontal(char **lines, int i, int j)
 int	check_point_around(char **lines, int i, int j)
 {
 	if (check_vertical(lines, i, j) == ERROR)
+	{
+		printf("X");
 		return (ERROR);
+	}
 	if (check_horizontal(lines, i, j) == ERROR)
+	{
+		printf("Y");
 		return (ERROR);
+	}
 	return (SUCCESS);
 }
 
@@ -156,7 +162,10 @@ int	check_lines(char **lines)
 			if (lines[i][j] == '0' || is_player(lines[i][j]))
 			{
 				if (check_point_around(lines, i, j) == ERROR)
+				{
+					printf("i: %d, j: %d\n", i, j);
 					return (ERROR);
+				}
 			}
 			j++;
 		}
@@ -180,6 +189,11 @@ int	parse_file(t_cubed *cubed, char **lines)
 		return (ERROR);
 	if (!lines[i])
 		return (err_msg(ERR_INV_MAP), ERROR);
+	for (int i = 0; lines[i]; i++)
+	{
+
+		printf("(%s)\n", lines[i]);
+	}
 	if (check_lines(&lines[i]))
 		return (err_msg(ERR_INV_MAP), ERROR);
 	if (parse_map(cubed, &lines[i]))
