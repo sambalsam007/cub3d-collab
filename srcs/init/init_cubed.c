@@ -6,7 +6,7 @@
 /*   By: pdaskalo <pdaskalo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:30:51 by pdaskalo          #+#    #+#             */
-/*   Updated: 2025/10/31 15:18:54 by pdaskalo         ###   ########.fr       */
+/*   Updated: 2025/11/18 11:59:46 by pdaskalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,140 @@ static int	check_header_complete(t_cubed *cubed)
 	return (SUCCESS);
 }
 
+// int	check_point_around(char **lines, int i, int j)
+// {
+// 	if (lines[i - 1][j] == ' ' || !lines[i - 1][j])
+// 		return (ERROR);	
+// 	if (lines[i + 1][j] == ' ' || !lines[i + 1][j])
+// 		return (ERROR);
+// 	if (lines[i][j - 1] == ' ' || !lines[i][j - 1])
+// 		return (ERROR);
+// 	if (lines[i][j + 1] == ' ' || !lines[i][j + 1])
+// 		return (ERROR);
+// 	return (SUCCESS);
+// }
+
+// int	check_lines(char **lines)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = -1;
+// 	while (lines[++i])
+// 	{
+// 		j = -1;
+// 		while (lines[i][++j])
+// 		{
+// 			if (check_point_around(lines, i, j) && (lines[i][j] == '0' || is_player(lines[i][j])))
+// 				return (ERROR);
+// 		}
+// 	}
+// 	return (SUCCESS);
+// }int	check_point_around(char **lines, int i, int j)
+// {
+// 	if (lines[i - 1][j] == ' ' || !lines[i - 1][j])
+// 		return (ERROR);	
+// 	if (lines[i + 1][j] == ' ' || !lines[i + 1][j])
+// 		return (ERROR);
+// 	if (lines[i][j - 1] == ' ' || !lines[i][j - 1])
+// 		return (ERROR);
+// 	if (lines[i][j + 1] == ' ' || !lines[i][j + 1])
+// 		return (ERROR);
+// 	return (SUCCESS);
+// }
+
+// int	check_lines(char **lines)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = -1;
+// 	while (lines[++i])
+// 	{
+// 		j = -1;
+// 		while (lines[i][++j])
+// 		{
+// 			if (check_point_around(lines, i, j) && (lines[i][j] == '0' || is_player(lines[i][j])))
+// 				return (ERROR);
+// 		}
+// 	}
+// 	return (SUCCESS);
+// }
+
+int	line_len(char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s && s[len])
+		len++;
+	return (len);
+}
+
+int	check_vertical(char **lines, int i, int j)
+{
+	int	len_up;
+	int	len_down;
+
+	if (i == 0)
+		return (ERROR);
+	len_up = line_len(lines[i - 1]);
+	if (j >= len_up || lines[i - 1][j] == ' ')
+		return (ERROR);
+	if (!lines[i + 1])
+		return (ERROR);
+	len_down = line_len(lines[i + 1]);
+	if (j >= len_down || lines[i + 1][j] == ' ')
+		return (ERROR);
+	return (SUCCESS);
+}
+
+int	check_horizontal(char **lines, int i, int j)
+{
+	int	len_cur;
+
+	if (j == 0)
+		return (ERROR);
+	if (lines[i][j - 1] == ' ')
+		return (ERROR);
+	len_cur = line_len(lines[i]);
+	if (j + 1 >= len_cur || lines[i][j + 1] == ' ')
+		return (ERROR);
+	return (SUCCESS);
+}
+
+int	check_point_around(char **lines, int i, int j)
+{
+	if (check_vertical(lines, i, j) == ERROR)
+		return (ERROR);
+	if (check_horizontal(lines, i, j) == ERROR)
+		return (ERROR);
+	return (SUCCESS);
+}
+
+int	check_lines(char **lines)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (lines[i])
+	{
+		j = 0;
+		while (lines[i][j])
+		{
+			if (lines[i][j] == '0' || is_player(lines[i][j]))
+			{
+				if (check_point_around(lines, i, j) == ERROR)
+					return (ERROR);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
 int	parse_file(t_cubed *cubed, char **lines)
 {
 	int	i;
@@ -56,10 +190,13 @@ int	parse_file(t_cubed *cubed, char **lines)
 		return (ERROR);
 	if (!lines[i])
 		return (err_msg(ERR_INV_MAP), ERROR);
+	if (check_lines(&lines[i]))
+		return (err_msg(ERR_INV_MAP), ERROR);
 	if (parse_map(cubed, &lines[i]))
 		return (ERROR);
 	return (SUCCESS);
 }
+
 
 static int	init_lines(char *file, char ***lines)
 {
@@ -72,6 +209,8 @@ static int	init_lines(char *file, char ***lines)
 	free(temp);
 	if (!*lines)
 		return (ERROR);
+	// if (check_lines(*lines))
+	// 	return (ERROR);
 	return (SUCCESS);
 }
 
