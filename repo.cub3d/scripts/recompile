@@ -1,0 +1,4 @@
+make fclean
+make 
+./cub3d maps/fun_1.cub
+make fclean
